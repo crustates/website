@@ -36,7 +36,9 @@ export function DataTable({
             {row.map((cell, i) => (
               <Td
                 key={i}
+                rowHeader={i === 0}
                 className={cn(
+                  i === 0 && "font-normal",
                   "whitespace-normal",
                   monoFirst && i === 0 && "font-mono",
                   mutedLast && i === row.length - 1 && "text-ink-muted",
@@ -63,8 +65,8 @@ export function SpecsTable({
       <tbody>
         {rows.map(([label, value]) => (
           <tr key={label}>
-            <Td className="whitespace-normal">
-              <strong>{label}</strong>
+            <Td rowHeader className="whitespace-normal">
+              {label}
             </Td>
             <Td className="whitespace-normal">
               <Rich text={value ?? ""} />

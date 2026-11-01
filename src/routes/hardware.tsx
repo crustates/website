@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Fragment } from "react";
 import { Rich } from "@/components/rich";
+import { PageHero } from "@/components/sections/page-hero";
 import { SectionIntro } from "@/components/sections/section-intro";
 import { Button } from "@/components/ui/button";
 import { Callout } from "@/components/ui/callout";
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/hardware")({
   component: HardwarePage,
 });
 
-/** Support levels are Pill tones (statuses.test.ts checks the JSON). */
+/** Support levels are Pill tones (src/i18n/hardware.test.ts checks the JSON). */
 type Tone = keyof typeof hardware.support.labels;
 
 /** The support tables, in page order, with each band's tint and kicker colour. */
@@ -63,11 +64,12 @@ function HardwarePage() {
   const { labels } = copy.support;
   return (
     <>
-      <Section dots band wrapClassName="flex flex-col gap-5">
-        <Kicker>{copy.hero.kicker}</Kicker>
-        <h1 className="max-w-[900px] text-display-l max-sm:text-heading-1">{copy.hero.heading}</h1>
-        <p className="max-w-[720px] text-body-l">{copy.hero.lead}</p>
-      </Section>
+      <PageHero
+        size="l"
+        kicker={copy.hero.kicker}
+        heading={copy.hero.heading}
+        lead={copy.hero.lead}
+      />
 
       <Section wrapClassName="flex flex-col gap-7">
         <SectionIntro kicker={copy.specs.kicker} heading={copy.specs.heading} />
@@ -82,9 +84,7 @@ function HardwarePage() {
           <tbody>
             {copy.specs.rows.map(([part, ...cells]) => (
               <tr key={part}>
-                <Td>
-                  <strong>{part}</strong>
-                </Td>
+                <Td rowHeader>{part}</Td>
                 {cells.map((cell, i) => (
                   <Td key={i}>{cell}</Td>
                 ))}
@@ -196,6 +196,7 @@ function HardwarePage() {
               heading={table.heading}
               lead={table.lead}
               product={product}
+              onTint={Boolean(product)}
             />
             <Table>
               <thead>
@@ -208,9 +209,7 @@ function HardwarePage() {
               <tbody>
                 {table.rows.map((row) => (
                   <tr key={row.hardware}>
-                    <Td>
-                      <strong>{row.hardware}</strong>
-                    </Td>
+                    <Td rowHeader>{row.hardware}</Td>
                     <Td>{row.notes}</Td>
                     <Td>
                       <Pill tone={row.support as Tone}>{labels[row.support as Tone]}</Pill>
@@ -244,7 +243,8 @@ function HardwarePage() {
             <h3 className="text-heading-2">{copy.hcl.heading}</h3>
             <p>{copy.hcl.body}</p>
             <Cmd command={copy.hcl.command} />
-            {/* The design's "Browse the list [LINK]" button is dropped until the list has a URL. */}
+            {/* The design's "Browse the list" button has no URL yet: its text and placeholder stay. */}
+            <p className="text-body-s text-ink-muted">{copy.hcl.browse}</p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>
                 <a href={href("/faq")}>{copy.hcl.faq}</a>

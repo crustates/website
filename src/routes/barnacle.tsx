@@ -1,11 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Rich } from "@/components/rich";
 import { CardGrid } from "@/components/sections/card-grid";
 import { DataTable } from "@/components/sections/data-table";
+import { NextBand } from "@/components/sections/next-band";
 import { PageHero } from "@/components/sections/page-hero";
 import { SectionIntro } from "@/components/sections/section-intro";
 import { Button } from "@/components/ui/button";
+import { StaticButton } from "@/components/ui/static-button";
 import { Callout } from "@/components/ui/callout";
 import { Card } from "@/components/ui/card";
 import { Console, Term } from "@/components/ui/console";
@@ -58,12 +60,10 @@ function InstallDialog() {
         <p className="text-body-s">{t("dialog.note")}</p>
       </Callout>
       <div className="flex flex-wrap gap-3">
-        <Button asChild variant="violet" size="sm" className="pointer-events-none">
-          <span>{t("dialog.approve")}</span>
-        </Button>
-        <Button asChild size="sm" className="pointer-events-none">
-          <span>{t("dialog.cancel")}</span>
-        </Button>
+        <StaticButton variant="violet" size="sm">
+          {t("dialog.approve")}
+        </StaticButton>
+        <StaticButton size="sm">{t("dialog.cancel")}</StaticButton>
       </div>
     </Card>
   );
@@ -337,25 +337,29 @@ function UnderTheHood() {
 function Share() {
   const { t } = useTranslation("barnacle");
   return (
-    // The design's "Submit a plugin" button is left out: it had no destination yet.
-    <Section fill="barnacle" band wrapClassName="flex flex-wrap items-center justify-between gap-6">
-      <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-3">
-        <Kicker className="text-current">{t("share.kicker")}</Kicker>
-        <h2 className="text-heading-1">{t("share.heading")}</h2>
-      </div>
-      <div className="flex flex-wrap gap-3">
-        <Button asChild variant="pink">
-          <a href={href("/spawn")}>{t("share.spawn")}</a>
-        </Button>
-        <Button asChild className="bg-line text-surface-page">
-          <a href={href("/assistant")}>{t("share.assistant")}</a>
-        </Button>
-        {/* Plain link until /api lands in part 4. */}
-        <Button asChild>
-          <a href={href("/api")}>{t("share.api")}</a>
-        </Button>
-      </div>
-    </Section>
+    <NextBand
+      product="barnacle"
+      band
+      kicker={t("share.kicker")}
+      heading={t("share.heading")}
+      actions={
+        <>
+          {/* Plain links until /community and /api land in part 4. */}
+          <Button asChild>
+            <a href={href("/community")}>{t("share.submit")}</a>
+          </Button>
+          <Button asChild variant="pink">
+            <Link to="/spawn/">{t("share.spawn")}</Link>
+          </Button>
+          <Button asChild className="bg-line text-surface-page">
+            <Link to="/assistant/">{t("share.assistant")}</Link>
+          </Button>
+          <Button asChild>
+            <a href={href("/api")}>{t("share.api")}</a>
+          </Button>
+        </>
+      }
+    />
   );
 }
 

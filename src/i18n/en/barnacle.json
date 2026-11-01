@@ -158,6 +158,7 @@
   "share": {
     "kicker": "Built something useful?",
     "heading": "Share it as a Barnacle plugin.",
+    "submit": "Submit a plugin",
     "spawn": "Spawn · GitOps →",
     "assistant": "AI assistant →",
     "api": "API and integrations"

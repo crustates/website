@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Rich } from "@/components/rich";
 import { CardGrid } from "@/components/sections/card-grid";
+import { CtaBand } from "@/components/sections/cta-band";
 import { PageHero } from "@/components/sections/page-hero";
 import { SectionIntro } from "@/components/sections/section-intro";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import { StaticButton } from "@/components/ui/static-button";
 import { Callout } from "@/components/ui/callout";
 import { Card } from "@/components/ui/card";
 import { Cmd } from "@/components/ui/cmd";
@@ -20,7 +21,6 @@ import assistant from "@/i18n/en/assistant.json";
 import { links } from "@/lib/links";
 import { seo } from "@/lib/seo";
 import { asset, href } from "@/lib/site";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/assistant")({
   head: () =>
@@ -31,25 +31,6 @@ export const Route = createFileRoute("/assistant")({
     }),
   component: AssistantPage,
 });
-
-/** A button drawn inside an illustration: it looks like one but does nothing. */
-function StaticButton({
-  variant,
-  size,
-  className,
-  children,
-}: {
-  variant?: "primary" | "danger";
-  size?: "sm";
-  className?: string;
-  children: ReactNode;
-}) {
-  return (
-    <span className={cn(buttonVariants({ variant, size }), "pointer-events-none", className)}>
-      {children}
-    </span>
-  );
-}
 
 /** Illustration: a chat that ends in a plan to confirm, not a live chat. */
 function Chat() {
@@ -329,21 +310,14 @@ function Faq() {
 function CallToAction() {
   const { t } = useTranslation("assistant");
   return (
-    <Section
-      tone="rust"
-      className="border-t-3 border-line"
-      wrapClassName="flex flex-wrap items-center justify-between gap-6"
-    >
-      <h2 className="min-w-0 flex-[1_1_480px] text-heading-1">{t("cta.heading")}</h2>
-      <div className="flex flex-wrap gap-3">
-        <Button asChild>
-          <a href={href("/community")}>{t("cta.discuss")}</a>
-        </Button>
-        <Button asChild>
-          <a href={href("/roadmap")}>{t("cta.roadmap")}</a>
-        </Button>
-      </div>
-    </Section>
+    <CtaBand heading={t("cta.heading")}>
+      <Button asChild>
+        <a href={href("/community")}>{t("cta.discuss")}</a>
+      </Button>
+      <Button asChild>
+        <a href={href("/roadmap")}>{t("cta.roadmap")}</a>
+      </Button>
+    </CtaBand>
   );
 }
 

@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { CardGrid } from "@/components/sections/card-grid";
 import { DataTable } from "@/components/sections/data-table";
 import { FaqStrip } from "@/components/sections/faq-strip";
+import { NextBand } from "@/components/sections/next-band";
 import { PageHero } from "@/components/sections/page-hero";
 import { SectionIntro } from "@/components/sections/section-intro";
 import { Button } from "@/components/ui/button";
@@ -227,24 +228,20 @@ function SpawnPage() {
       </Section>
       <Example copy={copy.example} />
       <FaqStrip heading={t("productPage.faqHeading", { name })} items={copy.faq} />
-      <Section
-        fill="spawn"
-        className="border-b-3 border-line"
-        wrapClassName="flex flex-wrap items-center justify-between gap-6"
-      >
-        <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-3">
-          <Kicker className="text-current">{t("productPage.next")}</Kicker>
-          <h2 className="text-heading-1">{copy.next.heading}</h2>
-        </div>
-        <div className="flex flex-wrap gap-3">
-          <Button asChild>
-            <a href={href("/features")}>{t("productPage.allFeatures")}</a>
-          </Button>
-          <Button asChild>
-            <a href={href("/download")}>{t("productPage.download")}</a>
-          </Button>
-        </div>
-      </Section>
+      <NextBand
+        product="spawn"
+        heading={copy.next.heading}
+        actions={
+          <>
+            <Button asChild>
+              <Link to="/features/">{t("productPage.allFeatures")}</Link>
+            </Button>
+            <Button asChild>
+              <a href={href("/download")}>{t("productPage.download")}</a>
+            </Button>
+          </>
+        }
+      />
     </>
   );
 }

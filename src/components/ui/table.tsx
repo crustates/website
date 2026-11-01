@@ -38,10 +38,22 @@ export function Th({ num, className, ...props }: ComponentProps<"th"> & { num?: 
   );
 }
 
-export function Td({ num, className, ...props }: ComponentProps<"td"> & { num?: boolean }) {
+export function Td({
+  num,
+  rowHeader,
+  className,
+  ...props
+}: ComponentProps<"td"> & {
+  num?: boolean;
+  /** The cell names its row: a th with row scope, styled like a cell. */
+  rowHeader?: boolean;
+}) {
+  const Cell = rowHeader ? "th" : "td";
   return (
-    <td
+    <Cell
+      scope={rowHeader ? "row" : undefined}
       className={cn(
+        rowHeader && "text-left font-bold",
         "whitespace-nowrap border-b border-line-soft px-3.5 py-3 align-middle [tr:last-child>&]:border-b-0",
         num && "text-right font-mono",
         className,

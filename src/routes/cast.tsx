@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { ProductPage } from "@/components/product-page";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,6 @@ import { Tag } from "@/components/ui/tag";
 import { i18n, usePageCopy } from "@/i18n";
 import cast from "@/i18n/en/cast.json";
 import { seo } from "@/lib/seo";
-import { href } from "@/lib/site";
 
 export const Route = createFileRoute("/cast")({
   head: () =>
@@ -92,7 +91,7 @@ function CastPage() {
       next="barnacle"
       nextExtra={
         <Button asChild>
-          <a href={href("/features")}>{t("productPage.allFeatures")}</a>
+          <Link to="/features/">{t("productPage.allFeatures")}</Link>
         </Button>
       }
     />

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { ProductPage } from "@/components/product-page";
-import { Button } from "@/components/ui/button";
 import { Callout } from "@/components/ui/callout";
 import { Card } from "@/components/ui/card";
+import { StaticButton } from "@/components/ui/static-button";
 import { Console, Term } from "@/components/ui/console";
 import { Pill } from "@/components/ui/pill";
 import { ProductIcon } from "@/components/ui/product-icon";
@@ -72,13 +72,9 @@ function Updates() {
           </tbody>
         </Table>
         {/* Part of the mock screen: look like buttons, do nothing. */}
-        <div className="pointer-events-none flex flex-wrap gap-3">
-          <Button asChild variant="primary">
-            <span>{t("visual.upgrade")}</span>
-          </Button>
-          <Button asChild>
-            <span>{t("visual.schedule")}</span>
-          </Button>
+        <div className="flex flex-wrap gap-3">
+          <StaticButton variant="primary">{t("visual.upgrade")}</StaticButton>
+          <StaticButton>{t("visual.schedule")}</StaticButton>
         </div>
       </Card>
       <Console wrap className="mt-5">

@@ -31,6 +31,7 @@ export function NavAnchor({
       <Link
         to={target.to}
         className={cn(className, active && activeClassName)}
+        aria-current={active ? "true" : undefined}
         activeProps={{ className: activeClassName }}
         onClick={onClick}
       >
@@ -39,7 +40,12 @@ export function NavAnchor({
     );
   }
   return (
-    <a href={target.href} className={cn(className, active && activeClassName)} onClick={onClick}>
+    <a
+      href={target.href}
+      className={cn(className, active && activeClassName)}
+      aria-current={active ? "true" : undefined}
+      onClick={onClick}
+    >
       {children}
     </a>
   );

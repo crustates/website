@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Rich } from "@/components/rich";
+import { CtaBand } from "@/components/sections/cta-band";
+import { PageHero } from "@/components/sections/page-hero";
 import { SectionIntro } from "@/components/sections/section-intro";
 import { Button } from "@/components/ui/button";
 import { Callout } from "@/components/ui/callout";
 import { Card } from "@/components/ui/card";
 import { Cmd } from "@/components/ui/cmd";
-import { Kicker } from "@/components/ui/kicker";
 import { Pill } from "@/components/ui/pill";
 import { Section } from "@/components/ui/section";
 import { Table, Td, Th } from "@/components/ui/table";
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/compare")({
 /** Matrix columns, in order; keys of each row in compare.json. */
 const columns = ["crustates", "proxmox", "truenas", "unraid", "xcpng", "panels"] as const;
 const tones = { yes: "ok", partial: "warn", no: "off", planned: "info" } as const;
-/** Row values in compare.json; statuses.test.ts checks each has a tone and a label. */
+/** Row values in compare.json; src/i18n/compare.test.ts checks each has a label. */
 type Status = keyof typeof tones;
 const statuses = Object.keys(tones) as Status[];
 
@@ -39,12 +40,12 @@ function ComparePage() {
   const status = (s: string) => <Pill tone={tones[s as Status]}>{copy.status[s as Status]}</Pill>;
   return (
     <>
-      <Section dots band wrapClassName="flex flex-col gap-5">
-        <Kicker>{copy.hero.kicker}</Kicker>
-        <h1 className="max-w-[900px] text-display-l max-sm:text-heading-1">{copy.hero.heading}</h1>
-        <p className="max-w-[720px] text-body-l">
-          <Rich text={copy.hero.lead} />
-        </p>
+      <PageHero
+        size="l"
+        kicker={copy.hero.kicker}
+        heading={copy.hero.heading}
+        lead={<Rich text={copy.hero.lead} />}
+      >
         <div className="flex flex-wrap items-center gap-3">
           {statuses.map((s) => (
             <Pill key={s} tone={tones[s]}>
@@ -53,7 +54,7 @@ function ComparePage() {
           ))}
           <span className="text-body-s text-ink-muted">{copy.hero.legendNote}</span>
         </div>
-      </Section>
+      </PageHero>
 
       <Section wrapClassName="flex flex-col gap-7">
         <SectionIntro
@@ -73,9 +74,7 @@ function ComparePage() {
           <tbody>
             {copy.matrix.rows.map((row) => (
               <tr key={row.feature}>
-                <Td>
-                  <strong>{row.feature}</strong>
-                </Td>
+                <Td rowHeader>{row.feature}</Td>
                 {columns.map((c) => (
                   <Td key={c}>
                     {status(row[c])}
@@ -87,9 +86,7 @@ function ComparePage() {
               </tr>
             ))}
             <tr>
-              <Td>
-                <strong>{copy.matrix.licence.feature}</strong>
-              </Td>
+              <Td rowHeader>{copy.matrix.licence.feature}</Td>
               {columns.map((c) => (
                 <Td key={c} className="font-mono">
                   {copy.matrix.licence[c]}
@@ -131,17 +128,14 @@ function ComparePage() {
         </Callout>
       </Section>
 
-      <Section tone="rust" wrapClassName="flex flex-wrap items-center justify-between gap-6">
-        <h2 className="min-w-0 flex-[1_1_480px] text-heading-1">{copy.cta.heading}</h2>
-        <div className="flex flex-wrap gap-3">
-          <Button asChild>
-            <a href={href("/download")}>{copy.cta.download}</a>
-          </Button>
-          <Button asChild>
-            <a href={href("/roadmap")}>{copy.cta.roadmap}</a>
-          </Button>
-        </div>
-      </Section>
+      <CtaBand heading={copy.cta.heading}>
+        <Button asChild>
+          <a href={href("/download")}>{copy.cta.download}</a>
+        </Button>
+        <Button asChild>
+          <a href={href("/roadmap")}>{copy.cta.roadmap}</a>
+        </Button>
+      </CtaBand>
     </>
   );
 }

@@ -60,7 +60,10 @@
             "lead": "",
             "text": "Platform: about 1 GB. Each app microVM: tens of MB overhead plus the app. Windows VM: 4–8 GB. ZFS ARC: likes spare RAM and gives it back. Local LLM: 8–16 GB for a 7–14B model."
           },
-          { "lead": "ECC", "text": "is recommended for storage boxes, not required." }
+          {
+            "lead": "ECC",
+            "text": "is recommended for storage boxes, not required."
+          }
         ]
       },
       {
@@ -190,12 +193,36 @@
     "heading": "Most NICs just work.",
     "lead": "Bonds and VLANs are set up in Current, on top of any supported adapter.",
     "rows": [
-      { "hardware": "Intel 1G, i225/i226 2.5G", "notes": "igb, igc in-kernel", "support": "ok" },
-      { "hardware": "Intel X540, X710 10G", "notes": "ixgbe, i40e in-kernel", "support": "ok" },
-      { "hardware": "Realtek 2.5G and 5G", "notes": "r8169 in-kernel", "support": "ok" },
-      { "hardware": "Aquantia / Marvell 10G", "notes": "atlantic in-kernel", "support": "ok" },
-      { "hardware": "Mellanox ConnectX", "notes": "mlx5 in-kernel", "support": "ok" },
-      { "hardware": "Broadcom NetXtreme", "notes": "bnxt / tg3 in-kernel", "support": "ok" },
+      {
+        "hardware": "Intel 1G, i225/i226 2.5G",
+        "notes": "igb, igc in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Intel X540, X710 10G",
+        "notes": "ixgbe, i40e in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Realtek 2.5G and 5G",
+        "notes": "r8169 in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Aquantia / Marvell 10G",
+        "notes": "atlantic in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Mellanox ConnectX",
+        "notes": "mlx5 in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Broadcom NetXtreme",
+        "notes": "bnxt / tg3 in-kernel",
+        "support": "ok"
+      },
       {
         "hardware": "Wi-Fi",
         "notes": "Works, but not for the host’s main link: bridges and VLANs need a wired NIC",
@@ -213,14 +240,26 @@
         "notes": "Onboard ports on nearly every board",
         "support": "ok"
       },
-      { "hardware": "NVMe", "notes": "M.2 and U.2, including PCIe adapters", "support": "ok" },
-      { "hardware": "LSI / Broadcom HBAs", "notes": "In IT mode (mpt3sas)", "support": "ok" },
+      {
+        "hardware": "NVMe",
+        "notes": "M.2 and U.2, including PCIe adapters",
+        "support": "ok"
+      },
+      {
+        "hardware": "LSI / Broadcom HBAs",
+        "notes": "In IT mode (mpt3sas)",
+        "support": "ok"
+      },
       {
         "hardware": "USB disks",
         "notes": "Fine for backup targets, not for pools",
         "support": "warn"
       },
-      { "hardware": "Hardware RAID cards", "notes": "Only in HBA or JBOD mode", "support": "bad" }
+      {
+        "hardware": "Hardware RAID cards",
+        "notes": "Only in HBA or JBOD mode",
+        "support": "bad"
+      }
     ]
   },
   "gpus": {
@@ -340,6 +379,7 @@
     "heading": "Tested on real boxes.",
     "body": "The installer’s hardware check can send an anonymous report (opt-in): CPU, board, NICs, GPUs, controllers and what worked. Those reports fill a searchable compatibility list.",
     "command": "crust hardware report --share",
-    "faq": "Hardware FAQ"
+    "faq": "Hardware FAQ",
+    "browse": "Browse the list [LINK]"
   }
 }

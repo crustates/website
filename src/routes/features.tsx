@@ -1,8 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Rich } from "@/components/rich";
 import { CardGrid } from "@/components/sections/card-grid";
+import { CtaBand } from "@/components/sections/cta-band";
+import { PageHero } from "@/components/sections/page-hero";
 import { SectionIntro } from "@/components/sections/section-intro";
 import { Button } from "@/components/ui/button";
 import { Callout } from "@/components/ui/callout";
@@ -11,6 +13,7 @@ import { Console, Term } from "@/components/ui/console";
 import { Kicker } from "@/components/ui/kicker";
 import { ProductIcon } from "@/components/ui/product-icon";
 import { Section } from "@/components/ui/section";
+import { StaticButton } from "@/components/ui/static-button";
 import { Table, Td, Th } from "@/components/ui/table";
 import { Tag } from "@/components/ui/tag";
 import { i18n, usePageCopy } from "@/i18n";
@@ -48,10 +51,7 @@ const jumps: readonly [ProductKey, string][] = [
 function Hero({ copy }: { copy: Copy["hero"] }) {
   const { t } = useTranslation();
   return (
-    <Section dots band padded={false} wrapClassName="flex flex-col gap-5 py-16 max-md:py-12">
-      <Kicker>{copy.kicker}</Kicker>
-      <h1 className="max-w-[860px] text-display-l max-sm:text-heading-1">{copy.heading}</h1>
-      <p className="max-w-[720px] text-body-l">{copy.lead}</p>
+    <PageHero size="l" kicker={copy.kicker} heading={copy.heading} lead={copy.lead}>
       <nav aria-label={copy.jumpLabel} className="mt-2 flex flex-wrap gap-3">
         {jumps.map(([product, id]) => (
           <Button key={id} asChild size="sm" className={products[product].fill}>
@@ -62,7 +62,7 @@ function Hero({ copy }: { copy: Copy["hero"] }) {
           <a href="#api">{copy.api}</a>
         </Button>
       </nav>
-    </Section>
+    </PageHero>
   );
 }
 
@@ -94,12 +94,13 @@ function Area({
     >
       <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-4">
         <ProductIcon product={product} size={compact ? 48 : 72} />
-        <Kicker product={product}>{copy.kicker}</Kicker>
+        {/* Ink, not the product colour: rust and teal text fail AA on their tints. */}
+        <Kicker className="text-ink">{copy.kicker}</Kicker>
         <h2 className="text-heading-1">{copy.heading}</h2>
         <p className={cn("text-body-l", mutedLead && "text-ink-muted")}>{copy.lead}</p>
         {extra}
         <Button asChild size="sm" className={cn("self-start", products[product].fill)}>
-          <a href={href(products[product].route)}>{copy.link}</a>
+          <Link to={products[product].route}>{copy.link}</Link>
         </Button>
       </div>
       <CardGrid
@@ -138,7 +139,7 @@ function OsAndClusters({ copy }: { copy: Pick<Copy, "molt" | "cast"> }) {
               ))}
             </ul>
             <Button asChild size="sm" className="self-start">
-              <a href={href(products[product].route)}>{copy[product].link}</a>
+              <Link to={products[product].route}>{copy[product].link}</Link>
             </Button>
           </article>
         </Card>
@@ -151,7 +152,8 @@ function Assistant({ copy }: { copy: Copy["assistant"] }) {
   return (
     <Section id="assistant" tone="sunken" band wrapClassName="flex flex-wrap items-center gap-12">
       <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-4">
-        <Kicker product="assistant">{copy.kicker}</Kicker>
+        {/* Ink: success green text fails AA on the sunken band. */}
+        <Kicker className="text-ink">{copy.kicker}</Kicker>
         <h2 className="text-heading-1">{copy.heading}</h2>
         <p className="text-body-l">{copy.lead}</p>
         <div className="flex flex-wrap gap-3">
@@ -160,7 +162,7 @@ function Assistant({ copy }: { copy: Copy["assistant"] }) {
           ))}
         </div>
         <Button asChild size="sm" variant="primary" className="self-start">
-          <a href={href("/assistant")}>{copy.link}</a>
+          <Link to="/assistant/">{copy.link}</Link>
         </Button>
       </div>
       {/* Illustration of a chat, not a live one: its buttons are static. */}
@@ -179,12 +181,10 @@ function Assistant({ copy }: { copy: Copy["assistant"] }) {
           <p className="text-body-s">{copy.mock.offer}</p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Button asChild size="sm" variant="primary" className="pointer-events-none">
-            <span>{copy.mock.review}</span>
-          </Button>
-          <Button asChild size="sm" className="pointer-events-none">
-            <span>{copy.mock.notNow}</span>
-          </Button>
+          <StaticButton size="sm" variant="primary">
+            {copy.mock.review}
+          </StaticButton>
+          <StaticButton size="sm">{copy.mock.notNow}</StaticButton>
         </div>
       </Card>
     </Section>
@@ -244,7 +244,7 @@ function Engines({ copy }: { copy: Copy["engines"] }) {
         <tbody>
           {copy.rows.map(([area, engine, does]) => (
             <tr key={engine}>
-              <Td>{area}</Td>
+              <Td rowHeader>{area}</Td>
               <Td className="whitespace-normal font-mono">{engine}</Td>
               <Td className="whitespace-normal">{does}</Td>
             </tr>
@@ -257,21 +257,14 @@ function Engines({ copy }: { copy: Copy["engines"] }) {
 
 function CallToAction({ copy }: { copy: Copy["cta"] }) {
   return (
-    <Section
-      tone="rust"
-      className="border-t-3 border-line"
-      wrapClassName="flex flex-wrap items-center justify-between gap-6"
-    >
-      <h2 className="flex-[1_1_480px] text-heading-1">{copy.heading}</h2>
-      <div className="flex flex-wrap gap-3">
-        <Button asChild>
-          <a href={href("/download")}>{copy.download}</a>
-        </Button>
-        <Button asChild>
-          <a href={links.docs}>{copy.docs}</a>
-        </Button>
-      </div>
-    </Section>
+    <CtaBand heading={copy.heading}>
+      <Button asChild>
+        <a href={href("/download")}>{copy.download}</a>
+      </Button>
+      <Button asChild>
+        <a href={links.docs}>{copy.docs}</a>
+      </Button>
+    </CtaBand>
   );
 }
 
