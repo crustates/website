@@ -1,1 +1,137 @@
-{}
+{
+  "hero": {
+    "kicker": "Brand and press",
+    "heading": "The crab, the colours and the words.",
+    "lead": "Logos, product icons, colours and boilerplate for writing about Crustates. Use them freely to talk about the project; see the <trademark>trademark policy</trademark> for the rest.",
+    "kit": "Download the brand kit (.zip)",
+    "emblemAlt": "Crustates emblem"
+  },
+  "logos": {
+    "kicker": "Logos",
+    "heading": "Logo downloads",
+    "lead": "Every file comes as SVG and PNG, in light and dark variants.",
+    "download": "{{asset}}, {{format}}",
+    "horizontal": {
+      "title": "Horizontal logo",
+      "body": "The default. Use it wherever there is room."
+    },
+    "mark": {
+      "title": "Crab mark",
+      "body": "For avatars, favicons and tight spaces."
+    },
+    "appIcon": {
+      "title": "App icon",
+      "body": "For app stores, home screens and PWAs."
+    },
+    "emblem": {
+      "title": "Emblem",
+      "body": "For stickers, merch and conference slides."
+    },
+    "runsOn": {
+      "title": "\"Runs on Crustates\" badge",
+      "body": "For READMEs and projects built on Crustates."
+    },
+    "barnacle": {
+      "title": "Barnacle badge",
+      "body": "For plugin READMEs and directory listings."
+    },
+    "spawn": {
+      "title": "Spawn badge",
+      "body": "For homelab repos managed with Spawn."
+    },
+    "dark": {
+      "title": "On dark backgrounds",
+      "body": "Keep the cream outline; never place the mark on rust or blue fills without it."
+    }
+  },
+  "icons": {
+    "kicker": "Product icons",
+    "heading": "One icon per area",
+    "lead": "Each part of Crustates has its own crab-shell icon. Use the name with the icon the first time it appears.",
+    "area": {
+      "tide": "Compute",
+      "reef": "Storage",
+      "current": "Networking",
+      "molt": "Upgrades",
+      "cast": "Clusters",
+      "barnacle": "Plugins",
+      "spawn": "GitOps"
+    }
+  },
+  "palette": {
+    "kicker": "Colour",
+    "heading": "Palette",
+    "lead": "Thick ink outlines and flat fills. Every text pairing in the palette passes WCAG AA.",
+    "ink": { "name": "Ink", "usage": "Text, outlines, shadows" },
+    "cream": { "name": "Cream", "usage": "Page background" },
+    "rust": { "name": "Rust", "usage": "Brand, primary actions" },
+    "blue": { "name": "Blue", "usage": "Links, Tide" },
+    "teal": { "name": "Teal", "usage": "Current" },
+    "yellow": { "name": "Yellow", "usage": "Highlights, Molt" },
+    "violet": { "name": "Violet", "usage": "Barnacle" },
+    "brown": { "name": "Brown", "usage": "Cast" },
+    "pink": { "name": "Pink", "usage": "Spawn" },
+    "green": { "name": "Green", "usage": "Success" },
+    "red": { "name": "Red", "usage": "Danger" }
+  },
+  "type": {
+    "sans": {
+      "kicker": "Display and body",
+      "body": "Headings at 700, body at 400 and 500. Sentence case everywhere.",
+      "sample": "Aa Bb Cc 0123456789 · SIL Open Font Licence"
+    },
+    "mono": {
+      "kicker": "Code and data",
+      "body": "Commands, IDs, sizes and anything a user might copy."
+    }
+  },
+  "usage": {
+    "kicker": "Usage",
+    "heading": "Do and don't",
+    "do": {
+      "label": "Do",
+      "items": [
+        "Write \"Crustates\" with a capital C, one word",
+        "Give the logo clear space at least the height of the crab's claw",
+        "Use the outlined mark on dark or busy backgrounds",
+        "Name areas as \"Tide (compute)\" the first time"
+      ]
+    },
+    "dont": {
+      "label": "Don't",
+      "items": [
+        "Recolour, stretch, rotate or add effects to the crab",
+        "Write \"CrustateS\", \"Crust-ates\" or \"the Crustates OS\"",
+        "Use the logo to suggest an official partnership or endorsement",
+        "Put the mark on rust or blue without its outline"
+      ]
+    }
+  },
+  "words": {
+    "kicker": "Words",
+    "heading": "Names and boilerplate",
+    "name": "Name",
+    "what": "What it is",
+    "platform": "The platform",
+    "areas": {
+      "tide": "Compute: VMs and apps",
+      "reef": "Storage: pools, shares, backups, databases",
+      "current": "Networking: firewall, ingress, remote access",
+      "molt": "The OS and upgrades",
+      "cast": "Clusters of nodes",
+      "barnacle": "Plugins: sandboxed Wasm extensions",
+      "spawn": "GitOps and push-to-deploy from Git"
+    },
+    "cli": "The CLI and terminal UI",
+    "shortLabel": "Short (one line)",
+    "short": "Crustates is an open source platform that turns your own hardware into a private cloud for VMs, apps and storage.",
+    "longLabel": "Long (one paragraph)",
+    "long": "Crustates is an open source homelab platform built in Rust. It combines compute (full VMs and apps in microVMs), storage (ZFS and Btrfs pools, shares and backups) and networking (eBPF firewalling, automatic HTTPS and remote access) in one read-only, image-based OS with a single API. It runs on amd64 and arm64 and is licensed under the AGPLv3.",
+    "copy": "Copy boilerplate"
+  },
+  "press": {
+    "heading": "Writing about Crustates?",
+    "lead": "Screenshots, interviews or a demo box for a review: get in touch.",
+    "about": "About the project"
+  }
+}
