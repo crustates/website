@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/kicker";
 import { Section } from "@/components/ui/section";
 import { Tag } from "@/components/ui/tag";
+import { NavAnchor, type NavItem } from "@/components/layout/nav-anchor";
 import { links } from "@/lib/links";
 import { asset, href } from "@/lib/site";
 
@@ -10,11 +11,11 @@ import { asset, href } from "@/lib/site";
 export function NotFound() {
   const { t } = useTranslation();
   // Plain links: most of these pages land in later parts.
-  const popular = [
+  const popular: NavItem[] = [
     { label: t("notFound.links.download"), href: href("/download") },
-    { label: t("notFound.links.features"), href: href("/features") },
-    { label: t("notFound.links.hardware"), href: href("/hardware") },
-    { label: t("notFound.links.compare"), href: href("/compare") },
+    { label: t("notFound.links.features"), to: "/features/" },
+    { label: t("notFound.links.hardware"), to: "/hardware/" },
+    { label: t("notFound.links.compare"), to: "/compare/" },
     { label: t("notFound.links.catalog"), href: href("/catalog") },
     { label: t("notFound.links.faq"), href: href("/faq") },
   ];
@@ -55,7 +56,7 @@ export function NotFound() {
             <div className="flex flex-wrap gap-2.5">
               {popular.map((item) => (
                 <Tag key={item.label} asChild>
-                  <a href={item.href}>{item.label}</a>
+                  <NavAnchor target={item}>{item.label}</NavAnchor>
                 </Tag>
               ))}
             </div>

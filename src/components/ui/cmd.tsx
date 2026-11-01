@@ -29,7 +29,7 @@ export function Cmd({ command, className }: { command: string; className?: strin
         <span aria-hidden="true" className="text-accent-yellow">
           $
         </span>
-        <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap">{command}</code>
+        <code className="min-w-0 flex-1 [overflow-wrap:anywhere]">{command}</code>
         {mounted && (
           <button
             type="button"

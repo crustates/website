@@ -1,0 +1,128 @@
+{
+  "hero": {
+    "kicker": "Cast · Clusters",
+    "heading": "Join a second machine without port forwarding.",
+    "lead": "Start with one node. Add another at home, at a relative's place or on a VPS, and manage them as one. Nodes find each other by key, not by IP address.",
+    "tags": ["openraft", "iroh", "WireGuard", "Multi-site", "arm64 + amd64"]
+  },
+  "visual": {
+    "title": "Cast · Nodes",
+    "summary": "3 nodes · quorum OK",
+    "columns": {
+      "node": "Node",
+      "site": "Site",
+      "role": "Role",
+      "link": "Link",
+      "status": "Status"
+    },
+    "home": "Home",
+    "parents": "Parents",
+    "leader": "Leader",
+    "voter": "Voter",
+    "ready": "Ready"
+  },
+  "capabilities": {
+    "heading": "Many machines, one Crustates.",
+    "items": [
+      {
+        "title": "Join with a token",
+        "body": "<code>crust cast join</code> with a one-time token. No IPs, no port forwarding."
+      },
+      {
+        "title": "Replicated state",
+        "body": "The control plane state is replicated with Raft, so any node can answer."
+      },
+      {
+        "title": "Multi-site",
+        "body": "Nodes in different homes connect over iroh, direct where possible, relayed where not."
+      },
+      {
+        "title": "Placement",
+        "body": "Pin a workload to a node, a site or a label, or let Crustates choose."
+      },
+      {
+        "title": "Off-site backups",
+        "body": "Back up to a node at another site with one policy."
+      },
+      {
+        "title": "Mixed hardware",
+        "body": "A mini PC, a NAS box and a Raspberry Pi in one cluster, amd64 and arm64."
+      },
+      {
+        "title": "Rolling upgrades",
+        "body": "Molt upgrades one node at a time and keeps quorum."
+      },
+      {
+        "title": "One console",
+        "body": "Every node, VM and app in the same console, CLI and API."
+      },
+      {
+        "title": "Live migration",
+        "body": "Move a running VM between nodes. Later."
+      }
+    ]
+  },
+  "how": {
+    "heading": "Small clusters, done right.",
+    "lead": "Cast is built for 1 to a handful of nodes, not a data centre. It stays simple until you need more.",
+    "steps": [
+      {
+        "title": "Start single",
+        "body": "One node keeps its state in SQLite. No cluster overhead."
+      },
+      {
+        "title": "Add a node",
+        "body": "The second node joins by token; state moves to Raft with openraft."
+      },
+      {
+        "title": "Connect sites",
+        "body": "iroh finds a path between homes; WireGuard carries node traffic."
+      }
+    ],
+    "table": {
+      "columns": ["Engine", "Role in Cast", "Notes"],
+      "rows": [
+        ["openraft", "Replicates control-plane state", "SQLite underneath"],
+        ["SQLite", "State store", "Single node first"],
+        ["iroh", "Connects nodes by key across sites", "Hole punching, relays as fallback"],
+        ["WireGuard", "Encrypted links between nodes", "Kernel module"],
+        ["rustic + zfs send", "Cross-node backups and replication", "Per policy"],
+        ["QEMU migration", "Live migration of VMs", "Later"]
+      ]
+    }
+  },
+  "specs": {
+    "rows": [
+      ["Nodes", "1 to [PLACEHOLDER] recommended"],
+      ["Quorum", "3 voters for automatic failover; 2 nodes work without it"],
+      ["Sites", "Any number, over iroh"],
+      ["Mixed architectures", "amd64 and arm64 in one cluster"],
+      ["Failover", "Restart workloads on another node (shared or replicated storage)"],
+      ["Live migration", "Later"],
+      ["Witness", "A small node or VPS can act as tie-breaker"]
+    ],
+    "ask": {
+      "body": "\"Which node has room for another Windows VM?\" The assistant looks at capacity across nodes and suggests where to place it.",
+      "command": "crust ask \"which node has room for a 8 GiB VM?\""
+    }
+  },
+  "faq": [
+    {
+      "title": "Do I need three nodes?",
+      "body": "No. One node works fine. Three give automatic failover; two work with a small witness."
+    },
+    {
+      "title": "Do nodes need to be on the same network?",
+      "body": "No. iroh connects them across sites without port forwarding."
+    },
+    {
+      "title": "Is this Kubernetes?",
+      "body": "No. The API is Kubernetes-shaped, but there is no Kubernetes underneath."
+    },
+    {
+      "title": "Can I mix a Pi with a PC?",
+      "body": "Yes. Workloads are placed on nodes that match their architecture."
+    }
+  ],
+  "next": { "heading": "Ready to build your own cloud?", "label": "Barnacle · Plugins →" }
+}

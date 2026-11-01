@@ -4,10 +4,6 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { site } from "./site.config.ts";
-import { absoluteUrl } from "./src/lib/site.ts";
-
-// Routes that are prerendered but kept out of the sitemap.
-const hiddenFromSitemap = /^\/(_kit|404)$/;
 
 export default defineConfig({
   base: site.basePath,
@@ -63,15 +59,15 @@ export default defineConfig({
         enabled: true,
         crawlLinks: false,
         failOnError: true,
-        onSuccess: ({ page }) =>
-          hiddenFromSitemap.test(page.path) ? { sitemap: { exclude: true } } : undefined,
       },
-      sitemap: { host: absoluteUrl("/").replace(/\/$/, "") },
+      // src/routes/sitemap[.]xml.ts writes the sitemap instead.
+      sitemap: { enabled: false },
       // Server routes that write files; they are not discovered automatically.
       pages: [
-        { path: "/robots.txt", sitemap: { exclude: true } },
+        { path: "/robots.txt" },
+        { path: "/sitemap.xml" },
         // GitHub Pages serves 404.html at the site root for unknown URLs.
-        { path: "/404", prerender: { outputPath: "/404.html" }, sitemap: { exclude: true } },
+        { path: "/404", prerender: { outputPath: "/404.html" } },
       ],
     }),
     viteReact(),

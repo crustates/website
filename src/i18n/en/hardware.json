@@ -1,0 +1,385 @@
+{
+  "hero": {
+    "kicker": "Docs · Hardware guide",
+    "heading": "Hardware that works well with Crustates.",
+    "lead": "Crustates runs on most 64-bit machines from the last ten years, on amd64 and arm64. This guide covers what to buy, what to avoid and how the installer checks your box."
+  },
+  "specs": {
+    "kicker": "Specs",
+    "heading": "Minimum and recommended.",
+    "columns": ["Part", "Minimum", "Recommended", "With a local AI model"],
+    "rows": [
+      [
+        "CPU",
+        "64-bit, 2 cores, VT-x / AMD-V",
+        "6–8 cores with VT-d / AMD-Vi (IOMMU); Intel Quick Sync for media",
+        "Same, or 8+ cores"
+      ],
+      ["Memory", "8 GB", "32 GB; ECC if the board supports it", "48–64 GB, or a GPU"],
+      ["Boot disk", "64 GB SSD", "256 GB NVMe, separate from data", "Same"],
+      [
+        "Data disks",
+        "Optional (small pool on the boot disk)",
+        "2+ matching disks for a mirror",
+        "Same"
+      ],
+      ["Network", "1 GbE, wired", "2.5 GbE or faster; a second port for VLANs", "Same"],
+      ["Firmware", "UEFI", "UEFI with Secure Boot and TPM 2.0", "Same"],
+      ["GPU", "None", "iGPU for transcoding", "8–12 GB VRAM for 7–14B models"],
+      [
+        "Example",
+        "N100/N150 mini PC, 16 GB",
+        "Ryzen 5/7 or 12th-gen+ Core i5, 32 GB, two disks",
+        "Recommended box plus a GPU"
+      ]
+    ]
+  },
+  "parts": {
+    "kicker": "Parts",
+    "heading": "What matters, part by part.",
+    "items": [
+      {
+        "icon": "tide",
+        "title": "CPU",
+        "paragraphs": [
+          {
+            "lead": "amd64:",
+            "text": "Intel VT-x or AMD-V is required; VT-d or AMD-Vi (IOMMU) for passthrough."
+          },
+          {
+            "lead": "arm64:",
+            "text": "a GICv3 interrupt controller with ITS is needed for Cloud Hypervisor microVMs. Boards without it run apps as QEMU microvm or shared containers."
+          }
+        ]
+      },
+      {
+        "icon": "tide",
+        "title": "Memory",
+        "paragraphs": [
+          {
+            "lead": "",
+            "text": "Platform: about 1 GB. Each app microVM: tens of MB overhead plus the app. Windows VM: 4–8 GB. ZFS ARC: likes spare RAM and gives it back. Local LLM: 8–16 GB for a 7–14B model."
+          },
+          {
+            "lead": "ECC",
+            "text": "is recommended for storage boxes, not required."
+          }
+        ]
+      },
+      {
+        "icon": "reef",
+        "title": "Boot disk vs data disks",
+        "paragraphs": [
+          {
+            "lead": "",
+            "text": "The OS is a read-only image on its own small SSD. Data lives on separate pool disks, so you can reinstall or replace the boot disk without touching your data."
+          }
+        ]
+      },
+      {
+        "icon": "reef",
+        "title": "HBA, not RAID",
+        "paragraphs": [
+          {
+            "lead": "",
+            "text": "ZFS and Btrfs want to see every disk directly. Use onboard SATA or an HBA flashed to IT mode. Hardware RAID controllers hide disk health and break self-healing."
+          }
+        ]
+      },
+      {
+        "icon": "current",
+        "title": "Network cards",
+        "paragraphs": [
+          {
+            "lead": "",
+            "text": "Intel and Mellanox NICs are the safe choice. Realtek 2.5 GbE works with the in-kernel driver. A second port lets you split management and VM traffic."
+          }
+        ]
+      },
+      {
+        "icon": "tide",
+        "title": "GPUs",
+        "paragraphs": [
+          {
+            "lead": "",
+            "text": "Intel iGPUs can be shared with apps for Jellyfin or Plex transcoding. A dedicated NVIDIA or AMD card can be passed to one VM or used for a local model behind the AI assistant."
+          }
+        ]
+      }
+    ],
+    "pi": {
+      "title": "Raspberry Pi 5.",
+      "body": "The Pi 5 has no GICv3-ITS, so Cloud Hypervisor microVMs are not available; apps fall back to QEMU microvm or <code>isolation: shared</code>. Booting the image on the Pi is still being verified."
+    }
+  },
+  "builds": {
+    "kicker": "Example builds",
+    "heading": "Five boxes that work.",
+    "lead": "Prices are placeholders and change often; check current prices before you buy.",
+    "items": [
+      {
+        "title": "Mini PC",
+        "tone": "ok",
+        "badge": "Great start",
+        "spec": "N100-class, 16 GB, 1 TB NVMe",
+        "body": "Apps, Home Assistant, a light NAS. Low power, quiet.",
+        "price": "[PRICE]"
+      },
+      {
+        "title": "NAS box",
+        "tone": "ok",
+        "badge": "Recommended",
+        "spec": "4–6 bays, 32 GB ECC, 2× NVMe",
+        "body": "Storage-first: ZFS mirror or RAIDZ, backups, media.",
+        "price": "[PRICE]"
+      },
+      {
+        "title": "Used workstation",
+        "tone": "info",
+        "badge": "Best value",
+        "spec": "8+ cores, 64 GB ECC, GPU slot",
+        "body": "Windows VMs, GPU passthrough, local LLM for the assistant.",
+        "price": "[PRICE]"
+      },
+      {
+        "title": "Rack server",
+        "tone": "warn",
+        "badge": "Power hungry",
+        "spec": "Dual NIC, HBA in IT mode, 128 GB",
+        "body": "Many VMs and disks; plan for noise and power.",
+        "price": "[PRICE]"
+      },
+      {
+        "title": "arm64 board",
+        "tone": "warn",
+        "badge": "Check support",
+        "spec": "GICv3-ITS SoC, 16 GB, NVMe",
+        "body": "Low-power apps. Check microVM support below.",
+        "price": "[PRICE]"
+      }
+    ]
+  },
+  "installer": {
+    "kicker": "Installer",
+    "heading": "The installer checks your box first.",
+    "lead": "Before it writes anything, the installer tests virtualisation, IOMMU groups, Secure Boot and TPM, disk health and NIC drivers, and tells you what will and won't work.",
+    "download": "Download the installer",
+    "faq": "Hardware FAQ"
+  },
+  "support": {
+    "kicker": "Hardware support",
+    "heading": "Fedora’s kernel, plus the drivers we sign.",
+    "lead": "Crustates runs Fedora’s kernel, pinned per release, so support is mainline Linux plus linux-firmware. Anything outside the kernel (ZFS, NVIDIA, Coral, Hailo) is built and signed in our CI and boot-tested before a release ships.",
+    "labels": {
+      "ok": "Supported",
+      "info": "Works with extras",
+      "warn": "Community",
+      "bad": "Not supported"
+    },
+    "legend": {
+      "ok": "in the image, tested",
+      "info": "needs the hardware extras layer",
+      "warn": "works, best effort",
+      "bad": "won’t work or not recommended"
+    },
+    "columns": {
+      "hardware": "Hardware",
+      "notes": "Notes",
+      "support": "Support"
+    }
+  },
+  "nics": {
+    "kicker": "Current · Network adapters",
+    "heading": "Most NICs just work.",
+    "lead": "Bonds and VLANs are set up in Current, on top of any supported adapter.",
+    "rows": [
+      {
+        "hardware": "Intel 1G, i225/i226 2.5G",
+        "notes": "igb, igc in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Intel X540, X710 10G",
+        "notes": "ixgbe, i40e in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Realtek 2.5G and 5G",
+        "notes": "r8169 in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Aquantia / Marvell 10G",
+        "notes": "atlantic in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Mellanox ConnectX",
+        "notes": "mlx5 in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Broadcom NetXtreme",
+        "notes": "bnxt / tg3 in-kernel",
+        "support": "ok"
+      },
+      {
+        "hardware": "Wi-Fi",
+        "notes": "Works, but not for the host’s main link: bridges and VLANs need a wired NIC",
+        "support": "warn"
+      }
+    ]
+  },
+  "storage": {
+    "kicker": "Reef · Storage controllers",
+    "heading": "Give ZFS and Btrfs the raw disks.",
+    "lead": "Pools need direct access to every disk, so RAID cards must run in HBA or JBOD mode.",
+    "rows": [
+      {
+        "hardware": "SATA / AHCI",
+        "notes": "Onboard ports on nearly every board",
+        "support": "ok"
+      },
+      {
+        "hardware": "NVMe",
+        "notes": "M.2 and U.2, including PCIe adapters",
+        "support": "ok"
+      },
+      {
+        "hardware": "LSI / Broadcom HBAs",
+        "notes": "In IT mode (mpt3sas)",
+        "support": "ok"
+      },
+      {
+        "hardware": "USB disks",
+        "notes": "Fine for backup targets, not for pools",
+        "support": "warn"
+      },
+      {
+        "hardware": "Hardware RAID cards",
+        "notes": "Only in HBA or JBOD mode",
+        "support": "bad"
+      }
+    ]
+  },
+  "gpus": {
+    "kicker": "Tide · GPUs",
+    "heading": "Transcoding, passthrough and local AI.",
+    "lead": "Pass a whole GPU to one VM, or share one GPU between apps, at launch. Splitting one GPU between VMs (SR-IOV) only where the stock driver supports it.",
+    "rows": [
+      {
+        "hardware": "Intel integrated graphics",
+        "notes": "Quick Sync transcoding for apps, whole-GPU passthrough to VMs",
+        "support": "ok"
+      },
+      {
+        "hardware": "Intel SR-IOV (Nova Lake)",
+        "notes": "Via the xe driver from Linux 7.2",
+        "support": "ok"
+      },
+      {
+        "hardware": "Intel SR-IOV (older chips)",
+        "notes": "Needs an out-of-tree driver; not at launch",
+        "support": "bad"
+      },
+      {
+        "hardware": "AMD Radeon",
+        "notes": "amdgpu in-kernel; ROCm runs inside the app, not on the host",
+        "support": "ok"
+      },
+      {
+        "hardware": "NVIDIA (Turing and newer)",
+        "notes": "Open driver built and signed by Crustates CI; enrol our key once with Secure Boot",
+        "support": "info"
+      },
+      {
+        "hardware": "NVIDIA (older)",
+        "notes": "Proprietary-only cards are not supported",
+        "support": "bad"
+      }
+    ],
+    "footnote": "The in-kernel NVIDIA driver (Nova) is expected to replace our signed build later."
+  },
+  "devices": {
+    "kicker": "Devices",
+    "heading": "Passthrough, accelerators and USB.",
+    "lead": "VFIO passthrough for GPUs, NICs, HBAs and USB controllers. The installer reports whether IOMMU is on and how devices are grouped.",
+    "rows": [
+      {
+        "hardware": "VFIO passthrough",
+        "notes": "GPUs, NICs, HBAs, USB controllers; IOMMU required",
+        "support": "ok"
+      },
+      {
+        "hardware": "Zigbee / Z-Wave sticks",
+        "notes": "USB passthrough to Home Assistant",
+        "support": "ok"
+      },
+      {
+        "hardware": "UPS",
+        "notes": "Network UPS Tools: graceful shutdown on power loss",
+        "support": "ok"
+      },
+      {
+        "hardware": "Coral TPU",
+        "notes": "Driver from the hardware extras layer",
+        "support": "info"
+      },
+      {
+        "hardware": "Hailo-8 / 8L",
+        "notes": "Driver from the hardware extras layer",
+        "support": "info"
+      }
+    ]
+  },
+  "arm": {
+    "kicker": "ARM and servers",
+    "heading": "Beyond the mini PC.",
+    "lead": "arm64 is a first-class target; how much works depends on upstream kernel support for each board.",
+    "rows": [
+      {
+        "hardware": "Raspberry Pi 5",
+        "notes": "Fedora 44 images boot from microSD; apps run as shared containers (no GICv3-ITS, so no microVMs)",
+        "support": "warn"
+      },
+      {
+        "hardware": "Ampere Altra",
+        "notes": "Server-class arm64, microVMs and VMs",
+        "support": "ok"
+      },
+      {
+        "hardware": "RK3588 boards",
+        "notes": "Depends on upstream progress per board",
+        "support": "warn"
+      },
+      {
+        "hardware": "IPMI / Redfish",
+        "notes": "Power control and sensor readings",
+        "support": "ok"
+      },
+      {
+        "hardware": "TPM 2.0",
+        "notes": "Seals the pool key for automatic unlock at boot",
+        "support": "ok"
+      }
+    ]
+  },
+  "secureBoot": {
+    "kicker": "Molt · Secure Boot",
+    "heading": "Signed drivers, one key.",
+    "body": "ZFS, NVIDIA, Coral and Hailo drivers live outside Fedora’s kernel, so Crustates signs them with its own key. On a Secure Boot machine you enrol that key once (MOK) during install; after that every update just boots.",
+    "points": [
+      "The public key and its fingerprint are published",
+      "Every image is boot-tested in CI with the drivers loaded",
+      "Never turn Secure Boot off to make a driver load"
+    ]
+  },
+  "hcl": {
+    "kicker": "Hardware compatibility list",
+    "heading": "Tested on real boxes.",
+    "body": "The installer’s hardware check can send an anonymous report (opt-in): CPU, board, NICs, GPUs, controllers and what worked. Those reports fill a searchable compatibility list.",
+    "command": "crust hardware report --share",
+    "faq": "Hardware FAQ",
+    "browse": "Browse the list [LINK]"
+  }
+}

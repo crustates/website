@@ -1,0 +1,127 @@
+{
+  "hero": {
+    "kicker": "Molt · OS and upgrades",
+    "heading": "Upgrade the whole system as one image.",
+    "lead": "Crustates runs on a read-only, image-based OS. Every update is one signed image. If something breaks, roll back in one step, from the console or the recovery screen.",
+    "tags": ["bootc", "Fedora", "composefs", "Secure Boot", "A/B rollback"]
+  },
+  "visual": {
+    "title": "Molt · Updates",
+    "channel": "Channel: stable",
+    "available": "Crustates [VERSION] is available",
+    "details": "Kernel [VERSION] · OpenZFS [VERSION] · 23 fixes · signed by crustates.eu",
+    "columns": { "slot": "Slot", "image": "Image", "status": "Status" },
+    "booted": "Booted",
+    "rollback": "Rollback",
+    "upgrade": "Upgrade and reboot",
+    "schedule": "Schedule"
+  },
+  "capabilities": {
+    "heading": "An OS you never have to babysit.",
+    "items": [
+      {
+        "title": "Read-only root",
+        "body": "The OS can't drift: nothing writes to it at runtime, and composefs verifies every file."
+      },
+      {
+        "title": "Atomic upgrades",
+        "body": "A new image is staged next to the running one and applied on reboot. All or nothing."
+      },
+      {
+        "title": "One-step rollback",
+        "body": "Boot the previous image from the console, the CLI or the local recovery screen."
+      },
+      {
+        "title": "Channels",
+        "body": "Stable and beta channels, with release notes in the console."
+      },
+      {
+        "title": "Signed images",
+        "body": "Every image is signed in CI and verified before it is staged."
+      },
+      {
+        "title": "Secure and measured boot",
+        "body": "Secure Boot and a TPM-measured boot chain, which also unlocks encrypted disks."
+      },
+      {
+        "title": "Offline updates",
+        "body": "Apply an image from a USB stick for air-gapped machines."
+      },
+      {
+        "title": "Scheduled windows",
+        "body": "Pick a maintenance window; Crustates drains, upgrades and checks health."
+      },
+      {
+        "title": "Kernel and ZFS in lockstep",
+        "body": "Each image ships a pinned kernel with a ZFS module built and tested in CI."
+      }
+    ]
+  },
+  "how": {
+    "heading": "Built in CI, verified at boot.",
+    "lead": "Molt images are OCI images built with bootc on Fedora. The same pipeline builds the installer ISO.",
+    "steps": [
+      {
+        "title": "Build",
+        "body": "CI builds the image on Fedora with a pinned kernel and the ZFS module, then runs VM-in-CI tests."
+      },
+      {
+        "title": "Sign and publish",
+        "body": "Images are signed and pushed to the stable or beta channel."
+      },
+      {
+        "title": "Stage",
+        "body": "Your node pulls the new image into the spare slot and verifies its signature."
+      },
+      {
+        "title": "Boot and check",
+        "body": "Reboot into it; if health checks fail, it rolls back by itself."
+      }
+    ],
+    "table": {
+      "columns": ["Engine", "Role in Molt", "Notes"],
+      "rows": [
+        ["bootc", "Image-based OS updates", "OCI images as the OS"],
+        ["Fedora", "Base packages and kernel", "Kernel pinned per release"],
+        ["composefs", "Read-only, verified root filesystem", "fs-verity"],
+        ["systemd", "Init and services", "Minimal profile, Varlink"],
+        ["OpenZFS", "Kernel module per image", "Built in CI, as uCore does"],
+        ["cosign", "Image signing and verification", "Keyless in CI"]
+      ]
+    }
+  },
+  "specs": {
+    "rows": [
+      ["Base", "Fedora bootc, [VERSION]"],
+      ["Architectures", "amd64 and arm64"],
+      ["Channels", "Stable, beta"],
+      ["Rollback", "Previous image kept, one step"],
+      ["Boot", "UEFI, Secure Boot, TPM 2.0 measured boot"],
+      ["Install media", "ISO and USB image with a hardware check"],
+      ["Typical download", "[PLACEHOLDER] MB per update (delta)"]
+    ],
+    "ask": {
+      "body": "\"What changes in the next update, and is it safe for my ZFS pool?\" The assistant reads the release notes and your setup and summarises the risk.",
+      "command": "crust ask \"what changes in the next update?\""
+    }
+  },
+  "faq": [
+    {
+      "title": "Can I install packages on the host?",
+      "body": "Not on the host itself. Run tools as apps, or build a custom image from ours if you really need to."
+    },
+    {
+      "title": "What if an update breaks my machine?",
+      "body": "It boots the previous image automatically if health checks fail, or you pick it at boot."
+    },
+    {
+      "title": "How long are releases supported?",
+      "body": "[PLACEHOLDER]. Stable gets security fixes until the next stable plus a grace period."
+    },
+    {
+      "title": "Is there SSH?",
+      "body": "Off by default. Turn it on for debugging; everything else goes through the API."
+    }
+  ],
+  "next": { "heading": "One machine is great. Two is a cluster.", "label": "Cast · Clusters →" }
+}

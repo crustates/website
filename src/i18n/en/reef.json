@@ -1,0 +1,126 @@
+{
+  "hero": {
+    "kicker": "Reef · Storage",
+    "heading": "ZFS and Btrfs, shares and backups that restore.",
+    "lead": "Pools, shares, S3 buckets, databases and backups in one place. Reef watches your disks, runs your scrubs and tells you before something fails.",
+    "tags": ["ZFS", "Btrfs", "SMB · NFS", "S3 (Garage)", "rustic", "PostgreSQL"]
+  },
+  "visual": {
+    "title": "Pool tank",
+    "healthy": "Healthy",
+    "usage": "Pool usage 62 percent",
+    "summary": "2.5 TB of 4 TB · ZFS mirror · last scrub 3 days ago, 0 errors",
+    "columns": { "disk": "Disk", "model": "Model", "temp": "Temp", "smart": "SMART" },
+    "ok": "OK",
+    "wear": "Wear 71%"
+  },
+  "capabilities": {
+    "heading": "Storage you can trust with your photos.",
+    "items": [
+      {
+        "title": "Pools",
+        "body": "ZFS and Btrfs pools: mirrors, RAIDZ, RAID1, with a guided layout picker."
+      },
+      {
+        "title": "Snapshots",
+        "body": "Scheduled snapshots with retention rules, browsable from the console."
+      },
+      {
+        "title": "Shares",
+        "body": "SMB with Time Machine support and NFS, with users and permissions from Crustates."
+      },
+      {
+        "title": "S3 buckets",
+        "body": "S3-compatible object storage with Garage, for apps and backups."
+      },
+      {
+        "title": "Backups",
+        "body": "Incremental, deduplicated, encrypted backups of VMs and apps with rustic, to disk, S3 or another node."
+      },
+      {
+        "title": "Restore drills",
+        "body": "Test-restore a backup to a scratch volume on a schedule, so you know it works."
+      },
+      {
+        "title": "Databases",
+        "body": "Managed PostgreSQL for apps, with users, extensions and point-in-time restore."
+      },
+      {
+        "title": "Disk health",
+        "body": "SMART monitoring, scrubs and alerts before a disk fails."
+      },
+      {
+        "title": "Encryption at rest",
+        "body": "ZFS native encryption or LUKS under Btrfs, unlocked by the TPM."
+      }
+    ]
+  },
+  "how": {
+    "heading": "Volumes are resources, not mount points.",
+    "lead": "Apps and VMs ask for a volume. Reef creates it on the right pool, snapshots it and backs it up by policy.",
+    "steps": [
+      {
+        "title": "Create a pool",
+        "body": "Pick disks in the console; Reef proposes a layout and checks for data on them."
+      },
+      {
+        "title": "Attach volumes",
+        "body": "A VM disk or app volume becomes a zvol or Btrfs subvolume."
+      },
+      {
+        "title": "Set a policy",
+        "body": "Snapshot and backup schedules, retention and targets per volume or app."
+      },
+      {
+        "title": "Restore any time",
+        "body": "Roll back a snapshot or restore a backup to a new volume."
+      }
+    ],
+    "table": {
+      "columns": ["Engine", "Role in Reef", "Notes"],
+      "rows": [
+        ["OpenZFS", "Pools, snapshots, send/receive, native encryption", "Built per kernel in CI"],
+        ["Btrfs", "Pools and subvolumes in the kernel", "Good for mixed disk sizes"],
+        ["Samba", "SMB shares, Time Machine", "Users synced from Crustates"],
+        ["NFS (kernel)", "NFS shares", "v4.2"],
+        ["Garage", "S3-compatible object storage", "Rust, small footprint"],
+        ["rustic", "Backups and restore", "Rust, restic-compatible repos"],
+        ["PostgreSQL", "Managed Database resource", "Runs as a platform app"]
+      ]
+    }
+  },
+  "specs": {
+    "rows": [
+      ["Filesystems", "ZFS, Btrfs (bcachefs opt-in, experimental)"],
+      ["Layouts", "Mirror, RAIDZ1/2/3, Btrfs RAID1/10"],
+      ["Share protocols", "SMB 3, NFS v4.2, S3"],
+      ["Backup targets", "Local pool, S3, SFTP, another Crustates node"],
+      ["Encryption", "AES-256-GCM (ZFS), LUKS2 (Btrfs)"],
+      ["PostgreSQL versions", "[PLACEHOLDER]"],
+      ["Max pool size", "Limited by your disks"]
+    ],
+    "ask": {
+      "body": "\"Is the photos share backed up?\" or \"why is pool tank degraded?\" The assistant checks backup runs, snapshots and SMART data and answers with links.",
+      "command": "crust ask \"why is pool tank degraded?\""
+    }
+  },
+  "faq": [
+    {
+      "title": "ZFS or Btrfs?",
+      "body": "ZFS for mirrors and RAIDZ with matching disks; Btrfs for mixed disk sizes and simpler setups. Both are first-class."
+    },
+    {
+      "title": "Can I import an existing pool?",
+      "body": "Yes. Reef detects existing ZFS and Btrfs pools and imports them without touching data."
+    },
+    {
+      "title": "Where should backups go?",
+      "body": "At least one copy off the box: S3, another node or a friend's Crustates."
+    },
+    {
+      "title": "Is there a managed database?",
+      "body": "Yes, PostgreSQL. Apps from the catalog can ask for one and get credentials as secrets."
+    }
+  ],
+  "next": { "heading": "Now give every app a name and HTTPS.", "label": "Current · Networking →" }
+}
