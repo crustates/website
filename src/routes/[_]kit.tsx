@@ -13,13 +13,13 @@ import { Section } from "@/components/ui/section";
 import { Table, Td, Th, Tr } from "@/components/ui/table";
 import { Tag } from "@/components/ui/tag";
 import { productIds, type ProductKey } from "@/lib/products";
+import { seo } from "@/lib/seo";
 
 // Internal component gallery. Not linked, not in the sitemap, not indexed.
 // Its sample text is fixture data, so it does not go through i18n.
 export const Route = createFileRoute("/_kit")({
-  head: () => ({
-    meta: [{ title: "UI kit · Crustates" }, { name: "robots", content: "noindex" }],
-  }),
+  head: () =>
+    seo({ title: "UI kit", description: "Crustates UI components.", path: "/_kit", noindex: true }),
   component: Kit,
 });
 
@@ -172,7 +172,7 @@ function Gallery() {
 
 function Kit() {
   return (
-    <main id="kit">
+    <div id="kit">
       <Section dots band>
         <h1 className="text-display-l">UI kit</h1>
       </Section>
@@ -195,6 +195,6 @@ function Kit() {
       <Section tone="rust" band>
         <p className="text-display-l">Rust CTA</p>
       </Section>
-    </main>
+    </div>
   );
 }
