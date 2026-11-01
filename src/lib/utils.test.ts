@@ -12,3 +12,11 @@ test("lets a later token text size override an earlier one", () => {
 test("lets a later token shadow override an earlier one", () => {
   expect(cn("shadow-md", "shadow-lg")).toBe("shadow-lg");
 });
+
+test("keeps a token border width next to a border colour", () => {
+  expect(cn("border-thick", "border-line")).toBe("border-thick border-line");
+});
+
+test("lets a later token border width override an earlier one", () => {
+  expect(cn("border-thick", "border-thin")).toBe("border-thin");
+});

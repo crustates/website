@@ -76,3 +76,9 @@ test("cn() knows every type style name", async () => {
   );
   expect([...TEXT_STYLES]).toEqual(names);
 });
+
+test("cn() knows every border width name", async () => {
+  const { BORDER_WIDTHS } = await import("../src/lib/utils");
+  const names = tokens.border.tokens.map((b: { name: string }) => b.name.replace("border-", ""));
+  expect([...BORDER_WIDTHS]).toEqual(names);
+});

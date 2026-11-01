@@ -1,4 +1,4 @@
-import { site } from "../../site.config";
+import { site } from "../../site.config.ts";
 
 type Site = { origin: string; basePath: string };
 

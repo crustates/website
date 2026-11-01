@@ -1,9 +1,10 @@
 import { defineConfig, lazyPlugins } from "vite-plus";
+import { playwright } from "vite-plus/test/browser-playwright";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import { site } from "./site.config";
-import { absoluteUrl } from "./src/lib/site";
+import { site } from "./site.config.ts";
+import { absoluteUrl } from "./src/lib/site.ts";
 
 // Routes that are prerendered but kept out of the sitemap.
 const hiddenFromSitemap = /^\/(_kit|404)$/;
@@ -18,6 +19,8 @@ export default defineConfig({
         command: "vpx ./scripts/tokens.ts",
         cache: { input: ["design/tokens.json", "scripts/tokens.ts"] },
       },
+      // Builds, then serves dist/client like GitHub Pages at http://localhost:4173/website/.
+      preview: { command: ["vp build", "vpx ./scripts/serve.ts"], cache: false },
     },
   },
   lint: {
@@ -27,6 +30,27 @@ export default defineConfig({
     options: { typeAware: true, typeCheck: true },
   },
   resolve: { tsconfigPaths: true },
+  test: {
+    projects: [
+      { extends: true, test: { name: "unit", include: ["{src,scripts}/**/*.test.ts"] } },
+      {
+        // Component tests run in Chromium, without the Start plugin.
+        extends: false,
+        plugins: [viteReact()],
+        resolve: { tsconfigPaths: true },
+        test: {
+          name: "browser",
+          include: ["src/**/*.test.tsx"],
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: playwright(),
+            instances: [{ browser: "chromium" }],
+          },
+        },
+      },
+    ],
+  },
   plugins: lazyPlugins(() => [
     tailwindcss(),
     tanstackStart({

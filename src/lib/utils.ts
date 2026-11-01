@@ -21,8 +21,14 @@ export const TEXT_STYLES = [
   "kicker",
 ] as const;
 
+// The border width utilities from design/tokens.json (`border-thin`, `border-thick`).
+export const BORDER_WIDTHS = ["thin", "thick"] as const;
+
 const twMerge = extendTailwindMerge({
-  extend: { theme: { text: [...TEXT_STYLES] } },
+  extend: {
+    theme: { text: [...TEXT_STYLES] },
+    classGroups: { "border-w": [{ border: [...BORDER_WIDTHS] }] },
+  },
 });
 
 export function cn(...inputs: ClassValue[]): string {
