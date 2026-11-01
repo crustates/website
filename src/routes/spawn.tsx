@@ -168,7 +168,6 @@ function Example({ copy }: { copy: Copy["example"] }) {
         <Callout tint="card" className="flex-col gap-2">
           <strong>{copy.vms.title}</strong>
           <p className="text-body-s">{copy.vms.body}</p>
-          {/* Plain link until /api lands in part 4. */}
           <Link to="/api/" className="text-body-s">
             {t("productPage.api.link")}
           </Link>

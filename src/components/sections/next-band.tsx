@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/kicker";
 import { Section } from "@/components/ui/section";
 import { products, type ProductKey } from "@/lib/products";
-
 import { cn } from "@/lib/utils";
 
 /**

@@ -343,7 +343,6 @@ function Share() {
       heading={t("share.heading")}
       actions={
         <>
-          {/* Plain links until /community and /api land in part 4. */}
           <Button asChild>
             <Link to="/community/">{t("share.submit")}</Link>
           </Button>

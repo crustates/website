@@ -67,18 +67,14 @@
   },
   "channels": {
     "heading": "Release channels",
-    "items": [
-      {
-        "tone": "ok",
-        "label": "Stable",
-        "body": "Tested releases for everyday use. The default."
-      },
-      {
-        "tone": "warn",
-        "label": "Beta",
-        "body": "Early access to the next release. Expect rough edges."
-      }
-    ],
+    "stable": {
+      "label": "Stable",
+      "body": "Tested releases for everyday use. The default."
+    },
+    "beta": {
+      "label": "Beta",
+      "body": "Early access to the next release. Expect rough edges."
+    },
     "upgradeHeading": "Already running Crustates?",
     "upgradeBody": "You don't need a new download. Go to Updates in the console or run <code>crust molt upgrade</code>. Upgrades are atomic and roll back in one step."
   }

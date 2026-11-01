@@ -16,7 +16,6 @@ import changelog from "@/i18n/en/changelog.json";
 import { links } from "@/lib/links";
 import { products, type ProductKey } from "@/lib/products";
 import { seo } from "@/lib/seo";
-
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/changelog/$version")({

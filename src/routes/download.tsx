@@ -191,16 +191,21 @@ function Requirements() {
   );
 }
 
+const channels = [
+  ["stable", "ok"],
+  ["beta", "warn"],
+] as const;
+
 function Channels() {
   const { t } = useTranslation("download");
   return (
     <Card asChild className="flex flex-col gap-3">
       <article>
         <h2 className="text-heading-3">{t("channels.heading")}</h2>
-        {t("channels.items", { returnObjects: true }).map((item) => (
-          <Callout key={item.label} className="items-center">
-            <Pill tone={item.tone as "ok" | "warn"}>{item.label}</Pill>
-            <p className="text-body-s">{item.body}</p>
+        {channels.map(([channel, tone]) => (
+          <Callout key={channel} className="items-center">
+            <Pill tone={tone}>{t(`channels.${channel}.label`)}</Pill>
+            <p className="text-body-s">{t(`channels.${channel}.body`)}</p>
           </Callout>
         ))}
         <h3 className="mt-2 text-heading-4">{t("channels.upgradeHeading")}</h3>

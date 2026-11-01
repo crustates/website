@@ -21,7 +21,6 @@ import features from "@/i18n/en/features.json";
 import { links } from "@/lib/links";
 import { products, type ProductId, type ProductKey } from "@/lib/products";
 import { seo } from "@/lib/seo";
-
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/features")({
@@ -205,7 +204,6 @@ function Api({ copy }: { copy: Copy["api"] }) {
             <Tag key={tag}>{tag}</Tag>
           ))}
         </div>
-        {/* Plain link until /api lands in part 4. */}
         <Button asChild size="sm" className="self-start">
           <Link to="/api/">{copy.link}</Link>
         </Button>

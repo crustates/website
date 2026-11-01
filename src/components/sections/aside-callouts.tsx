@@ -27,7 +27,6 @@ export function SameApi() {
       <p className="text-body-s">
         <Rich text={t("productPage.api.body")} />
       </p>
-      {/* Plain link until /api lands in part 4. */}
       <Link to="/api/" className="text-body-s">
         {t("productPage.api.link")}
       </Link>
