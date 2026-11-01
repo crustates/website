@@ -1,9 +1,10 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import common from "./en/common.json";
+import home from "./en/home.json";
 
 export const defaultNS = "common";
-export const resources = { en: { common } } as const;
+export const resources = { en: { common, home } } as const;
 
 /** Synchronous i18next instance with bundled resources, so prerendering needs no backend. */
 export function createI18n(lng = "en") {

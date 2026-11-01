@@ -31,6 +31,7 @@
   }
   a {
     color: var(--text-link);
+    text-decoration-line: underline;
     text-underline-offset: 3px;
   }
   :focus-visible {

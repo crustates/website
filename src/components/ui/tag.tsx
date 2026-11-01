@@ -11,7 +11,7 @@ export function Tag({
   return (
     <Comp
       className={cn(
-        "inline-flex items-center whitespace-nowrap rounded-sm border-thin border-line bg-surface-card px-2 py-0.5 font-mono text-caption font-bold text-ink no-underline",
+        "inline-flex items-center whitespace-nowrap rounded-sm border-thin border-line bg-surface-card px-2 py-0.5 font-mono text-caption font-bold text-ink",
         className,
       )}
       {...props}

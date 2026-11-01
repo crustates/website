@@ -36,7 +36,7 @@ export default defineConfig({
       {
         // Component tests run in Chromium, without the Start plugin.
         extends: false,
-        plugins: [viteReact()],
+        plugins: [tailwindcss(), viteReact()],
         resolve: { tsconfigPaths: true },
         test: {
           name: "browser",
@@ -66,6 +66,8 @@ export default defineConfig({
           hiddenFromSitemap.test(page.path) ? { sitemap: { exclude: true } } : undefined,
       },
       sitemap: { host: absoluteUrl("/").replace(/\/$/, "") },
+      // Server routes that write files; they are not discovered automatically.
+      pages: [{ path: "/robots.txt", sitemap: { exclude: true } }],
     }),
     viteReact(),
   ]),

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vite-plus/test";
-import { seo } from "./seo";
+import { robotsTxt, seo } from "./seo";
 
 describe("seo", () => {
   const head = seo({
@@ -46,4 +46,10 @@ describe("seo", () => {
     expect(hidden.meta).toContainEqual({ name: "robots", content: "noindex" });
     expect(hidden.links).toEqual([]);
   });
+});
+
+test("robots.txt allows everything and points at the sitemap", () => {
+  expect(robotsTxt()).toBe(
+    "User-agent: *\nAllow: /\n\nSitemap: https://crustates.github.io/website/sitemap.xml\n",
+  );
 });

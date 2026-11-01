@@ -42,3 +42,11 @@ export function seo({
     links: noindex ? [] : [{ rel: "canonical", href: url }],
   };
 }
+
+/**
+ * robots.txt body. Crawlers only read it at the host root, so it takes effect
+ * once the site moves from the /website/ sub-path to its own domain.
+ */
+export function robotsTxt(): string {
+  return `User-agent: *\nAllow: /\n\nSitemap: ${absoluteUrl("/sitemap.xml")}\n`;
+}

@@ -40,3 +40,12 @@ describe("Cmd", () => {
     await expect.element(page.getByRole("button", { name: "Copied" })).toBeVisible();
   });
 });
+
+describe("Button size sm", () => {
+  test("stays bold at its smaller font size", async () => {
+    const container = await render(<Button size="sm">GitHub</Button>);
+    const button = container.querySelector("button");
+    expect(button && getComputedStyle(button).fontWeight).toBe("700");
+    expect(button && getComputedStyle(button).fontSize).toBe("13px");
+  });
+});

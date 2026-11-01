@@ -1,10 +1,11 @@
-import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
+import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import fontBold from "@/assets/fonts/SpaceGrotesk-700.woff2?url";
 import fontRegular from "@/assets/fonts/SpaceGrotesk-400.woff2?url";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { NotFound } from "@/components/not-found";
 import { i18n } from "@/i18n";
 import { asset } from "@/lib/site";
 import { themeScript } from "@/lib/theme";
@@ -38,10 +39,16 @@ export const Route = createRootRoute({
     scripts: [{ children: themeScript }],
   }),
   shellComponent: RootDocument,
+  notFoundComponent: NotFound,
 });
 
 function RootDocument({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
+  // 404.html is served at any unknown URL, where hydration would not match, so
+  // it ships without JS (TanStack Router #5427).
+  const isStatic404 = useRouterState({
+    select: (s) => s.matches.some((m) => m.routeId === "/404"),
+  });
   return (
     <html lang={i18n.language} suppressHydrationWarning>
       <head>
@@ -54,10 +61,10 @@ function RootDocument({ children }: { children: ReactNode }) {
         >
           {t("skipToContent")}
         </a>
-        <SiteHeader />
+        <SiteHeader interactive={!isStatic404} />
         <main id="main">{children}</main>
         <SiteFooter />
-        <Scripts />
+        {!isStatic404 && <Scripts />}
       </body>
     </html>
   );

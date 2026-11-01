@@ -4,12 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Wrap } from "@/components/ui/section";
 import { links } from "@/lib/links";
 import { asset } from "@/lib/site";
+import { cn } from "@/lib/utils";
 import { MobileNav } from "./mobile-nav";
 import { NavAnchor, type NavItem } from "./nav-anchor";
 import { ThemeToggle } from "./theme-toggle";
 
-export function SiteHeader() {
+/** `interactive={false}` renders the header for a page that ships without JS (404.html). */
+export function SiteHeader({ interactive = true }: { interactive?: boolean }) {
   const { t } = useTranslation();
+  // With JS, the links collapse into the menu below xl; without it they wrap.
+  const collapse = interactive ? "js:max-xl:hidden" : "";
   // Pages from later parts are plain links until their routes exist.
   const items: NavItem[] = [
     { label: t("nav.features"), href: asset("/features") },
@@ -57,7 +61,12 @@ export function SiteHeader() {
             />
             {t("brand")}
           </Link>
-          <ul className="m-0 flex list-none flex-wrap items-center gap-x-7 gap-y-3 p-0 js:max-xl:hidden">
+          <ul
+            className={cn(
+              "m-0 flex list-none flex-wrap items-center gap-x-7 gap-y-3 p-0",
+              collapse,
+            )}
+          >
             {items.map((item) => (
               <li key={item.label}>
                 <NavAnchor
@@ -70,11 +79,13 @@ export function SiteHeader() {
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-3 js:max-xl:hidden">{actions}</div>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <MobileNav items={items}>{actions}</MobileNav>
-          </div>
+          <div className={cn("flex items-center gap-3", collapse)}>{actions}</div>
+          {interactive && (
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <MobileNav items={items}>{actions}</MobileNav>
+            </div>
+          )}
         </nav>
       </Wrap>
     </header>

@@ -1,0 +1,124 @@
+{
+  "title": "Your own cloud, on your own hardware",
+  "description": "VMs, apps, storage and networking in one Rust platform. Install it on a mini PC, a NAS box or a rack server and run everything from one console, one CLI and one API.",
+  "hero": {
+    "kicker": "Open source · AGPLv3 · amd64 and arm64",
+    "heading": "Your own cloud, on your own hardware.",
+    "lead": "VMs, apps, storage and networking in one Rust platform. Install it on a mini PC, a NAS box or a rack server and run everything from one console, one CLI and one API.",
+    "download": "Download Crustates",
+    "docs": "Read the docs",
+    "mock": {
+      "apps": "Tide · Apps",
+      "name": "Name",
+      "isolation": "Isolation",
+      "status": "Status",
+      "running": "Running",
+      "updating": "Updating",
+      "stopped": "Stopped",
+      "pool": "Pool tank",
+      "poolUsage": "Pool usage 62 percent",
+      "poolCaption": "2.5 TB of 4 TB · ZFS mirror"
+    }
+  },
+  "platform": {
+    "kicker": "One platform",
+    "heading": "Stop stitching a hypervisor, a NAS and a container panel together.",
+    "lead": "Crustates brings compute, storage and networking into one product with one API. Every part is built on proven open source, with Rust in the parts that matter.",
+    "tide": {
+      "area": "Compute",
+      "body": "Full VMs for Windows, Home Assistant OS or OPNsense. Every app in its own microVM by default.",
+      "points": [
+        "QEMU for full VMs, Cloud Hypervisor for microVMs",
+        "Compose import and a one-click app catalog",
+        "Browser console, USB and GPU passthrough"
+      ]
+    },
+    "reef": {
+      "area": "Storage",
+      "body": "ZFS and Btrfs pools, shares, S3 and backups that run on a schedule and actually restore.",
+      "points": [
+        "SMB, NFS and S3-compatible storage",
+        "Snapshots, replication, encrypted backups",
+        "Managed PostgreSQL for your apps"
+      ]
+    },
+    "current": {
+      "area": "Networking",
+      "body": "Bridges, VLANs and firewalling with eBPF, plus HTTPS for every app on its own local name.",
+      "points": [
+        "Automatic TLS and names like <code>jellyfin.crust.internal</code>",
+        "Per-app firewall rules and flow logs",
+        "Remote access with NetBird or Tailscale"
+      ]
+    }
+  },
+  "secure": {
+    "kicker": "Secure by default",
+    "heading": "Nothing to harden after you install it.",
+    "items": [
+      {
+        "title": "Read-only OS",
+        "body": "An image-based system with atomic upgrades and one-step rollback."
+      },
+      {
+        "title": "A kernel per app",
+        "body": "Apps run in microVMs, so a container escape doesn't reach your host."
+      },
+      {
+        "title": "The API is the only way in",
+        "body": "No SSH by default. Passkeys, roles and an audit log of every change."
+      },
+      {
+        "title": "Signed from boot",
+        "body": "Secure Boot, a measured boot chain and signed images."
+      }
+    ]
+  },
+  "api": {
+    "kicker": "API-first",
+    "heading": "Click it, script it or let an agent do it.",
+    "lead": "The console, <code>crust</code> CLI, terminal UI, OpenTofu provider and MCP server all use the same API, documented with an interactive Scalar reference on every node.",
+    "tags": ["REST + watch", "OpenAPI", "OpenTofu", "MCP"]
+  },
+  "assistant": {
+    "kicker": "AI assistant",
+    "heading": "Ask your box. It answers from live state.",
+    "body": "\"Which VMs use the most RAM?\" \"Is the photos share backed up?\" The assistant reads your setup through the API, runs on a local model by default, and never changes anything without showing you the plan first.",
+    "cta": "Meet the assistant",
+    "question": "Is the photos share backed up?",
+    "who": "Assistant",
+    "where": "local model · stayed on your network",
+    "answer": "Yes. <code>tank/photos</code> was backed up at 03:00 to <code>offsite-s3</code> (412 MiB changed). The last restore test passed 6 days ago.",
+    "status": "Backup OK",
+    "sources": "2 sources cited"
+  },
+  "compare": {
+    "heading": "Coming from Proxmox, TrueNAS or Unraid?",
+    "cta": "Compare with Proxmox, TrueNAS and Unraid →"
+  },
+  "more": {
+    "molt": {
+      "area": "Upgrades",
+      "body": "The whole OS updates as one signed image. If something breaks, roll back with one click."
+    },
+    "cast": {
+      "area": "Clustering",
+      "body": "Join a second machine, at home or across town, without port forwarding. Manage them as one."
+    },
+    "barnacle": {
+      "area": "Plugins",
+      "body": "Extend it with sandboxed Wasm plugins that only get the permissions you approve."
+    },
+    "spawn": {
+      "area": "GitOps",
+      "body": "Keep your setup in a Git repo with a plan on every PR, or push your code and let it build and deploy."
+    }
+  },
+  "cta": {
+    "heading": "Build your own cloud this weekend.",
+    "body": "Free and open source. Bring any 64-bit machine with virtualization turned on.",
+    "download": "Download the installer",
+    "community": "Join the community",
+    "emblemAlt": "Crustates emblem: your own cloud, on your own hardware"
+  }
+}
