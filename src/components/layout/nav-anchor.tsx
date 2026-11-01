@@ -31,6 +31,8 @@ export function NavAnchor({
       <Link
         to={target.to}
         hash={target.hash}
+        // A link to a section of a page isn't the current page.
+        activeOptions={{ includeHash: target.hash !== undefined }}
         className={cn(className, active && activeClassName)}
         aria-current={active ? "true" : undefined}
         activeProps={{ className: activeClassName }}
