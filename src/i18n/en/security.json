@@ -1,1 +1,94 @@
-{}
+{
+  "hero": {
+    "kicker": "Security",
+    "heading": "Secure by default, and open about it.",
+    "lead": "Crustates is built so there is nothing to harden after you install it. This page explains the model and how to tell us when something is wrong.",
+    "report": "Report a vulnerability",
+    "advisories": "Security advisories"
+  },
+  "model": {
+    "kicker": "Security model",
+    "heading": "Layers, from boot to app.",
+    "items": [
+      {
+        "title": "Read-only OS",
+        "body": "The system is a signed bootc image on a read-only filesystem. Upgrades are atomic and roll back in one step."
+      },
+      {
+        "title": "Signed from boot",
+        "body": "Secure Boot and a measured boot chain into the TPM. Images and releases are signed with Sigstore."
+      },
+      {
+        "title": "A kernel per app",
+        "body": "Apps run in Kata microVMs on Cloud Hypervisor, so a container escape lands in a throwaway VM, not on your host."
+      },
+      {
+        "title": "The API is the only way in",
+        "body": "No SSH by default. The console, CLI, TUI and MCP server all go through one authenticated API."
+      },
+      {
+        "title": "Accounts and roles",
+        "body": "Passkeys or TOTP for built-in users, OIDC optional. Roles limit who can see and change what."
+      },
+      {
+        "title": "Audit log",
+        "body": "Every change is recorded with who, what, when and from where, including changes made via the assistant."
+      },
+      {
+        "title": "mTLS between nodes",
+        "body": "Control plane and node agents talk over mutual TLS with short-lived certificates."
+      },
+      {
+        "title": "Host firewall first",
+        "body": "nftables rules protect the host before any workload or network starts."
+      },
+      {
+        "title": "Encryption at rest",
+        "body": "ZFS native encryption or LUKS under Btrfs, unlocked by the TPM or a passphrase."
+      }
+    ]
+  },
+  "supply": {
+    "kicker": "Supply chain",
+    "heading": "Know exactly what you are running.",
+    "lead": "Every release ships with an SBOM, a Sigstore signature and build provenance. The node refuses images it can't verify."
+  },
+  "assistant": {
+    "kicker": "AI assistant",
+    "heading": "The assistant can't do more than you can.",
+    "body": "It acts with your role, is read-only by default and shows every change as a plan you confirm. Destructive actions need the resource name typed. Text in logs and app output is untrusted and can never trigger an action. Every action is in the audit log, tagged \"via assistant\"."
+  },
+  "report": {
+    "kicker": "Disclosure",
+    "heading": "Report a vulnerability.",
+    "lead": "Please don't open a public issue. Email us or use a private GitHub security advisory.",
+    "email": "Email",
+    "pgp": "PGP fingerprint",
+    "fingerprint": "[FINGERPRINT]",
+    "github": "GitHub",
+    "advisory": "Private security advisory"
+  },
+  "next": {
+    "heading": "What happens next",
+    "steps": [
+      { "label": "Acknowledged", "value": "within 3 working days" },
+      { "label": "Disclosure date", "value": "agreed with you" },
+      { "label": "Default disclosure window", "value": "90 days" },
+      { "label": "Public advisory", "value": "with credit, if you like" }
+    ],
+    "note": "Crustates is pre-alpha: only the latest release gets security fixes. Good-faith research is welcome; please test on your own systems.",
+    "policy": "Read the full security policy"
+  },
+  "advisories": {
+    "kicker": "Advisories",
+    "heading": "Published security advisories.",
+    "empty": "No advisories published yet.",
+    "link": "GitHub security advisories"
+  },
+  "thanks": {
+    "kicker": "Hall of thanks",
+    "heading": "People who helped keep Crustates safe.",
+    "names": ["[NAME]", "[NAME]", "[NAME]"],
+    "you": "Your name here"
+  }
+}
