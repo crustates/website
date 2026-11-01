@@ -61,7 +61,7 @@
   "report": {
     "kicker": "Disclosure",
     "heading": "Report a vulnerability.",
-    "lead": "Please don't open a public issue. Email us or use a private GitHub security advisory.",
+    "lead": "Please don't open a public issue. Use a private GitHub security advisory or email us.",
     "email": "Email",
     "pgp": "PGP fingerprint",
     "fingerprint": "[FINGERPRINT]",

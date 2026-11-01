@@ -143,17 +143,12 @@ function Sustainability() {
       <div className="flex min-w-0 flex-[1_1_520px] flex-col gap-3.5">
         <Kicker>{t("sustainability.kicker")}</Kicker>
         <h2 className="text-heading-1">{t("sustainability.heading")}</h2>
-        {/* TODO(sponsor): "kept going by sponsors" predates FUNDING.yml, which says sponsorship is undecided */}
+        {/* TODO(sponsor): design said "Funded by the people who use it… kept going by sponsors" with "Become a sponsor" and "See our sponsors"; FUNDING.yml says sponsorship is undecided */}
         <p className="text-body-l">{t("sustainability.lead")}</p>
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="primary">
             <Link to="/community/" hash="sponsor">
-              {t("sustainability.become")}
-            </Link>
-          </Button>
-          <Button asChild>
-            <Link to="/community/" hash="sponsor">
-              {t("sustainability.see")}
+              {t("sustainability.sponsorship")}
             </Link>
           </Button>
         </div>

@@ -15,7 +15,7 @@
     "rows": [
       {
         "component": "Platform: OS image, control plane, node agent, console, CLI",
-        "licence": "AGPL-3.0-only"
+        "licence": "AGPL-3.0-or-later"
       },
       {
         "component": "SDKs, plugin WIT interfaces, OpenTofu provider",
@@ -35,11 +35,11 @@
     "intro": "The code is open; the name and the crab tell people what they're getting. So:",
     "fine": {
       "label": "Fine",
-      "body": "Writing about Crustates, linking to it, \"runs on Crustates\" badges, unmodified builds, community meetups and stickers."
+      "body": "Writing, talking and making videos about Crustates, \"Runs on Crustates\" badges on projects that use it, naming a plugin \"<name> for Crustates\", and showing the logo unmodified."
     },
-    "ask": {
-      "label": "Ask first",
-      "body": "Selling a modified build under the Crustates name, using the crab in your product's logo, or implying official endorsement."
+    "dont": {
+      "label": "Please don't",
+      "body": "Ship a fork, a modified build or a hosted service under the Crustates name or with the crab, suggest you're official or endorsed, change the logo, or use the names in domains, app stores or social accounts in a way that could confuse people."
     },
     "forks": "Forks are welcome; just give yours its own name. Assets live on the <brand>brand and press page</brand>."
   },

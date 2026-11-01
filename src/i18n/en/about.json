@@ -52,7 +52,7 @@
     "kicker": "Governance",
     "heading": "How decisions get made",
     "items": {
-      "maintainers": "<strong>Maintainers</strong> review and merge; the list lives in <ref><code>GOVERNANCE.md</code></ref>.",
+      "maintainers": "<strong>Maintainers</strong> review and merge; <ref><code>GOVERNANCE.md</code></ref> says who they are.",
       "adr": "<strong><ref>ADRs</ref></strong>: every significant decision is an architecture decision record in the repo, open for comment before it's accepted.",
       "dco": "<strong><ref>DCO</ref></strong>: contributors sign off their commits; no CLA, so nobody can relicense your work.",
       "roadmap": "<strong><ref>Roadmap</ref></strong> in the open, milestone by milestone."
@@ -71,10 +71,9 @@
   },
   "sustainability": {
     "kicker": "Sustainability",
-    "heading": "Funded by the people who use it",
-    "lead": "No venture capital and no paid edition. Crustates is kept going by sponsors and, later, optional paid support for those who want it. Every feature stays in the open source release.",
-    "become": "Become a sponsor",
-    "see": "See our sponsors",
+    "heading": "Independent, with no paid edition",
+    "lead": "No venture capital. How sponsorship and optional paid support will work is still being decided; every feature stays in the open source release.",
+    "sponsorship": "Sponsorship",
     "badgeAlt": "Runs on Crustates"
   },
   "contact": {

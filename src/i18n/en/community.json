@@ -63,7 +63,7 @@
   "policies": {
     "security": {
       "title": "Security policy",
-      "body": "Found a vulnerability? Report it privately through GitHub's private vulnerability reporting, never in a public issue. We publish an advisory once a fix ships.",
+      "body": "Found a vulnerability? Report it privately through GitHub's private vulnerability reporting, never in a public issue. We agree a disclosure date with you and credit you in the advisory.",
       "action": "Report a vulnerability"
     },
     "conduct": {

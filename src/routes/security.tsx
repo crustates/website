@@ -114,17 +114,18 @@ function Report() {
         <h2 className="text-heading-1">{t("report.heading")}</h2>
         <p className="text-body-l">{t("report.lead")}</p>
         <Card asChild>
+          {/* GitHub first, as in SECURITY.md. TODO(mail): crustates.eu has no MX record yet, so security@ can't receive reports. */}
           <dl className="flex flex-col gap-3">
+            <dt className="text-label">{t("report.github")}</dt>
+            <dd className="text-body-s">
+              <a href={links.reportVulnerability}>{t("report.advisory")}</a>
+            </dd>
             <dt className="text-label">{t("report.email")}</dt>
             <dd className="font-mono">
               <a href={`mailto:${email.security}`}>{email.security}</a>
             </dd>
             <dt className="text-label">{t("report.pgp")}</dt>
             <dd className="font-mono text-body-s">{t("report.fingerprint")}</dd>
-            <dt className="text-label">{t("report.github")}</dt>
-            <dd className="text-body-s">
-              <a href={links.reportVulnerability}>{t("report.advisory")}</a>
-            </dd>
           </dl>
         </Card>
       </div>

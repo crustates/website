@@ -123,7 +123,7 @@ function Trademark() {
   const { t } = useTranslation("legal");
   const cards = [
     ["fine", "ok"],
-    ["ask", "bad"],
+    ["dont", "bad"],
   ] as const;
   return (
     <section id="trademark" className={section}>
