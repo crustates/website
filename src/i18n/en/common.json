@@ -98,6 +98,74 @@
     "home": {
       "title": "Your own cloud, on your own hardware",
       "description": "VMs, apps, storage and networking in one Rust platform. Install it on a mini PC, a NAS box or a rack server and run everything from one console, one CLI and one API."
+    },
+    "tide": {
+      "title": "Tide · Compute",
+      "description": "Run Windows, Home Assistant OS or OPNsense as full VMs, and every app in its own small VM with its own kernel. One console, one API, no YAML required."
+    },
+    "reef": {
+      "title": "Reef · Storage",
+      "description": "Pools, shares, S3 buckets, databases and backups in one place. Reef watches your disks, runs your scrubs and tells you before something fails."
+    },
+    "current": {
+      "title": "Current · Networking",
+      "description": "Bridges, VLANs and firewalling with eBPF. Every app gets a local name with a valid certificate, and remote access works without opening ports."
+    },
+    "molt": {
+      "title": "Molt · Upgrades",
+      "description": "Crustates runs on a read-only, image-based OS. Every update is one signed image. If something breaks, roll back in one step, from the console or the recovery screen."
+    },
+    "cast": {
+      "title": "Cast · Clusters",
+      "description": "Start with one node. Add another at home, at a relative's place or on a VPS, and manage them as one. Nodes find each other by key, not by IP address."
+    },
+    "barnacle": {
+      "title": "Barnacle · Plugins",
+      "description": "Barnacle plugins are sandboxed WebAssembly components running in Wasmtime. Each one declares the capabilities it needs, and you approve them on install."
+    },
+    "spawn": {
+      "title": "Spawn · GitOps",
+      "description": "Describe your apps, VMs and network in YAML, open a pull request, read the plan, merge. Or push your own code and let Crustates build and deploy it."
+    },
+    "assistant": {
+      "title": "AI assistant",
+      "description": "A built-in assistant that knows your VMs, apps, pools and networks. When you want it to act, it shows you a plan first and waits for your OK."
+    },
+    "features": {
+      "title": "Features",
+      "description": "Everything a homelab needs, in one platform you own: compute, storage and networking, with upgrades and clustering built in. One console, one CLI and one API on every node."
+    },
+    "compare": {
+      "title": "Compare",
+      "description": "How Crustates compares with Proxmox, TrueNAS and Unraid, honestly: where it is headed and what ships today."
+    },
+    "hardware": {
+      "title": "Hardware guide",
+      "description": "Crustates runs on most 64-bit machines from the last ten years, on amd64 and arm64. What to buy, what to avoid and how the installer checks your box."
+    },
+    "plugins": {
+      "title": "Barnacle · Plugins",
+      "description": "Barnacle plugins have moved to the Barnacle page."
+    }
+  },
+  "productPage": {
+    "download": "Download Crustates",
+    "docs": "Read the {{name}} docs",
+    "capabilities": "What you get",
+    "how": "How it works",
+    "specs": "Specs and limits",
+    "specsHeading": "What {{name}} supports today",
+    "faqHeading": "Questions about {{name}}",
+    "faqLink": "All questions in the FAQ →",
+    "next": "Next up",
+    "allFeatures": "All features →",
+    "ask": {
+      "title": "Ask the assistant"
+    },
+    "api": {
+      "title": "Same API everywhere",
+      "body": "Everything on this page is a resource in the Crustates API. Click it in the console, script it with <code>crust</code>, or manage it with OpenTofu.",
+      "link": "API and integrations →"
     }
   }
 }

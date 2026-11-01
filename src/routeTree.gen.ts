@@ -12,7 +12,19 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as KitRouteImport } from './routes/[_]kit'
+import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as BarnacleRouteImport } from './routes/barnacle'
+import { Route as CastRouteImport } from './routes/cast'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as CurrentRouteImport } from './routes/current'
+import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as HardwareRouteImport } from './routes/hardware'
+import { Route as MoltRouteImport } from './routes/molt'
+import { Route as PluginsRouteImport } from './routes/plugins'
+import { Route as ReefRouteImport } from './routes/reef'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SpawnRouteImport } from './routes/spawn'
+import { Route as TideRouteImport } from './routes/tide'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,9 +41,69 @@ const KitRoute = KitRouteImport.update({
   path: '/_kit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BarnacleRoute = BarnacleRouteImport.update({
+  id: '/barnacle',
+  path: '/barnacle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CastRoute = CastRouteImport.update({
+  id: '/cast',
+  path: '/cast',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CurrentRoute = CurrentRouteImport.update({
+  id: '/current',
+  path: '/current',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HardwareRoute = HardwareRouteImport.update({
+  id: '/hardware',
+  path: '/hardware',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoltRoute = MoltRouteImport.update({
+  id: '/molt',
+  path: '/molt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PluginsRoute = PluginsRouteImport.update({
+  id: '/plugins',
+  path: '/plugins',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReefRoute = ReefRouteImport.update({
+  id: '/reef',
+  path: '/reef',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpawnRoute = SpawnRouteImport.update({
+  id: '/spawn',
+  path: '/spawn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TideRoute = TideRouteImport.update({
+  id: '/tide',
+  path: '/tide',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -39,34 +111,131 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/_kit': typeof KitRoute
+  '/assistant': typeof AssistantRoute
+  '/barnacle': typeof BarnacleRoute
+  '/cast': typeof CastRoute
+  '/compare': typeof CompareRoute
+  '/current': typeof CurrentRoute
+  '/features': typeof FeaturesRoute
+  '/hardware': typeof HardwareRoute
+  '/molt': typeof MoltRoute
+  '/plugins': typeof PluginsRoute
+  '/reef': typeof ReefRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/spawn': typeof SpawnRoute
+  '/tide': typeof TideRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/_kit': typeof KitRoute
+  '/assistant': typeof AssistantRoute
+  '/barnacle': typeof BarnacleRoute
+  '/cast': typeof CastRoute
+  '/compare': typeof CompareRoute
+  '/current': typeof CurrentRoute
+  '/features': typeof FeaturesRoute
+  '/hardware': typeof HardwareRoute
+  '/molt': typeof MoltRoute
+  '/plugins': typeof PluginsRoute
+  '/reef': typeof ReefRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/spawn': typeof SpawnRoute
+  '/tide': typeof TideRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/_kit': typeof KitRoute
+  '/assistant': typeof AssistantRoute
+  '/barnacle': typeof BarnacleRoute
+  '/cast': typeof CastRoute
+  '/compare': typeof CompareRoute
+  '/current': typeof CurrentRoute
+  '/features': typeof FeaturesRoute
+  '/hardware': typeof HardwareRoute
+  '/molt': typeof MoltRoute
+  '/plugins': typeof PluginsRoute
+  '/reef': typeof ReefRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/spawn': typeof SpawnRoute
+  '/tide': typeof TideRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/404' | '/_kit' | '/robots.txt'
+  fullPaths:
+    | '/'
+    | '/404'
+    | '/_kit'
+    | '/assistant'
+    | '/barnacle'
+    | '/cast'
+    | '/compare'
+    | '/current'
+    | '/features'
+    | '/hardware'
+    | '/molt'
+    | '/plugins'
+    | '/reef'
+    | '/robots.txt'
+    | '/spawn'
+    | '/tide'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/404' | '/_kit' | '/robots.txt'
-  id: '__root__' | '/' | '/404' | '/_kit' | '/robots.txt'
+  to:
+    | '/'
+    | '/404'
+    | '/_kit'
+    | '/assistant'
+    | '/barnacle'
+    | '/cast'
+    | '/compare'
+    | '/current'
+    | '/features'
+    | '/hardware'
+    | '/molt'
+    | '/plugins'
+    | '/reef'
+    | '/robots.txt'
+    | '/spawn'
+    | '/tide'
+  id:
+    | '__root__'
+    | '/'
+    | '/404'
+    | '/_kit'
+    | '/assistant'
+    | '/barnacle'
+    | '/cast'
+    | '/compare'
+    | '/current'
+    | '/features'
+    | '/hardware'
+    | '/molt'
+    | '/plugins'
+    | '/reef'
+    | '/robots.txt'
+    | '/spawn'
+    | '/tide'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
   KitRoute: typeof KitRoute
+  AssistantRoute: typeof AssistantRoute
+  BarnacleRoute: typeof BarnacleRoute
+  CastRoute: typeof CastRoute
+  CompareRoute: typeof CompareRoute
+  CurrentRoute: typeof CurrentRoute
+  FeaturesRoute: typeof FeaturesRoute
+  HardwareRoute: typeof HardwareRoute
+  MoltRoute: typeof MoltRoute
+  PluginsRoute: typeof PluginsRoute
+  ReefRoute: typeof ReefRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SpawnRoute: typeof SpawnRoute
+  TideRoute: typeof TideRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,11 +261,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/barnacle': {
+      id: '/barnacle'
+      path: '/barnacle'
+      fullPath: '/barnacle'
+      preLoaderRoute: typeof BarnacleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cast': {
+      id: '/cast'
+      path: '/cast'
+      fullPath: '/cast'
+      preLoaderRoute: typeof CastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/current': {
+      id: '/current'
+      path: '/current'
+      fullPath: '/current'
+      preLoaderRoute: typeof CurrentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hardware': {
+      id: '/hardware'
+      path: '/hardware'
+      fullPath: '/hardware'
+      preLoaderRoute: typeof HardwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molt': {
+      id: '/molt'
+      path: '/molt'
+      fullPath: '/molt'
+      preLoaderRoute: typeof MoltRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plugins': {
+      id: '/plugins'
+      path: '/plugins'
+      fullPath: '/plugins'
+      preLoaderRoute: typeof PluginsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reef': {
+      id: '/reef'
+      path: '/reef'
+      fullPath: '/reef'
+      preLoaderRoute: typeof ReefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/robots.txt': {
       id: '/robots.txt'
       path: '/robots.txt'
       fullPath: '/robots.txt'
       preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/spawn': {
+      id: '/spawn'
+      path: '/spawn'
+      fullPath: '/spawn'
+      preLoaderRoute: typeof SpawnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tide': {
+      id: '/tide'
+      path: '/tide'
+      fullPath: '/tide'
+      preLoaderRoute: typeof TideRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -106,7 +359,19 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
   KitRoute: KitRoute,
+  AssistantRoute: AssistantRoute,
+  BarnacleRoute: BarnacleRoute,
+  CastRoute: CastRoute,
+  CompareRoute: CompareRoute,
+  CurrentRoute: CurrentRoute,
+  FeaturesRoute: FeaturesRoute,
+  HardwareRoute: HardwareRoute,
+  MoltRoute: MoltRoute,
+  PluginsRoute: PluginsRoute,
+  ReefRoute: ReefRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
+  SpawnRoute: SpawnRoute,
+  TideRoute: TideRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

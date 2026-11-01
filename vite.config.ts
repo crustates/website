@@ -7,7 +7,7 @@ import { site } from "./site.config.ts";
 import { absoluteUrl } from "./src/lib/site.ts";
 
 // Routes that are prerendered but kept out of the sitemap.
-const hiddenFromSitemap = /^\/(_kit|404)$/;
+const hiddenFromSitemap = /^\/(_kit|404|plugins)$/;
 
 export default defineConfig({
   base: site.basePath,
