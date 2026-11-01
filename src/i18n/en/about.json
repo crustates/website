@@ -1,1 +1,86 @@
-{}
+{
+  "hero": {
+    "kicker": "About",
+    "heading": "A cloud you own should be as easy as one you rent.",
+    "lead": "Crustates is an independent open source project. Our mission: make running your own compute, storage and network at home safe, simple and fully yours, with no subscription and no lock-in."
+  },
+  "story": {
+    "kicker": "The story",
+    "heading": "Why we're building it",
+    "lead": "A typical homelab is a hypervisor, a NAS, a container panel, a reverse proxy and a VPN, each with its own login, its own update button and its own idea of what a disk is. It works until it doesn't, and then you're debugging five products at once.",
+    "paragraphs": [
+      "Crustates started as one person's attempt to replace that stack with one platform: one read-only OS, one API, one console. It's written in Rust where we write code, and leans on proven open source (QEMU, Cloud Hypervisor, containerd, ZFS, Caddy, WireGuard) everywhere else.",
+      "The name? Crustaceans grow by moulting their shell. So does Crustates: the whole OS is replaced by a new image on every upgrade."
+    ],
+    "stats": [
+      { "label": "First commit", "value": "[YEAR]" },
+      { "label": "Architectures", "value": "amd64 · arm64" },
+      { "label": "Licence", "value": "AGPLv3" }
+    ]
+  },
+  "principles": {
+    "kicker": "Principles",
+    "heading": "What we won't compromise on",
+    "items": [
+      {
+        "title": "Yours, all of it",
+        "body": "No account to sign in, no cloud dependency, no telemetry unless you switch it on."
+      },
+      {
+        "title": "Secure by default",
+        "body": "Read-only OS, a kernel per app, passkeys, signed images. Nothing to harden afterwards."
+      },
+      {
+        "title": "API first",
+        "body": "Everything the console does, the API does. Scripts, OpenTofu and agents are first-class."
+      },
+      {
+        "title": "Reuse, don't reinvent",
+        "body": "Proven engines behind clean Rust interfaces, swappable when something better arrives."
+      },
+      {
+        "title": "Boring upgrades",
+        "body": "Atomic, signed, with one-step rollback. Upgrading should never be the scary part."
+      },
+      {
+        "title": "Open by licence",
+        "body": "AGPLv3, so improvements to the platform stay open for everyone."
+      }
+    ]
+  },
+  "governance": {
+    "kicker": "Governance",
+    "heading": "How decisions get made",
+    "items": {
+      "maintainers": "<strong>Maintainers</strong> review and merge; the list lives in <ref><code>GOVERNANCE.md</code></ref>.",
+      "adr": "<strong><ref>ADRs</ref></strong>: every significant decision is an architecture decision record in the repo, open for comment before it's accepted.",
+      "dco": "<strong><ref>DCO</ref></strong>: contributors sign off their commits; no CLA, so nobody can relicense your work.",
+      "roadmap": "<strong><ref>Roadmap</ref></strong> in the open, milestone by milestone."
+    },
+    "roadmap": "Roadmap",
+    "contribute": "Contribute"
+  },
+  "licence": {
+    "kicker": "Licence",
+    "heading": "AGPLv3 platform, Apache-2.0 SDKs",
+    "paragraphs": [
+      "The platform (OS image, control plane, agent, console) is AGPLv3: use it for anything, and if you offer a modified version as a service, share your changes.",
+      "SDKs, the plugin interfaces and the OpenTofu provider are Apache-2.0, so you can build closed or open plugins and tooling on top."
+    ],
+    "action": "Licence and privacy →"
+  },
+  "sustainability": {
+    "kicker": "Sustainability",
+    "heading": "Funded by the people who use it",
+    "lead": "No venture capital and no paid edition. Crustates is kept going by sponsors and, later, optional paid support for those who want it. Every feature stays in the open source release.",
+    "become": "Become a sponsor",
+    "see": "See our sponsors",
+    "badgeAlt": "Runs on Crustates"
+  },
+  "contact": {
+    "kicker": "Made in the Netherlands",
+    "heading": "Built in NL, for homelabs everywhere.",
+    "lead": "Questions, partnerships or just a hello.",
+    "brand": "Brand and press"
+  }
+}

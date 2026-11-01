@@ -31,7 +31,11 @@
   },
   "talk": {
     "heading": "Talk to us",
-    "forum": { "title": "Forum", "body": "Questions, setups and show-and-tell.", "where": "[FORUM LINK]" },
+    "forum": {
+      "title": "Forum",
+      "body": "Questions, setups and show-and-tell.",
+      "where": "[FORUM LINK]"
+    },
     "matrix": { "title": "Matrix", "body": "Chat with contributors.", "where": "[MATRIX ROOM]" },
     "mastodon": {
       "title": "Mastodon",
