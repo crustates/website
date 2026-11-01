@@ -40,6 +40,7 @@ export function ProductPage({
   visual,
   next,
   nextExtra,
+  kickerChip,
 }: {
   product: ProductId;
   copy: ProductCopy;
@@ -47,6 +48,8 @@ export function ProductPage({
   visual: ReactNode;
   next: ProductKey;
   nextExtra?: ReactNode;
+  /** Hero kicker on a chip in the product colour (Molt). */
+  kickerChip?: boolean;
 }) {
   const { t } = useTranslation();
   const name = t(`products.${product}`);
@@ -59,6 +62,7 @@ export function ProductPage({
         lead={copy.hero.lead}
         tags={copy.hero.tags}
         visual={visual}
+        kickerChip={kickerChip}
         actions={
           <>
             <Button asChild variant="primary">

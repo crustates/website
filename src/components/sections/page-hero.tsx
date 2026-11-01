@@ -3,7 +3,7 @@ import { Kicker } from "@/components/ui/kicker";
 import { ProductIcon } from "@/components/ui/product-icon";
 import { Section } from "@/components/ui/section";
 import { Tag } from "@/components/ui/tag";
-import type { ProductId, ProductKey } from "@/lib/products";
+import { products, type ProductId, type ProductKey } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 /** Dotted page hero: copy on the left, an illustration on the right. */
@@ -19,6 +19,7 @@ export function PageHero({
   tags,
   visual,
   size = "xl",
+  kickerChip = false,
 }: {
   product?: ProductKey;
   icon?: ReactNode;
@@ -29,6 +30,8 @@ export function PageHero({
   tags?: readonly string[];
   visual?: ReactNode;
   size?: "xl" | "l";
+  /** Kicker on a chip in the product colour, for colours too light to read as text. */
+  kickerChip?: boolean;
 }) {
   return (
     <Section dots band padded={false}>
@@ -36,7 +39,20 @@ export function PageHero({
         <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-[22px]">
           <div className="flex items-center gap-3.5">
             {icon}
-            <Kicker product={product}>{kicker}</Kicker>
+            {kickerChip && product ? (
+              <Kicker className="text-ink">
+                <span
+                  className={cn(
+                    "rounded-sm border-thin border-line px-2 py-0.5",
+                    products[product].fill,
+                  )}
+                >
+                  {kicker}
+                </span>
+              </Kicker>
+            ) : (
+              <Kicker product={product}>{kicker}</Kicker>
+            )}
           </div>
           <h1
             className={cn(
