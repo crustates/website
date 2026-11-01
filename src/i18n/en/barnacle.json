@@ -1,1 +1,169 @@
-{}
+{
+  "hero": {
+    "kicker": "Barnacle · Plugins",
+    "heading": "Extend Crustates, safely.",
+    "lead": "Barnacle plugins are sandboxed WebAssembly components running in Wasmtime. Each one declares the capabilities it needs, and you approve them on install. A broken or malicious plugin can't reach anything you didn't grant.",
+    "browse": "Browse plugins",
+    "build": "Build a plugin"
+  },
+  "dialog": {
+    "title": "Install ntfy alerts",
+    "version": "v1.2.0 · signed",
+    "asks": "This plugin asks for:",
+    "grants": [
+      "<code>alerts.send</code> · receive alerts to deliver",
+      "<code>http.outbound</code> · only <code>ntfy.sh</code>",
+      "<code>secrets.read</code> · only <code>ntfy-token</code>"
+    ],
+    "note": "No file system, no shell, no access to VMs or apps.",
+    "approve": "Approve and install",
+    "cancel": "Cancel"
+  },
+  "directory": {
+    "kicker": "Directory",
+    "heading": "Plugins for your setup",
+    "official": "Official",
+    "community": "Community",
+    "example": "Example",
+    "plugins": {
+      "netbird": {
+        "name": "NetBird access",
+        "kind": "Access provider",
+        "body": "Remote access to the console and apps over your NetBird network, with SSO."
+      },
+      "tailscale": {
+        "name": "Tailscale access",
+        "kind": "Access provider",
+        "body": "Reach apps by MagicDNS name. Works with Headscale too."
+      },
+      "cloudflare": {
+        "name": "Cloudflare DNS",
+        "kind": "DNS provider",
+        "body": "DNS-01 challenges and public records for your own domain."
+      },
+      "desec": {
+        "name": "deSEC DNS",
+        "kind": "DNS provider",
+        "body": "Free, privacy-focused DNS hosting from Berlin for Let's Encrypt."
+      },
+      "ntfy": {
+        "name": "ntfy alerts",
+        "kind": "Alert channel",
+        "body": "Push alerts to your phone through a self-hosted or public ntfy server."
+      },
+      "matrix": {
+        "name": "Matrix alerts",
+        "kind": "Alert channel",
+        "body": "Send alerts and the daily digest to a Matrix room."
+      },
+      "hetzner": {
+        "name": "Hetzner Storage Box",
+        "kind": "Storage driver",
+        "body": "Off-site backup target for rustic over SFTP."
+      },
+      "backblaze": {
+        "name": "Backblaze B2",
+        "kind": "Storage driver",
+        "body": "S3-compatible off-site backups with lifecycle rules."
+      },
+      "homeAssistant": {
+        "name": "Home Assistant events",
+        "kind": "Event hook",
+        "body": "Turn Crustates events into Home Assistant sensors and automations."
+      },
+      "nut": {
+        "name": "UPS shutdown (NUT)",
+        "kind": "Event hook",
+        "body": "Gracefully stop VMs and apps when the UPS runs low."
+      },
+      "naming": {
+        "name": "Naming policy",
+        "kind": "Policy check",
+        "body": "Rejects resources that don't follow your naming rules."
+      },
+      "poolHealth": {
+        "name": "Pool health widget",
+        "kind": "Dashboard widget",
+        "body": "A compact pool and disk health panel for the overview page."
+      }
+    }
+  },
+  "security": {
+    "kicker": "Security model",
+    "heading": "Capabilities, not trust.",
+    "lead": "Plugins only see the host through WIT interfaces. Anything not granted simply doesn't exist inside the sandbox.",
+    "columns": ["Capability", "What it allows", "Scoped by"],
+    "rows": [
+      [
+        "events.read",
+        "Receive resource events such as <code>vm.created</code>",
+        "Area and resource kind"
+      ],
+      [
+        "resources.write",
+        "Create or change resources through the API",
+        "Kind, with the installer's role as the ceiling"
+      ],
+      ["policy.admit", "Approve or reject changes before they apply", "Resource kind"],
+      ["dns.records", "Manage records for a DNS provider", "Zone"],
+      ["storage.target", "Act as a backup or replication target", "Backup job"],
+      ["http.outbound", "Make HTTPS requests", "Host allowlist"],
+      ["secrets.read", "Read a platform secret", "Named secrets"],
+      ["ui.widget", "Render a panel in the console", "Page slot"]
+    ],
+    "items": [
+      {
+        "title": "Signed",
+        "body": "Packages are OCI artifacts signed with Sigstore. Unsigned plugins need an explicit admin override."
+      },
+      {
+        "title": "Fuel and memory limits",
+        "body": "Each call gets a CPU budget and a memory cap, so a runaway plugin is stopped, not your host."
+      },
+      {
+        "title": "Audited",
+        "body": "Every API call a plugin makes is in the audit log under its own identity."
+      }
+    ]
+  },
+  "build": {
+    "kicker": "Build a plugin",
+    "heading": "From zero to installed in four steps.",
+    "lead": "Write plugins in Rust, Go, TypeScript or Python: anything that compiles to a WASI 0.2 component. The SDK and WIT interfaces are Apache-2.0.",
+    "steps": [
+      {
+        "title": "Scaffold",
+        "body": "Pick a template: event hook, DNS provider, alert channel, storage driver, policy or widget."
+      },
+      {
+        "title": "Declare capabilities",
+        "body": "List what you need in <code>barnacle.toml</code>. Ask for as little as possible."
+      },
+      {
+        "title": "Test locally",
+        "body": "<code>crust barnacle dev</code> runs it against a node with hot reload and a fake event stream."
+      },
+      {
+        "title": "Publish",
+        "body": "Push the signed component to any OCI registry and submit it to the directory."
+      }
+    ]
+  },
+  "hood": {
+    "kicker": "Under the hood",
+    "heading": "Wasmtime and the component model.",
+    "lead": "Plugins target WASI 0.2 today and move to 0.3 once runtimes settle. Interfaces are defined in WIT and versioned with the API, so plugins keep working across releases.",
+    "tags": ["Wasmtime", "WIT", "WASI 0.2", "OCI artifacts", "Sigstore", "Apache-2.0 SDK"]
+  },
+  "share": {
+    "kicker": "Built something useful?",
+    "heading": "Share it as a Barnacle plugin.",
+    "spawn": "Spawn · GitOps →",
+    "assistant": "AI assistant →",
+    "api": "API and integrations"
+  },
+  "redirect": {
+    "heading": "Plugins now live on the Barnacle page.",
+    "link": "Go to Barnacle · Plugins →"
+  }
+}
