@@ -1,0 +1,7 @@
+name: Pi-hole
+category: Network
+isolation: shared
+description: DNS sinkhole that blocks ads for your whole network.
+tags: [dns]
+tile: danger
+example: true

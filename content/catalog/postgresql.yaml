@@ -1,0 +1,7 @@
+name: PostgreSQL
+category: Database
+isolation: database
+description: Managed PostgreSQL with backups and point-in-time restore.
+tags: [reef, database]
+tile: blue
+example: true

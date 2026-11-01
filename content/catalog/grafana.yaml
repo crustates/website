@@ -1,0 +1,7 @@
+name: Grafana
+category: Monitoring
+isolation: shared
+description: Dashboards for Crustates metrics and anything else.
+tags: [otel, dashboards]
+tile: yellow
+example: true

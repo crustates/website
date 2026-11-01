@@ -1,0 +1,7 @@
+name: Syncthing
+category: Files
+isolation: microvm
+description: Peer-to-peer file sync between your devices, no cloud.
+tags: [sync]
+tile: teal
+example: true

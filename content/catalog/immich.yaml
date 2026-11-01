@@ -1,0 +1,71 @@
+name: Immich
+category: Photos
+isolation: microvm
+resources: 2 vCPU · 4 GiB RAM, 6 GiB with ML
+needs: [database]
+description: Photo and video backup from your phone, with search and faces.
+tags: [photos, postgres, gpu optional]
+tile: rust
+example: true
+detail:
+  about: Self-hosted photo and video backup for your phone, with timeline, albums, sharing, and search by faces, places and things. A private alternative to cloud photo services.
+  verified: true
+  website:
+    label: immich.app
+    url: https://immich.app
+  version: "[VERSION]"
+  template: 7
+  isolationNote: Kata on Cloud Hypervisor
+  architectures: [amd64, arm64]
+  licence: AGPLv3
+  installs: "[N]"
+  screenshots:
+    - Photo timeline
+    - Search by faces and places
+    - Mobile backup
+  database: Creates a managed PostgreSQL 17 database <code>immich-db</code> with the pgvector extension, backed up with point-in-time restore. No separate container to babysit.
+  volumes:
+    - path: /upload
+      description: immich-data on your pool
+    - path: /cache
+      description: immich-cache, not backed up
+    - path: /import
+      description: "optional: a share, read-only"
+  network: Served at <code>https://immich.crust.internal</code> with a certificate from the local CA, or your own domain with Let's Encrypt. Only port 443 is exposed.
+  versions:
+    - version: "[VERSION]"
+      template: 7
+      released: "[DATE]"
+      notes: Machine learning in a second microVM
+      current: true
+    - version: "[VERSION]"
+      template: 6
+      released: "[DATE]"
+      notes: pgvector replaces the old vector extension
+    - version: "[VERSION]"
+      template: 5
+      released: "[DATE]"
+      notes: arm64 images
+  maintainers:
+    - name: "[MAINTAINER]"
+      role: Template maintainer
+    - name: Crustates catalog team
+      role: Review and signing
+  # Linked apps take their tile from their own entry; others set one here.
+  related:
+    - name: PhotoPrism
+      category: Photos
+      isolation: microVM
+      tile: teal
+    - name: Nextcloud
+      category: Files
+      isolation: microVM
+      slug: nextcloud
+    - name: Syncthing
+      category: Files
+      isolation: microVM
+      slug: syncthing
+    - name: Paperless-ngx
+      category: Documents
+      isolation: microVM
+      slug: paperless-ngx

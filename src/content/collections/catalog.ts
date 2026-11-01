@@ -4,6 +4,8 @@ import { date } from "./shared";
 
 // App catalog: content/catalog/<slug>.yaml. `detail` holds the extra sections
 // of an app page (only some apps have them).
+const tile = z.enum(["blue", "rust", "teal", "yellow", "danger", "success", "card"]);
+
 export const catalog = defineCollection({
   name: "catalog",
   directory: "content/catalog",
@@ -21,7 +23,7 @@ export const catalog = defineCollection({
     tags: z.array(z.string()).default([]),
     source: z.enum(["curated", "community"]).default("curated"),
     /** Colour of the letter tile. */
-    tile: z.enum(["blue", "rust", "teal", "yellow", "danger", "success", "card"]),
+    tile,
     /** Sample entry from the design, not a real template yet. */
     example: z.boolean().default(false),
     detail: z
@@ -58,6 +60,8 @@ export const catalog = defineCollection({
               category: z.string(),
               isolation: z.string(),
               slug: z.string().optional(),
+              /** Tile colour for an app that is not in the catalog. */
+              tile: tile.optional(),
             }),
           )
           .default([]),

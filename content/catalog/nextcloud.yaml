@@ -1,0 +1,8 @@
+name: Nextcloud
+category: Files
+isolation: microvm
+needs: [database]
+description: Files, calendars and contacts that sync everywhere.
+tags: [files, postgres]
+tile: blue
+example: true
