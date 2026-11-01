@@ -1,0 +1,11 @@
+title: Upgrades
+order: 6
+items:
+  - q: How are updates installed?
+    a: Molt updates the whole OS as one signed image and reboots into it.
+  - q: What if an update breaks something?
+    a: Roll back to the previous image with one click or from the boot menu.
+  - q: Can I choose when to update?
+    a: Yes, pick a channel (stable or beta) and a maintenance window.
+  - q: Can I install packages on the host?
+    a: No, the host is read-only. Use an App or a VM instead.

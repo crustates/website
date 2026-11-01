@@ -1,0 +1,11 @@
+title: Licence and community
+order: 8
+items:
+  - q: What licence is it under?
+    a: The platform is AGPLv3; SDKs and plugin interfaces are Apache-2.0.
+  - q: Can I use it commercially?
+    a: Yes. If you offer a modified version as a service, AGPLv3 asks you to share those changes.
+  - q: How can I contribute?
+    a: Code, docs, translations, catalog apps and testing on your hardware all help. Contributions use a DCO sign-off.
+  - q: How is it funded?
+    a: Through sponsorships for now. See the community page.

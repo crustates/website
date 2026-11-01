@@ -1,5 +1,13 @@
 title: General
 order: 1
 items:
+  - q: What is Crustates?
+    a: "An open-source platform that turns a machine into your own cloud: VMs, apps, storage and networking behind one console, CLI and API."
   - q: Is it ready to use?
     a: Not yet. It is in milestone M0; follow the roadmap and changelog to see what has shipped.
+  - q: Who is it for?
+    a: Homelabbers and small self-hosters who want Proxmox, TrueNAS and an app panel in one product.
+  - q: Why Rust?
+    a: Memory safety and performance in the control plane and agent. Proven engines like QEMU and containerd do the heavy lifting.
+  - q: Does it need the internet?
+    a: Only for downloads and updates. Everything runs locally, including the optional AI assistant with a local model.
