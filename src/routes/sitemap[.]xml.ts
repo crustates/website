@@ -10,7 +10,7 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: () =>
-        new Response(sitemapXml([...pagePaths(routeFiles), ...contentPagePaths]), {
+        new Response(sitemapXml([...pagePaths(routeFiles), ...contentPagePaths()]), {
           headers: { "content-type": "application/xml; charset=utf-8" },
         }),
     },

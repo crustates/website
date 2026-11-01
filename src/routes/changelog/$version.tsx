@@ -1,6 +1,7 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { ChangeList, InlineCode } from "@/components/changelog/change-list";
+import { ChangeList } from "@/components/changelog/change-list";
+import { InlineCode } from "@/components/inline-code";
 import { Button } from "@/components/ui/button";
 import { Callout } from "@/components/ui/callout";
 import { Card } from "@/components/ui/card";

@@ -2,7 +2,7 @@ import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { AppTile, ExampleTag, IsolationPill, RelatedApp } from "@/components/catalog/app-bits";
-import { Rich } from "@/components/rich";
+import { InlineCode } from "@/components/inline-code";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Cmd } from "@/components/ui/cmd";
@@ -186,7 +186,7 @@ function DetailSections({ detail }: { detail: Detail }) {
         {detail.database && (
           <FactCard icon="reef" heading={t("app.database")}>
             <p className="text-body-s">
-              <Rich text={detail.database} />
+              <InlineCode text={detail.database} />
             </p>
           </FactCard>
         )}
@@ -209,7 +209,7 @@ function DetailSections({ detail }: { detail: Detail }) {
         {detail.network && (
           <FactCard icon="current" heading={t("app.network")}>
             <p className="text-body-s [overflow-wrap:anywhere]">
-              <Rich text={detail.network} />
+              <InlineCode text={detail.network} />
             </p>
           </FactCard>
         )}

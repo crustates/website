@@ -1,12 +1,8 @@
 import { useTranslation } from "react-i18next";
+import { InlineCode } from "@/components/inline-code";
 import { Tag } from "@/components/ui/tag";
 import type { Release } from "@/content";
 import { cn } from "@/lib/utils";
-
-/** Content text with Markdown-style `code` spans. */
-export function InlineCode({ text }: { text: string }) {
-  return text.split("`").map((part, i) => (i % 2 ? <code key={i}>{part}</code> : part));
-}
 
 const tints = {
   added: "bg-tint-teal",

@@ -193,5 +193,6 @@
       "body": "Everything on this page is a resource in the Crustates API. Click it in the console, script it with <code>crust</code>, or manage it with OpenTofu.",
       "link": "API and integrations →"
     }
-  }
+  },
+  "minRead": "{{count}} min read"
 }

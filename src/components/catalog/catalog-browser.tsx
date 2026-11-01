@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Rich } from "@/components/rich";
+import { useSlashFocus } from "@/hooks/use-slash-focus";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Cmd } from "@/components/ui/cmd";
@@ -46,17 +47,7 @@ export function CatalogBrowser() {
   const search = useRef<HTMLInputElement>(null);
   useEffect(() => setMounted(true), []);
 
-  // "/" focuses the search, as the hint in the box says.
-  useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      const target = event.target as HTMLElement;
-      if (event.key !== "/" || target.closest("input, textarea, select, [contenteditable]")) return;
-      event.preventDefault();
-      search.current?.focus();
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  useSlashFocus(search);
 
   const set = (patch: Partial<Filters>) => setFilters((f) => ({ ...f, ...patch }));
   const shown = filterApps(apps, filters);
@@ -189,8 +180,13 @@ function FilterPanel({
       aria-label={t("filters.label")}
       className="flex flex-[1_1_220px] flex-col gap-0.5 sm:max-w-60"
     >
-      <Kicker className="px-2 pb-2">{t("filters.categories")}</Kicker>
-      <ul className="flex flex-col gap-0.5 max-sm:flex-row max-sm:flex-wrap max-sm:gap-1.5">
+      <Kicker id="catalog-categories" className="px-2 pb-2">
+        {t("filters.categories")}
+      </Kicker>
+      <ul
+        aria-labelledby="catalog-categories"
+        className="flex flex-col gap-0.5 max-sm:flex-row max-sm:flex-wrap max-sm:gap-1.5"
+      >
         {[[null, apps.length] as const, ...categories].map(([category, count]) => (
           <li key={category ?? ""}>
             <button

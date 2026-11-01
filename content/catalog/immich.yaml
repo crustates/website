@@ -23,7 +23,7 @@ detail:
     - Photo timeline
     - Search by faces and places
     - Mobile backup
-  database: Creates a managed PostgreSQL 17 database <code>immich-db</code> with the pgvector extension, backed up with point-in-time restore. No separate container to babysit.
+  database: Creates a managed PostgreSQL 17 database `immich-db` with the pgvector extension, backed up with point-in-time restore. No separate container to babysit.
   volumes:
     - path: /upload
       description: immich-data on your pool
@@ -31,7 +31,7 @@ detail:
       description: immich-cache, not backed up
     - path: /import
       description: "optional: a share, read-only"
-  network: Served at <code>https://immich.crust.internal</code> with a certificate from the local CA, or your own domain with Let's Encrypt. Only port 443 is exposed.
+  network: Served at `https://immich.crust.internal` with a certificate from the local CA, or your own domain with Let's Encrypt. Only port 443 is exposed.
   versions:
     - version: "[VERSION]"
       template: 7

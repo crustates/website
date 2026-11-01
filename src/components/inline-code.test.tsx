@@ -1,6 +1,6 @@
 import { expect, test } from "vite-plus/test";
 import { render } from "@/test/render";
-import { InlineCode } from "./change-list";
+import { InlineCode } from "./inline-code";
 
 test("turns `backtick` spans into code elements and keeps the rest as text", async () => {
   const container = await render(

@@ -17,7 +17,7 @@ export const Route = createFileRoute("/changelog/rss.xml")({
               title: i18n.t("meta.release.title", { version: r.version }),
               path: `/changelog/${r.version}`,
               date: r.date,
-              description: r.summary,
+              description: r.summary.replaceAll("`", ""),
             })),
           }),
           { headers: { "content-type": "application/rss+xml; charset=utf-8" } },

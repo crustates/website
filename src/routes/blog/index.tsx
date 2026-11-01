@@ -1,46 +1,38 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { InlineCode } from "@/components/inline-code";
 import { FollowBand } from "@/components/blog/follow-band";
+import { Cover, PostCard } from "@/components/blog/post-card";
 import { Avatar, PostDate, PostTopic } from "@/components/blog/post-meta";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Kicker } from "@/components/ui/kicker";
-import { ProductIcon } from "@/components/ui/product-icon";
 import { Section } from "@/components/ui/section";
 import { Tag } from "@/components/ui/tag";
 import { type Post, posts } from "@/content";
 import { addNamespace, i18n } from "@/i18n";
 import blog from "@/i18n/en/blog.json";
-import { products } from "@/lib/products";
 import { seo } from "@/lib/seo";
 import { asset } from "@/lib/site";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/blog/")({
-  head: () =>
-    seo({
+  head: () => {
+    const head = seo({
       title: i18n.t("meta.blog.title"),
       description: i18n.t("meta.blog.description"),
       path: "/blog",
-    }),
+    });
+    // RSS autodiscovery for feed readers.
+    const feed = {
+      rel: "alternate",
+      type: "application/rss+xml",
+      title: i18n.t("meta.blog.title"),
+      href: asset("/blog/rss.xml"),
+    };
+    return { ...head, links: [...head.links, feed] };
+  },
   component: BlogPage,
 });
-
-/** The post's product colour behind its product icon. */
-function Cover({ post, size, className }: { post: Post; size: number; className?: string }) {
-  const { product } = post;
-  return (
-    <div
-      className={cn(
-        "flex items-center justify-center border-line",
-        product ? products[product].fill : "bg-surface-sunken",
-        className,
-      )}
-    >
-      {product && product !== "assistant" && <ProductIcon product={product} size={size} />}
-    </div>
-  );
-}
 
 function Featured({ post }: { post: Post }) {
   const { t } = useTranslation("blog");
@@ -52,14 +44,16 @@ function Featured({ post }: { post: Post }) {
           <Tag className="self-start">{t("index.featured")}</Tag>
           <Kicker product={post.product}>
             <PostTopic post={post} /> · <PostDate date={post.date} /> ·{" "}
-            {t("minRead", { count: post.readingMinutes })}
+            {t("minRead", { ns: "common", count: post.readingMinutes })}
           </Kicker>
           <h2 className="text-heading-1 max-sm:text-heading-2">
             <Link to="/blog/$slug/" params={{ slug: post.slug }} className="text-inherit">
               {post.title}
             </Link>
           </h2>
-          <p className="text-body-l text-ink-muted">{post.summary}</p>
+          <p className="text-body-l text-ink-muted">
+            <InlineCode text={post.summary} />
+          </p>
           <div className="flex items-center gap-3">
             <Avatar name={post.author.name} />
             <span className="text-body-s">
@@ -72,29 +66,6 @@ function Featured({ post }: { post: Post }) {
             </Link>
           </Button>
         </div>
-      </article>
-    </Card>
-  );
-}
-
-function PostCard({ post }: { post: Post }) {
-  const { t } = useTranslation("blog");
-  return (
-    <Card asChild className="flex flex-col gap-3">
-      <article>
-        <Cover post={post} size={72} className="h-[140px] rounded-md border-thick" />
-        <Kicker product={post.product}>
-          <PostTopic post={post} /> · <PostDate date={post.date} />
-        </Kicker>
-        <h3 className="text-heading-3">
-          <Link to="/blog/$slug/" params={{ slug: post.slug }} className="text-inherit">
-            {post.title}
-          </Link>
-        </h3>
-        <p className="text-body-s text-ink-muted">{post.summary}</p>
-        <p className="font-mono text-caption text-ink-muted">
-          {t("minRead", { count: post.readingMinutes })}
-        </p>
       </article>
     </Card>
   );

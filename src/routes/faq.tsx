@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { matchesQuery, searchText } from "@/components/faq/filter";
-import { Rich } from "@/components/rich";
+import { InlineCode } from "@/components/inline-code";
+import { useSlashFocus } from "@/hooks/use-slash-focus";
 import { Callout } from "@/components/ui/callout";
 import { Card } from "@/components/ui/card";
 import { Kicker } from "@/components/ui/kicker";
@@ -42,21 +43,7 @@ function SearchBox({
 }) {
   const { t } = useTranslation("faq");
   const input = useRef<HTMLInputElement>(null);
-  // "/" focuses the search, as the hint in the box says.
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
-      if (
-        e.target instanceof Element &&
-        e.target.closest("input, textarea, select, [contenteditable]")
-      )
-        return;
-      e.preventDefault();
-      input.current?.focus();
-    };
-    addEventListener("keydown", onKey);
-    return () => removeEventListener("keydown", onKey);
-  }, []);
+  useSlashFocus(input);
   return (
     <div className="flex max-w-[640px] flex-col">
       <label className="flex min-h-10 items-center gap-2 rounded-sm border-thin border-line bg-surface-card px-3 py-1.5 text-body-s text-ink-muted focus-within:outline-3 focus-within:outline-offset-2 focus-within:outline-focus-ring">
@@ -172,7 +159,7 @@ function FaqPage() {
                       {item.q}
                     </summary>
                     <p className="px-[18px] pb-4 text-body-s">
-                      <Rich text={item.a} />
+                      <InlineCode text={item.a} />
                       {item.link && (
                         <>
                           {" "}

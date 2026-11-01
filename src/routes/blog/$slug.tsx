@@ -1,6 +1,7 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { InlineCode } from "@/components/inline-code";
 import { FollowBand } from "@/components/blog/follow-band";
 import { mdxComponents } from "@/components/blog/mdx-components";
 import { Avatar, PostDate, PostTopic } from "@/components/blog/post-meta";
@@ -23,7 +24,13 @@ export const Route = createFileRoute("/blog/$slug")({
     return post;
   },
   head: ({ loaderData: post }) =>
-    post ? seo({ title: post.title, description: post.summary, path: `/blog/${post.slug}` }) : {},
+    post
+      ? seo({
+          title: post.title,
+          description: post.summary.replaceAll("`", ""),
+          path: `/blog/${post.slug}`,
+        })
+      : {},
   // Keep the loader (and the content it imports) out of the main bundle.
   codeSplitGroupings: [["loader", "component"]],
   component: PostPage,
@@ -47,7 +54,9 @@ function Hero({ post }: { post: Post }) {
         ))}
       </div>
       <h1 className="max-w-[900px] text-display-l max-sm:text-heading-1">{post.title}</h1>
-      <p className="max-w-[760px] text-body-l">{post.lede ?? post.summary}</p>
+      <p className="max-w-[760px] text-body-l">
+        <InlineCode text={post.lede ?? post.summary} />
+      </p>
       <div className="flex items-center gap-3.5">
         <Avatar name={post.author.name} />
         <div className="text-body-s">
@@ -55,7 +64,8 @@ function Hero({ post }: { post: Post }) {
             <strong>{post.author.name}</strong> · {post.author.role}
           </p>
           <p className="text-ink-muted">
-            <PostDate date={post.date} /> · {t("minRead", { count: post.readingMinutes })}
+            <PostDate date={post.date} /> ·{" "}
+            {t("minRead", { ns: "common", count: post.readingMinutes })}
           </p>
         </div>
       </div>
@@ -128,7 +138,9 @@ function Related({ post }: { post: Post }) {
                   {p.title}
                 </Link>
               </h3>
-              <p className="text-body-s text-ink-muted">{p.summary}</p>
+              <p className="text-body-s text-ink-muted">
+                <InlineCode text={p.summary} />
+              </p>
             </article>
           </Card>
         ))}

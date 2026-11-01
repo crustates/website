@@ -17,7 +17,7 @@ export const Route = createFileRoute("/blog/rss.xml")({
               title: p.title,
               path: `/blog/${p.slug}`,
               date: p.date,
-              description: p.summary,
+              description: p.summary.replaceAll("`", ""),
             })),
           }),
           { headers: { "content-type": "application/rss+xml; charset=utf-8" } },

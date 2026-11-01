@@ -1,29 +1,36 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { PostCard } from "@/components/blog/post-card";
 import { ChangeList } from "@/components/changelog/change-list";
 import { Rich } from "@/components/rich";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Kicker } from "@/components/ui/kicker";
 import { Pill } from "@/components/ui/pill";
-import { ProductIcon } from "@/components/ui/product-icon";
 import { Section } from "@/components/ui/section";
-import { posts, releases, type Post } from "@/content";
+import { posts, releases } from "@/content";
 import { addNamespace, i18n } from "@/i18n";
 import changelog from "@/i18n/en/changelog.json";
 import { links } from "@/lib/links";
-import { products } from "@/lib/products";
 import { seo } from "@/lib/seo";
 import { asset } from "@/lib/site";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/changelog/")({
-  head: () =>
-    seo({
+  head: () => {
+    const head = seo({
       title: i18n.t("meta.changelog.title"),
       description: i18n.t("meta.changelog.description"),
       path: "/changelog",
-    }),
+    });
+    // RSS autodiscovery for feed readers.
+    const feed = {
+      rel: "alternate",
+      type: "application/rss+xml",
+      title: i18n.t("meta.changelog.title"),
+      href: asset("/changelog/rss.xml"),
+    };
+    return { ...head, links: [...head.links, feed] };
+  },
   component: ChangelogPage,
 });
 
@@ -95,51 +102,21 @@ function Releases() {
   );
 }
 
-function PostCard({ post }: { post: Post }) {
-  const { t } = useTranslation();
-  const product = post.product;
-  return (
-    <Card className="relative flex flex-col gap-3">
-      <div
-        className={cn(
-          "flex h-[140px] items-center justify-center rounded-md border-thick border-line",
-          product ? products[product].fill : "bg-surface-sunken",
-        )}
-      >
-        {product && product !== "assistant" && <ProductIcon product={product} size={72} />}
-      </div>
-      <Kicker product={product}>
-        {product ? t(`products.${product}`) : post.category} · {post.date}
-      </Kicker>
-      <h3 className="text-heading-3">
-        {/* The whole card is the link target, as in the design. */}
-        <Link
-          to="/blog/$slug/"
-          params={{ slug: post.slug }}
-          className="text-inherit after:absolute after:inset-0 after:content-['']"
-        >
-          {post.title}
-        </Link>
-      </h3>
-      <p className="text-body-s text-ink-muted">{post.summary}</p>
-    </Card>
-  );
-}
-
 function FromTheBlog() {
   const { t } = useTranslation("changelog");
-  if (posts.length === 0) return null;
   return (
     <Section tone="card" band wrapClassName="flex flex-col gap-7">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="text-heading-1">{t("blog.heading")}</h2>
         <Link to="/blog/">{t("blog.all")}</Link>
       </div>
-      <div className="grid gap-7 md:grid-cols-3">
-        {posts.slice(0, 3).map((post) => (
-          <PostCard key={post.slug} post={post} />
-        ))}
-      </div>
+      {posts.length > 0 && (
+        <div className="grid gap-7 md:grid-cols-3">
+          {posts.slice(0, 3).map((post) => (
+            <PostCard key={post.slug} post={post} />
+          ))}
+        </div>
+      )}
     </Section>
   );
 }

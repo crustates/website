@@ -8,6 +8,7 @@ import mdx from "@mdx-js/rollup";
 import rehypeSlug from "rehype-slug";
 import remarkFrontmatter from "remark-frontmatter";
 import { site } from "./site.config.ts";
+import { draftMdx } from "./src/content/draft-mdx.ts";
 import { contentPaths } from "./src/content/paths.ts";
 
 export default defineConfig({
@@ -58,6 +59,7 @@ export default defineConfig({
   },
   plugins: lazyPlugins(() => [
     contentCollections(),
+    draftMdx(process.env.SHOW_DRAFTS === "true"),
     // Blog bodies: MDX compiled at build time, so the browser never evaluates code.
     { enforce: "pre", ...mdx({ remarkPlugins: [remarkFrontmatter], rehypePlugins: [rehypeSlug] }) },
     tailwindcss(),
