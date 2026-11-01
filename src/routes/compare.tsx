@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { Rich } from "@/components/rich";
 import { CtaBand } from "@/components/sections/cta-band";
 import { PageHero } from "@/components/sections/page-hero";
@@ -133,7 +133,7 @@ function ComparePage() {
           <a href={href("/download")}>{copy.cta.download}</a>
         </Button>
         <Button asChild>
-          <a href={href("/roadmap")}>{copy.cta.roadmap}</a>
+          <Link to="/roadmap/">{copy.cta.roadmap}</Link>
         </Button>
       </CtaBand>
     </>

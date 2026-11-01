@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { Fragment } from "react";
 import { Rich } from "@/components/rich";
 import { PageHero } from "@/components/sections/page-hero";
@@ -149,7 +149,7 @@ function HardwarePage() {
               <a href={href("/download")}>{copy.installer.download}</a>
             </Button>
             <Button asChild>
-              <a href={href("/faq")}>{copy.installer.faq}</a>
+              <Link to="/faq/">{copy.installer.faq}</Link>
             </Button>
           </div>
         </div>
@@ -247,7 +247,7 @@ function HardwarePage() {
             <p className="text-body-s text-ink-muted">{copy.hcl.browse}</p>
             <div className="flex flex-wrap gap-3">
               <Button asChild>
-                <a href={href("/faq")}>{copy.hcl.faq}</a>
+                <Link to="/faq/">{copy.hcl.faq}</Link>
               </Button>
             </div>
           </article>

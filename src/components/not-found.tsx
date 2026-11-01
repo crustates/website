@@ -16,8 +16,8 @@ export function NotFound() {
     { label: t("notFound.links.features"), to: "/features/" },
     { label: t("notFound.links.hardware"), to: "/hardware/" },
     { label: t("notFound.links.compare"), to: "/compare/" },
-    { label: t("notFound.links.catalog"), href: href("/catalog") },
-    { label: t("notFound.links.faq"), href: href("/faq") },
+    { label: t("notFound.links.catalog"), to: "/catalog/" },
+    { label: t("notFound.links.faq"), to: "/faq/" },
   ];
   return (
     <Section dots band padded={false} className="min-h-[560px]">
