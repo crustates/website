@@ -1,6 +1,4 @@
 {
-  "title": "Your own cloud, on your own hardware",
-  "description": "VMs, apps, storage and networking in one Rust platform. Install it on a mini PC, a NAS box or a rack server and run everything from one console, one CLI and one API.",
   "hero": {
     "kicker": "Open source · AGPLv3 · amd64 and arm64",
     "heading": "Your own cloud, on your own hardware.",

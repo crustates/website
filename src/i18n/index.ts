@@ -1,20 +1,21 @@
-import i18next from "i18next";
+import i18next, { type i18n as I18n } from "i18next";
 import { initReactI18next } from "react-i18next";
 import common from "./en/common.json";
-import home from "./en/home.json";
+import type { Resources } from "./resources";
 
 export const defaultNS = "common";
-export const resources = { en: { common, home } } as const;
+export type Namespace = keyof Resources;
 
-/** Synchronous i18next instance with bundled resources, so prerendering needs no backend. */
+/** Synchronous i18next instance, so prerendering needs no backend. */
 export function createI18n(lng = "en") {
   const instance = i18next.createInstance();
   void instance.use(initReactI18next).init({
     lng,
     fallbackLng: "en",
-    resources,
+    // Only the shared strings ship in the main bundle; pages add theirs.
+    resources: { en: { common } },
     defaultNS,
-    ns: Object.keys(resources.en),
+    ns: [defaultNS],
     initAsync: false,
     interpolation: { escapeValue: false },
   });
@@ -22,3 +23,17 @@ export function createI18n(lng = "en") {
 }
 
 export const i18n = createI18n();
+
+/**
+ * Registers a page's strings. Call it in the page component, so the JSON is
+ * code-split with the page instead of landing in every page's bundle.
+ */
+export function addNamespace<N extends Namespace>(
+  ns: N,
+  bundle: Resources[N],
+  instance: I18n = i18n,
+) {
+  if (!instance.hasResourceBundle(instance.language, ns)) {
+    instance.addResourceBundle(instance.language, ns, bundle);
+  }
+}

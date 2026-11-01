@@ -13,7 +13,8 @@ import { ProductIcon } from "@/components/ui/product-icon";
 import { Section } from "@/components/ui/section";
 import { Table, Td, Th, Tr } from "@/components/ui/table";
 import { Tag } from "@/components/ui/tag";
-import { i18n } from "@/i18n";
+import { addNamespace, i18n } from "@/i18n";
+import home from "@/i18n/en/home.json";
 import { links } from "@/lib/links";
 import type { ProductId } from "@/lib/products";
 import { seo } from "@/lib/seo";
@@ -21,7 +22,11 @@ import { absoluteUrl, asset, href } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () =>
-    seo({ title: i18n.t("home:title"), description: i18n.t("home:description"), path: "/" }),
+    seo({
+      title: i18n.t("meta.home.title"),
+      description: i18n.t("meta.home.description"),
+      path: "/",
+    }),
   component: Home,
 });
 
@@ -327,6 +332,7 @@ function CallToAction() {
 }
 
 function Home() {
+  addNamespace("home", home);
   return (
     <>
       <Hero />

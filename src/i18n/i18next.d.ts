@@ -1,9 +1,10 @@
 import "i18next";
-import type { defaultNS, resources } from "./index";
+import type { defaultNS } from "./index";
+import type { Resources } from "./resources";
 
 declare module "i18next" {
   interface CustomTypeOptions {
     defaultNS: typeof defaultNS;
-    resources: (typeof resources)["en"];
+    resources: Resources;
   }
 }
