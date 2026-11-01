@@ -17,15 +17,25 @@ import { Route as BarnacleRouteImport } from './routes/barnacle'
 import { Route as CastRouteImport } from './routes/cast'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as CurrentRouteImport } from './routes/current'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as HardwareRouteImport } from './routes/hardware'
 import { Route as MoltRouteImport } from './routes/molt'
 import { Route as PluginsRouteImport } from './routes/plugins'
 import { Route as ReefRouteImport } from './routes/reef'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SpawnRouteImport } from './routes/spawn'
 import { Route as TideRouteImport } from './routes/tide'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as BlogRssDotxmlRouteImport } from './routes/blog/rss[.]xml'
+import { Route as CatalogIndexRouteImport } from './routes/catalog/index'
+import { Route as CatalogAppRouteImport } from './routes/catalog/$app'
+import { Route as ChangelogIndexRouteImport } from './routes/changelog/index'
+import { Route as ChangelogVersionRouteImport } from './routes/changelog/$version'
+import { Route as ChangelogRssDotxmlRouteImport } from './routes/changelog/rss[.]xml'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -67,6 +77,11 @@ const CurrentRoute = CurrentRouteImport.update({
   path: '/current',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeaturesRoute = FeaturesRouteImport.update({
   id: '/features',
   path: '/features',
@@ -92,6 +107,11 @@ const ReefRoute = ReefRouteImport.update({
   path: '/reef',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
@@ -112,6 +132,46 @@ const TideRoute = TideRouteImport.update({
   path: '/tide',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRssDotxmlRoute = BlogRssDotxmlRouteImport.update({
+  id: '/blog/rss.xml',
+  path: '/blog/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogIndexRoute = CatalogIndexRouteImport.update({
+  id: '/catalog/',
+  path: '/catalog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogAppRoute = CatalogAppRouteImport.update({
+  id: '/catalog/$app',
+  path: '/catalog/$app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogIndexRoute = ChangelogIndexRouteImport.update({
+  id: '/changelog/',
+  path: '/changelog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogVersionRoute = ChangelogVersionRouteImport.update({
+  id: '/changelog/$version',
+  path: '/changelog/$version',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogRssDotxmlRoute = ChangelogRssDotxmlRouteImport.update({
+  id: '/changelog/rss.xml',
+  path: '/changelog/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -122,15 +182,25 @@ export interface FileRoutesByFullPath {
   '/cast': typeof CastRoute
   '/compare': typeof CompareRoute
   '/current': typeof CurrentRoute
+  '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/hardware': typeof HardwareRoute
   '/molt': typeof MoltRoute
   '/plugins': typeof PluginsRoute
   '/reef': typeof ReefRoute
+  '/roadmap': typeof RoadmapRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/spawn': typeof SpawnRoute
   '/tide': typeof TideRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
+  '/catalog/$app': typeof CatalogAppRoute
+  '/changelog/$version': typeof ChangelogVersionRoute
+  '/changelog/rss.xml': typeof ChangelogRssDotxmlRoute
+  '/blog/': typeof BlogIndexRoute
+  '/catalog/': typeof CatalogIndexRoute
+  '/changelog/': typeof ChangelogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -141,15 +211,25 @@ export interface FileRoutesByTo {
   '/cast': typeof CastRoute
   '/compare': typeof CompareRoute
   '/current': typeof CurrentRoute
+  '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/hardware': typeof HardwareRoute
   '/molt': typeof MoltRoute
   '/plugins': typeof PluginsRoute
   '/reef': typeof ReefRoute
+  '/roadmap': typeof RoadmapRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/spawn': typeof SpawnRoute
   '/tide': typeof TideRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
+  '/catalog/$app': typeof CatalogAppRoute
+  '/changelog/$version': typeof ChangelogVersionRoute
+  '/changelog/rss.xml': typeof ChangelogRssDotxmlRoute
+  '/blog': typeof BlogIndexRoute
+  '/catalog': typeof CatalogIndexRoute
+  '/changelog': typeof ChangelogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -161,15 +241,25 @@ export interface FileRoutesById {
   '/cast': typeof CastRoute
   '/compare': typeof CompareRoute
   '/current': typeof CurrentRoute
+  '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/hardware': typeof HardwareRoute
   '/molt': typeof MoltRoute
   '/plugins': typeof PluginsRoute
   '/reef': typeof ReefRoute
+  '/roadmap': typeof RoadmapRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/spawn': typeof SpawnRoute
   '/tide': typeof TideRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
+  '/catalog/$app': typeof CatalogAppRoute
+  '/changelog/$version': typeof ChangelogVersionRoute
+  '/changelog/rss.xml': typeof ChangelogRssDotxmlRoute
+  '/blog/': typeof BlogIndexRoute
+  '/catalog/': typeof CatalogIndexRoute
+  '/changelog/': typeof ChangelogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -182,15 +272,25 @@ export interface FileRouteTypes {
     | '/cast'
     | '/compare'
     | '/current'
+    | '/faq'
     | '/features'
     | '/hardware'
     | '/molt'
     | '/plugins'
     | '/reef'
+    | '/roadmap'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/spawn'
     | '/tide'
+    | '/blog/$slug'
+    | '/blog/rss.xml'
+    | '/catalog/$app'
+    | '/changelog/$version'
+    | '/changelog/rss.xml'
+    | '/blog/'
+    | '/catalog/'
+    | '/changelog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -201,15 +301,25 @@ export interface FileRouteTypes {
     | '/cast'
     | '/compare'
     | '/current'
+    | '/faq'
     | '/features'
     | '/hardware'
     | '/molt'
     | '/plugins'
     | '/reef'
+    | '/roadmap'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/spawn'
     | '/tide'
+    | '/blog/$slug'
+    | '/blog/rss.xml'
+    | '/catalog/$app'
+    | '/changelog/$version'
+    | '/changelog/rss.xml'
+    | '/blog'
+    | '/catalog'
+    | '/changelog'
   id:
     | '__root__'
     | '/'
@@ -220,15 +330,25 @@ export interface FileRouteTypes {
     | '/cast'
     | '/compare'
     | '/current'
+    | '/faq'
     | '/features'
     | '/hardware'
     | '/molt'
     | '/plugins'
     | '/reef'
+    | '/roadmap'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/spawn'
     | '/tide'
+    | '/blog/$slug'
+    | '/blog/rss.xml'
+    | '/catalog/$app'
+    | '/changelog/$version'
+    | '/changelog/rss.xml'
+    | '/blog/'
+    | '/catalog/'
+    | '/changelog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -240,15 +360,25 @@ export interface RootRouteChildren {
   CastRoute: typeof CastRoute
   CompareRoute: typeof CompareRoute
   CurrentRoute: typeof CurrentRoute
+  FaqRoute: typeof FaqRoute
   FeaturesRoute: typeof FeaturesRoute
   HardwareRoute: typeof HardwareRoute
   MoltRoute: typeof MoltRoute
   PluginsRoute: typeof PluginsRoute
   ReefRoute: typeof ReefRoute
+  RoadmapRoute: typeof RoadmapRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SpawnRoute: typeof SpawnRoute
   TideRoute: typeof TideRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogRssDotxmlRoute: typeof BlogRssDotxmlRoute
+  CatalogAppRoute: typeof CatalogAppRoute
+  ChangelogVersionRoute: typeof ChangelogVersionRoute
+  ChangelogRssDotxmlRoute: typeof ChangelogRssDotxmlRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  CatalogIndexRoute: typeof CatalogIndexRoute
+  ChangelogIndexRoute: typeof ChangelogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -309,6 +439,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CurrentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/features': {
       id: '/features'
       path: '/features'
@@ -344,6 +481,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReefRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/robots.txt': {
       id: '/robots.txt'
       path: '/robots.txt'
@@ -372,6 +516,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TideRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/rss.xml': {
+      id: '/blog/rss.xml'
+      path: '/blog/rss.xml'
+      fullPath: '/blog/rss.xml'
+      preLoaderRoute: typeof BlogRssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalog/': {
+      id: '/catalog/'
+      path: '/catalog'
+      fullPath: '/catalog/'
+      preLoaderRoute: typeof CatalogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalog/$app': {
+      id: '/catalog/$app'
+      path: '/catalog/$app'
+      fullPath: '/catalog/$app'
+      preLoaderRoute: typeof CatalogAppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog/': {
+      id: '/changelog/'
+      path: '/changelog'
+      fullPath: '/changelog/'
+      preLoaderRoute: typeof ChangelogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog/$version': {
+      id: '/changelog/$version'
+      path: '/changelog/$version'
+      fullPath: '/changelog/$version'
+      preLoaderRoute: typeof ChangelogVersionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog/rss.xml': {
+      id: '/changelog/rss.xml'
+      path: '/changelog/rss.xml'
+      fullPath: '/changelog/rss.xml'
+      preLoaderRoute: typeof ChangelogRssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -384,15 +584,25 @@ const rootRouteChildren: RootRouteChildren = {
   CastRoute: CastRoute,
   CompareRoute: CompareRoute,
   CurrentRoute: CurrentRoute,
+  FaqRoute: FaqRoute,
   FeaturesRoute: FeaturesRoute,
   HardwareRoute: HardwareRoute,
   MoltRoute: MoltRoute,
   PluginsRoute: PluginsRoute,
   ReefRoute: ReefRoute,
+  RoadmapRoute: RoadmapRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SpawnRoute: SpawnRoute,
   TideRoute: TideRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BlogRssDotxmlRoute: BlogRssDotxmlRoute,
+  CatalogAppRoute: CatalogAppRoute,
+  ChangelogVersionRoute: ChangelogVersionRoute,
+  ChangelogRssDotxmlRoute: ChangelogRssDotxmlRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  CatalogIndexRoute: CatalogIndexRoute,
+  ChangelogIndexRoute: ChangelogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

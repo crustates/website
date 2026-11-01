@@ -3,7 +3,12 @@ import { playwright } from "vite-plus/test/browser-playwright";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import contentCollections from "@content-collections/vite";
+import mdx from "@mdx-js/rollup";
+import rehypeSlug from "rehype-slug";
+import remarkFrontmatter from "remark-frontmatter";
 import { site } from "./site.config.ts";
+import { contentPaths } from "./src/content/paths.ts";
 
 export default defineConfig({
   base: site.basePath,
@@ -15,6 +20,8 @@ export default defineConfig({
         command: "vpx ./scripts/tokens.ts",
         cache: { input: ["design/tokens.json", "scripts/tokens.ts"] },
       },
+      // Validates content/ and writes .content-collections/ (also runs on vp install).
+      content: { command: "vpx ./scripts/content.ts", cache: false },
       // Builds, then serves dist/client like GitHub Pages at http://localhost:4173/website/.
       preview: { command: ["vp build", "vpx ./scripts/serve.ts"], cache: false },
       // Scans bun.lock for known vulnerabilities (config in trivy.yaml).
@@ -50,6 +57,9 @@ export default defineConfig({
     ],
   },
   plugins: lazyPlugins(() => [
+    contentCollections(),
+    // Blog bodies: MDX compiled at build time, so the browser never evaluates code.
+    { enforce: "pre", ...mdx({ remarkPlugins: [remarkFrontmatter], rehypePlugins: [rehypeSlug] }) },
     tailwindcss(),
     tanstackStart({
       // Crawling is off: with a base path it doubles the base in the sitemap and
@@ -66,10 +76,16 @@ export default defineConfig({
       pages: [
         { path: "/robots.txt" },
         { path: "/sitemap.xml" },
+        { path: "/blog/rss.xml" },
+        { path: "/changelog/rss.xml" },
+        // One page per blog post, release and catalog app. Drafts only with SHOW_DRAFTS=true.
+        ...contentPaths("content", process.env.SHOW_DRAFTS === "true").map((path) => ({
+          path: `${path}/`,
+        })),
         // GitHub Pages serves 404.html at the site root for unknown URLs.
         { path: "/404", prerender: { outputPath: "/404.html" } },
       ],
     }),
-    viteReact(),
+    viteReact({ include: /\.(mdx|[jt]sx?)$/ }),
   ]),
 });

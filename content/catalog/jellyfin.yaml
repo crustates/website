@@ -1,0 +1,8 @@
+name: Jellyfin
+category: Media
+isolation: microvm
+needs: [gpu]
+description: Stream your films, series and music to every device.
+tags: [media, gpu]
+tile: blue
+example: true

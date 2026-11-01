@@ -14,4 +14,9 @@ export type Resources = {
   assistant: typeof import("./en/assistant.json");
   compare: typeof import("./en/compare.json");
   hardware: typeof import("./en/hardware.json");
+  blog: typeof import("./en/blog.json");
+  changelog: typeof import("./en/changelog.json");
+  faq: typeof import("./en/faq.json");
+  catalog: typeof import("./en/catalog.json");
+  roadmap: typeof import("./en/roadmap.json");
 };

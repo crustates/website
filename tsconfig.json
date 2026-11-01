@@ -7,8 +7,11 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
-    "types": ["vite/client", "node"],
-    "paths": { "@/*": ["./src/*"] },
+    "types": ["vite/client", "node", "mdx"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "content-collections": ["./.content-collections/generated"]
+    },
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "resolveJsonModule": true,

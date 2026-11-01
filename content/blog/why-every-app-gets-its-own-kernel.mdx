@@ -1,0 +1,18 @@
+---
+title: Why every app gets its own kernel
+summary: Containers share a kernel; microVMs don't. We explain why Crustates runs each app in a Kata microVM by default, how it stays fast, and when isolation can be turned down.
+date: "[DATE]"
+product: tide
+category: Architecture
+tags: [Tide, Security]
+author:
+  name: Miguel Martens
+  role: Maintainer
+featured: true
+# Example post from the design. Remove `draft` once the text is final and dated.
+draft: true
+---
+
+## The shared-kernel problem
+
+A container is a set of Linux namespaces and cgroups.
