@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -36,7 +37,7 @@ export function NextBand({
       </div>
       <div className="flex flex-wrap gap-3">
         <Button asChild className={products[next].fill}>
-          <a href={href(products[next].route)}>{nextLabel}</a>
+          <Link to={products[next].route}>{nextLabel}</Link>
         </Button>
         {extra}
         <Button asChild>

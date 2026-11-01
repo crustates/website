@@ -9,7 +9,16 @@ import { NavAnchor, type NavItem } from "./nav-anchor";
  * Below the xl breakpoint, with JS, the header links move into this sheet.
  * Without JS the trigger stays hidden and the header links wrap instead.
  */
-export function MobileNav({ items, children }: { items: NavItem[]; children?: ReactNode }) {
+export function MobileNav({
+  items,
+  isActive = () => false,
+  children,
+}: {
+  items: NavItem[];
+  /** Whether an item's section contains the current page. */
+  isActive?: (item: NavItem) => boolean;
+  children?: ReactNode;
+}) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   return (
@@ -39,6 +48,7 @@ export function MobileNav({ items, children }: { items: NavItem[]; children?: Re
               <li key={item.label}>
                 <NavAnchor
                   target={item}
+                  active={isActive(item)}
                   onClick={() => setOpen(false)}
                   className="block border-b-2 border-line-soft py-3 text-heading-4 text-ink no-underline"
                   activeClassName="underline decoration-3 underline-offset-8"

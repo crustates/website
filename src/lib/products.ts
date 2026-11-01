@@ -1,5 +1,6 @@
-// Colour classes per product area. Tailwind finds the class names here, so they
-// must stay literal strings.
+// Colour classes and routes per product area. Tailwind finds the class names
+// here, so they must stay literal strings; the routes stay literal types so
+// <Link to={products[x].route}> is checked against the route tree.
 export const productIds = ["tide", "reef", "current", "molt", "cast", "barnacle", "spawn"] as const;
 export type ProductId = (typeof productIds)[number];
 export type ProductKey = ProductId | "assistant";
@@ -17,9 +18,9 @@ type ProductStyle = {
   tint?: string;
 };
 
-export const products: Record<ProductKey, ProductStyle> = {
+export const products = {
   tide: {
-    route: "/tide",
+    route: "/tide/",
     fill: "bg-brand-blue text-on-fill-light",
     ring: "[--focus-ring:var(--on-fill-light)]",
     text: "text-text-link",
@@ -27,7 +28,7 @@ export const products: Record<ProductKey, ProductStyle> = {
     tint: "bg-tint-blue",
   },
   reef: {
-    route: "/reef",
+    route: "/reef/",
     fill: "bg-brand-rust text-on-fill-dark",
     ring: "[--focus-ring:var(--on-fill-dark)]",
     text: "text-text-rust",
@@ -35,7 +36,7 @@ export const products: Record<ProductKey, ProductStyle> = {
     tint: "bg-tint-rust",
   },
   current: {
-    route: "/current",
+    route: "/current/",
     fill: "bg-brand-teal text-on-fill-light",
     ring: "[--focus-ring:var(--on-fill-light)]",
     text: "text-text-teal",
@@ -43,7 +44,7 @@ export const products: Record<ProductKey, ProductStyle> = {
     tint: "bg-tint-teal",
   },
   molt: {
-    route: "/molt",
+    route: "/molt/",
     fill: "bg-accent-yellow text-on-fill-dark",
     ring: "[--focus-ring:var(--on-fill-dark)]",
     text: "text-ink",
@@ -51,7 +52,7 @@ export const products: Record<ProductKey, ProductStyle> = {
     tint: "bg-tint-yellow",
   },
   cast: {
-    route: "/cast",
+    route: "/cast/",
     fill: "bg-brand-brown text-on-fill-light",
     ring: "[--focus-ring:var(--on-fill-light)]",
     text: "text-text-brown",
@@ -59,7 +60,7 @@ export const products: Record<ProductKey, ProductStyle> = {
     tint: "bg-tint-brown",
   },
   barnacle: {
-    route: "/barnacle",
+    route: "/barnacle/",
     fill: "bg-brand-violet text-on-fill-dark",
     ring: "[--focus-ring:var(--on-fill-dark)]",
     text: "text-text-violet",
@@ -67,7 +68,7 @@ export const products: Record<ProductKey, ProductStyle> = {
     tint: "bg-tint-violet",
   },
   spawn: {
-    route: "/spawn",
+    route: "/spawn/",
     fill: "bg-brand-pink text-on-fill-dark",
     ring: "[--focus-ring:var(--on-fill-dark)]",
     text: "text-text-pink",
@@ -75,10 +76,10 @@ export const products: Record<ProductKey, ProductStyle> = {
     tint: "bg-tint-pink",
   },
   assistant: {
-    route: "/assistant",
+    route: "/assistant/",
     fill: "bg-status-success text-on-fill-dark",
     ring: "[--focus-ring:var(--on-fill-dark)]",
     text: "text-text-success",
     accent: "border-t-status-success",
   },
-};
+} as const satisfies Record<ProductKey, ProductStyle>;

@@ -23,6 +23,7 @@ import { Route as MoltRouteImport } from './routes/molt'
 import { Route as PluginsRouteImport } from './routes/plugins'
 import { Route as ReefRouteImport } from './routes/reef'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SpawnRouteImport } from './routes/spawn'
 import { Route as TideRouteImport } from './routes/tide'
 
@@ -96,6 +97,11 @@ const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpawnRoute = SpawnRouteImport.update({
   id: '/spawn',
   path: '/spawn',
@@ -122,6 +128,7 @@ export interface FileRoutesByFullPath {
   '/plugins': typeof PluginsRoute
   '/reef': typeof ReefRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/spawn': typeof SpawnRoute
   '/tide': typeof TideRoute
 }
@@ -140,6 +147,7 @@ export interface FileRoutesByTo {
   '/plugins': typeof PluginsRoute
   '/reef': typeof ReefRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/spawn': typeof SpawnRoute
   '/tide': typeof TideRoute
 }
@@ -159,6 +167,7 @@ export interface FileRoutesById {
   '/plugins': typeof PluginsRoute
   '/reef': typeof ReefRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/spawn': typeof SpawnRoute
   '/tide': typeof TideRoute
 }
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/plugins'
     | '/reef'
     | '/robots.txt'
+    | '/sitemap.xml'
     | '/spawn'
     | '/tide'
   fileRoutesByTo: FileRoutesByTo
@@ -197,6 +207,7 @@ export interface FileRouteTypes {
     | '/plugins'
     | '/reef'
     | '/robots.txt'
+    | '/sitemap.xml'
     | '/spawn'
     | '/tide'
   id:
@@ -215,6 +226,7 @@ export interface FileRouteTypes {
     | '/plugins'
     | '/reef'
     | '/robots.txt'
+    | '/sitemap.xml'
     | '/spawn'
     | '/tide'
   fileRoutesById: FileRoutesById
@@ -234,6 +246,7 @@ export interface RootRouteChildren {
   PluginsRoute: typeof PluginsRoute
   ReefRoute: typeof ReefRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SpawnRoute: typeof SpawnRoute
   TideRoute: typeof TideRoute
 }
@@ -338,6 +351,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/spawn': {
       id: '/spawn'
       path: '/spawn'
@@ -370,6 +390,7 @@ const rootRouteChildren: RootRouteChildren = {
   PluginsRoute: PluginsRoute,
   ReefRoute: ReefRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SpawnRoute: SpawnRoute,
   TideRoute: TideRoute,
 }

@@ -24,3 +24,9 @@ export function href(path: string, config: Site = site): string {
 export function pageUrl(path: string, config: Site = site): string {
   return config.origin + href(path, config);
 }
+
+/** Route path ("/tide") of a browser path, with or without the base path and trailing slash. */
+export function routePath(pathname: string, { basePath }: Site = site): string {
+  const path = pathname.startsWith(basePath) ? `/${pathname.slice(basePath.length)}` : pathname;
+  return path.length > 1 ? path.replace(/\/$/, "") : "/";
+}

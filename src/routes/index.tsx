@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Rich } from "@/components/rich";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ import { Tag } from "@/components/ui/tag";
 import { addNamespace, i18n } from "@/i18n";
 import home from "@/i18n/en/home.json";
 import { links } from "@/lib/links";
-import type { ProductId } from "@/lib/products";
+import { products, type ProductId } from "@/lib/products";
 import { seo } from "@/lib/seo";
 import { absoluteUrl, asset, href } from "@/lib/site";
 
@@ -38,10 +38,9 @@ function ProductTitle({ product, area }: { product: ProductId; area: string }) {
   const { t } = useTranslation();
   return (
     <h3 className="text-heading-3">
-      {/* Plain link until the product pages land in part 2. */}
-      <a href={href(`/${product}`)} className="text-inherit">
+      <Link to={products[product].route} className="text-inherit">
         {t(`products.${product}`)}
-      </a>{" "}
+      </Link>{" "}
       <span className="font-medium text-ink-muted">· {area}</span>
     </h3>
   );
@@ -238,7 +237,7 @@ function Assistant() {
         <h2 className="text-heading-1">{t("assistant.heading")}</h2>
         <p className="text-body-l">{t("assistant.body")}</p>
         <Button asChild variant="primary" className="self-start">
-          <a href={href("/assistant")}>{t("assistant.cta")}</a>
+          <Link to="/assistant/">{t("assistant.cta")}</Link>
         </Button>
       </div>
       <Card raised className="flex min-w-0 flex-[1_1_480px] flex-col gap-3.5">
@@ -274,7 +273,7 @@ function CompareStrip() {
     >
       <p className="text-heading-4">{t("compare.heading")}</p>
       <Button asChild size="sm">
-        <a href={href("/compare")}>{t("compare.cta")}</a>
+        <Link to="/compare/">{t("compare.cta")}</Link>
       </Button>
     </Section>
   );
