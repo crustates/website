@@ -167,6 +167,34 @@
       "title": "Roadmap",
       "description": "Where Crustates is going: milestones M0 to M6, and what comes after."
     },
+    "download": {
+      "title": "Download and install",
+      "description": "Download the installer for your machine, write it to a USB stick, boot from it and finish setup in the browser."
+    },
+    "api": {
+      "title": "API and integrations",
+      "description": "Every resource in Crustates has a spec you write and a status the platform reports. The console, the crust CLI, the terminal UI, the OpenTofu provider, the MCP server and the AI assistant are all clients of the same API."
+    },
+    "security": {
+      "title": "Security",
+      "description": "Crustates is built so there is nothing to harden after you install it. This page explains the model and how to tell us when something is wrong."
+    },
+    "community": {
+      "title": "Community and sponsor",
+      "description": "Crustates is open source under AGPLv3. Report bugs, write code, improve the docs, add an app to the catalog or help fund the work."
+    },
+    "about": {
+      "title": "About",
+      "description": "Crustates is an independent open source project. Our mission: make running your own compute, storage and network at home safe, simple and fully yours, with no subscription and no lock-in."
+    },
+    "brand": {
+      "title": "Brand and press",
+      "description": "Logos, product icons, colours and boilerplate for writing about Crustates."
+    },
+    "legal": {
+      "title": "Licence and privacy",
+      "description": "The short version: the code is open, the website doesn't track you, the product doesn't phone home, and the AI assistant keeps your data on your network unless you choose otherwise."
+    },
     "release": {
       "title": "Crustates {{version}}"
     },

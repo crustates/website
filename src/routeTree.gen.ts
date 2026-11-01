@@ -12,19 +12,27 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as KitRouteImport } from './routes/[_]kit'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ApiRouteImport } from './routes/api'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as BarnacleRouteImport } from './routes/barnacle'
+import { Route as BrandRouteImport } from './routes/brand'
 import { Route as CastRouteImport } from './routes/cast'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as CurrentRouteImport } from './routes/current'
+import { Route as DownloadRouteImport } from './routes/download'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as HardwareRouteImport } from './routes/hardware'
+import { Route as InstallRouteImport } from './routes/install'
+import { Route as LegalRouteImport } from './routes/legal'
 import { Route as MoltRouteImport } from './routes/molt'
 import { Route as PluginsRouteImport } from './routes/plugins'
 import { Route as ReefRouteImport } from './routes/reef'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SecurityRouteImport } from './routes/security'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SpawnRouteImport } from './routes/spawn'
 import { Route as TideRouteImport } from './routes/tide'
@@ -52,6 +60,16 @@ const KitRoute = KitRouteImport.update({
   path: '/_kit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRoute = ApiRouteImport.update({
+  id: '/api',
+  path: '/api',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AssistantRoute = AssistantRouteImport.update({
   id: '/assistant',
   path: '/assistant',
@@ -62,9 +80,19 @@ const BarnacleRoute = BarnacleRouteImport.update({
   path: '/barnacle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrandRoute = BrandRouteImport.update({
+  id: '/brand',
+  path: '/brand',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CastRoute = CastRouteImport.update({
   id: '/cast',
   path: '/cast',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompareRoute = CompareRouteImport.update({
@@ -75,6 +103,11 @@ const CompareRoute = CompareRouteImport.update({
 const CurrentRoute = CurrentRouteImport.update({
   id: '/current',
   path: '/current',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadRoute = DownloadRouteImport.update({
+  id: '/download',
+  path: '/download',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -90,6 +123,16 @@ const FeaturesRoute = FeaturesRouteImport.update({
 const HardwareRoute = HardwareRouteImport.update({
   id: '/hardware',
   path: '/hardware',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstallRoute = InstallRouteImport.update({
+  id: '/install',
+  path: '/install',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoltRoute = MoltRouteImport.update({
@@ -115,6 +158,11 @@ const RoadmapRoute = RoadmapRouteImport.update({
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -177,19 +225,27 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/_kit': typeof KitRoute
+  '/about': typeof AboutRoute
+  '/api': typeof ApiRoute
   '/assistant': typeof AssistantRoute
   '/barnacle': typeof BarnacleRoute
+  '/brand': typeof BrandRoute
   '/cast': typeof CastRoute
+  '/community': typeof CommunityRoute
   '/compare': typeof CompareRoute
   '/current': typeof CurrentRoute
+  '/download': typeof DownloadRoute
   '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/hardware': typeof HardwareRoute
+  '/install': typeof InstallRoute
+  '/legal': typeof LegalRoute
   '/molt': typeof MoltRoute
   '/plugins': typeof PluginsRoute
   '/reef': typeof ReefRoute
   '/roadmap': typeof RoadmapRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/spawn': typeof SpawnRoute
   '/tide': typeof TideRoute
@@ -206,19 +262,27 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/_kit': typeof KitRoute
+  '/about': typeof AboutRoute
+  '/api': typeof ApiRoute
   '/assistant': typeof AssistantRoute
   '/barnacle': typeof BarnacleRoute
+  '/brand': typeof BrandRoute
   '/cast': typeof CastRoute
+  '/community': typeof CommunityRoute
   '/compare': typeof CompareRoute
   '/current': typeof CurrentRoute
+  '/download': typeof DownloadRoute
   '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/hardware': typeof HardwareRoute
+  '/install': typeof InstallRoute
+  '/legal': typeof LegalRoute
   '/molt': typeof MoltRoute
   '/plugins': typeof PluginsRoute
   '/reef': typeof ReefRoute
   '/roadmap': typeof RoadmapRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/spawn': typeof SpawnRoute
   '/tide': typeof TideRoute
@@ -236,19 +300,27 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/_kit': typeof KitRoute
+  '/about': typeof AboutRoute
+  '/api': typeof ApiRoute
   '/assistant': typeof AssistantRoute
   '/barnacle': typeof BarnacleRoute
+  '/brand': typeof BrandRoute
   '/cast': typeof CastRoute
+  '/community': typeof CommunityRoute
   '/compare': typeof CompareRoute
   '/current': typeof CurrentRoute
+  '/download': typeof DownloadRoute
   '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/hardware': typeof HardwareRoute
+  '/install': typeof InstallRoute
+  '/legal': typeof LegalRoute
   '/molt': typeof MoltRoute
   '/plugins': typeof PluginsRoute
   '/reef': typeof ReefRoute
   '/roadmap': typeof RoadmapRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/spawn': typeof SpawnRoute
   '/tide': typeof TideRoute
@@ -267,19 +339,27 @@ export interface FileRouteTypes {
     | '/'
     | '/404'
     | '/_kit'
+    | '/about'
+    | '/api'
     | '/assistant'
     | '/barnacle'
+    | '/brand'
     | '/cast'
+    | '/community'
     | '/compare'
     | '/current'
+    | '/download'
     | '/faq'
     | '/features'
     | '/hardware'
+    | '/install'
+    | '/legal'
     | '/molt'
     | '/plugins'
     | '/reef'
     | '/roadmap'
     | '/robots.txt'
+    | '/security'
     | '/sitemap.xml'
     | '/spawn'
     | '/tide'
@@ -296,19 +376,27 @@ export interface FileRouteTypes {
     | '/'
     | '/404'
     | '/_kit'
+    | '/about'
+    | '/api'
     | '/assistant'
     | '/barnacle'
+    | '/brand'
     | '/cast'
+    | '/community'
     | '/compare'
     | '/current'
+    | '/download'
     | '/faq'
     | '/features'
     | '/hardware'
+    | '/install'
+    | '/legal'
     | '/molt'
     | '/plugins'
     | '/reef'
     | '/roadmap'
     | '/robots.txt'
+    | '/security'
     | '/sitemap.xml'
     | '/spawn'
     | '/tide'
@@ -325,19 +413,27 @@ export interface FileRouteTypes {
     | '/'
     | '/404'
     | '/_kit'
+    | '/about'
+    | '/api'
     | '/assistant'
     | '/barnacle'
+    | '/brand'
     | '/cast'
+    | '/community'
     | '/compare'
     | '/current'
+    | '/download'
     | '/faq'
     | '/features'
     | '/hardware'
+    | '/install'
+    | '/legal'
     | '/molt'
     | '/plugins'
     | '/reef'
     | '/roadmap'
     | '/robots.txt'
+    | '/security'
     | '/sitemap.xml'
     | '/spawn'
     | '/tide'
@@ -355,19 +451,27 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
   KitRoute: typeof KitRoute
+  AboutRoute: typeof AboutRoute
+  ApiRoute: typeof ApiRoute
   AssistantRoute: typeof AssistantRoute
   BarnacleRoute: typeof BarnacleRoute
+  BrandRoute: typeof BrandRoute
   CastRoute: typeof CastRoute
+  CommunityRoute: typeof CommunityRoute
   CompareRoute: typeof CompareRoute
   CurrentRoute: typeof CurrentRoute
+  DownloadRoute: typeof DownloadRoute
   FaqRoute: typeof FaqRoute
   FeaturesRoute: typeof FeaturesRoute
   HardwareRoute: typeof HardwareRoute
+  InstallRoute: typeof InstallRoute
+  LegalRoute: typeof LegalRoute
   MoltRoute: typeof MoltRoute
   PluginsRoute: typeof PluginsRoute
   ReefRoute: typeof ReefRoute
   RoadmapRoute: typeof RoadmapRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SecurityRoute: typeof SecurityRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SpawnRoute: typeof SpawnRoute
   TideRoute: typeof TideRoute
@@ -404,6 +508,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api': {
+      id: '/api'
+      path: '/api'
+      fullPath: '/api'
+      preLoaderRoute: typeof ApiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/assistant': {
       id: '/assistant'
       path: '/assistant'
@@ -418,11 +536,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BarnacleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brand': {
+      id: '/brand'
+      path: '/brand'
+      fullPath: '/brand'
+      preLoaderRoute: typeof BrandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cast': {
       id: '/cast'
       path: '/cast'
       fullPath: '/cast'
       preLoaderRoute: typeof CastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compare': {
@@ -437,6 +569,13 @@ declare module '@tanstack/react-router' {
       path: '/current'
       fullPath: '/current'
       preLoaderRoute: typeof CurrentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download': {
+      id: '/download'
+      path: '/download'
+      fullPath: '/download'
+      preLoaderRoute: typeof DownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -458,6 +597,20 @@ declare module '@tanstack/react-router' {
       path: '/hardware'
       fullPath: '/hardware'
       preLoaderRoute: typeof HardwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/install': {
+      id: '/install'
+      path: '/install'
+      fullPath: '/install'
+      preLoaderRoute: typeof InstallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molt': {
@@ -493,6 +646,13 @@ declare module '@tanstack/react-router' {
       path: '/robots.txt'
       fullPath: '/robots.txt'
       preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -579,19 +739,27 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
   KitRoute: KitRoute,
+  AboutRoute: AboutRoute,
+  ApiRoute: ApiRoute,
   AssistantRoute: AssistantRoute,
   BarnacleRoute: BarnacleRoute,
+  BrandRoute: BrandRoute,
   CastRoute: CastRoute,
+  CommunityRoute: CommunityRoute,
   CompareRoute: CompareRoute,
   CurrentRoute: CurrentRoute,
+  DownloadRoute: DownloadRoute,
   FaqRoute: FaqRoute,
   FeaturesRoute: FeaturesRoute,
   HardwareRoute: HardwareRoute,
+  InstallRoute: InstallRoute,
+  LegalRoute: LegalRoute,
   MoltRoute: MoltRoute,
   PluginsRoute: PluginsRoute,
   ReefRoute: ReefRoute,
   RoadmapRoute: RoadmapRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
+  SecurityRoute: SecurityRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SpawnRoute: SpawnRoute,
   TideRoute: TideRoute,

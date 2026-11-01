@@ -19,4 +19,11 @@ export type Resources = {
   faq: typeof import("./en/faq.json");
   catalog: typeof import("./en/catalog.json");
   roadmap: typeof import("./en/roadmap.json");
+  download: typeof import("./en/download.json");
+  api: typeof import("./en/api.json");
+  security: typeof import("./en/security.json");
+  community: typeof import("./en/community.json");
+  about: typeof import("./en/about.json");
+  brand: typeof import("./en/brand.json");
+  legal: typeof import("./en/legal.json");
 };
