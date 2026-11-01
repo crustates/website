@@ -1,6 +1,6 @@
 import { Check, Copy } from "lucide-react";
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useCopy } from "@/hooks/use-copy";
 import { cn } from "@/lib/utils";
 
 /**
@@ -9,19 +9,7 @@ import { cn } from "@/lib/utils";
  */
 export function Cmd({ command, className }: { command: string; className?: string }) {
   const { t } = useTranslation();
-  const [mounted, setMounted] = useState(false);
-  const [copied, setCopied] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(command);
-    } catch {
-      return; // Clipboard blocked: the command is still there to select.
-    }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }
+  const { mounted, copied, copy } = useCopy(command);
 
   return (
     <div className={cn("min-w-0 rounded-md border-thick border-line shadow-md", className)}>
