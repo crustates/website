@@ -16,7 +16,6 @@ import changelog from "@/i18n/en/changelog.json";
 import { links } from "@/lib/links";
 import { products, type ProductKey } from "@/lib/products";
 import { seo } from "@/lib/seo";
-import { href } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/changelog/$version")({
@@ -67,7 +66,7 @@ function Hero({ release, previous }: { release: Release; previous?: Release }) {
         </p>
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="primary">
-            <a href={href("/download")}>{t("release.download", { version: release.version })}</a>
+            <Link to="/download/">{t("release.download", { version: release.version })}</Link>
           </Button>
           <Button asChild>
             <a href={tagUrl(release.version)}>{t("release.signature")}</a>
@@ -139,7 +138,7 @@ function Vulnerabilities({ items }: { items: Release["vulnerabilities"] }) {
         </Table>
         <p className="text-caption text-ink-muted">
           {t("release.vulnerabilities.details")}{" "}
-          <a href={href("/security")}>{t("release.vulnerabilities.advisories")}</a>.
+          <Link to="/security/">{t("release.vulnerabilities.advisories")}</Link>.
         </p>
       </section>
     </Card>

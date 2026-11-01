@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Rich } from "@/components/rich";
+import { NavAnchor, type NavTarget } from "@/components/layout/nav-anchor";
 import { PageHero } from "@/components/sections/page-hero";
 import { SectionIntro } from "@/components/sections/section-intro";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ import copy from "@/i18n/en/roadmap.json";
 import { links } from "@/lib/links";
 import type { ProductId } from "@/lib/products";
 import { seo } from "@/lib/seo";
-import { asset, href } from "@/lib/site";
+import { asset } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/roadmap")({
@@ -143,22 +144,22 @@ function Later() {
 function HaveASay() {
   const { t } = useTranslation("roadmap");
   const cards = [
-    { key: "vote", to: `${links.github}/discussions` },
-    { key: "rfc", to: links.github },
-    { key: "issue", to: href("/community") },
-  ] as const;
+    { key: "vote", target: { href: links.discussions } },
+    { key: "rfc", target: { href: links.github } },
+    { key: "issue", target: { to: "/community/" } },
+  ] as const satisfies { key: string; target: NavTarget }[];
   return (
     <Section wrapClassName="flex flex-col gap-7">
       <SectionIntro kicker={t("say.kicker")} heading={t("say.heading")} />
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-6">
-        {cards.map(({ key, to }) => (
+        {cards.map(({ key, target }) => (
           <Card key={key} className="flex flex-col gap-3">
             <h3 className="text-heading-4">{t(`say.${key}.title`)}</h3>
             <p className="text-body-s">
               <Rich text={t(`say.${key}.body`)} />
             </p>
             <Button asChild size="sm" className="self-start">
-              <a href={to}>{t(`say.${key}.action`)}</a>
+              <NavAnchor target={target}>{t(`say.${key}.action`)}</NavAnchor>
             </Button>
           </Card>
         ))}

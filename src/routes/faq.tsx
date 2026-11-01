@@ -140,7 +140,7 @@ function FaqPage() {
               <Trans
                 t={t}
                 i18nKey="search.none"
-                components={{ community: <a href={href("/community")} /> }}
+                components={{ community: <Link to="/community/" /> }}
               />
             </p>
           )}
@@ -179,7 +179,7 @@ function FaqPage() {
                 t={t}
                 i18nKey="stuck.body"
                 components={{
-                  community: <a href={href("/community")} />,
+                  community: <Link to="/community/" />,
                   docs: <a href={links.docs} />,
                   hardware: <Link to="/hardware/" />,
                 }}

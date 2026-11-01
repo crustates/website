@@ -1,0 +1,90 @@
+{
+  "hero": {
+    "kicker": "Community",
+    "heading": "Built in the open, with you.",
+    "lead": "Crustates is open source under AGPLv3. Report bugs, write code, improve the docs, add an app to the catalog or help fund the work.",
+    "star": "Star on GitHub",
+    "sponsor": "Sponsor",
+    "emblemAlt": "Crustates emblem: your own cloud, on your own hardware"
+  },
+  "contribute": {
+    "heading": "Contribute",
+    "issues": {
+      "title": "Good first issues",
+      "body": "Small, well-described tasks to get you started in the code or the docs.",
+      "action": "Browse issues"
+    },
+    "signoff": {
+      "title": "Sign off your commits",
+      "body": "We use a DCO, not a CLA. Add a sign-off line to each commit:"
+    },
+    "contributing": {
+      "title": "Read CONTRIBUTING",
+      "body": "How to build, test and send a pull request, and how decisions are recorded as ADRs.",
+      "action": "Open CONTRIBUTING.md"
+    },
+    "catalog": {
+      "title": "Add to the catalog",
+      "body": "Package an app as a Compose-based template and share it with everyone.",
+      "action": "Catalog guide"
+    }
+  },
+  "talk": {
+    "heading": "Talk to us",
+    "forum": {
+      "title": "Forum",
+      "body": "Questions, setups and show-and-tell.",
+      "where": "[FORUM LINK]"
+    },
+    "matrix": { "title": "Matrix", "body": "Chat with contributors.", "where": "[MATRIX ROOM]" },
+    "mastodon": {
+      "title": "Mastodon",
+      "body": "Release news and updates.",
+      "where": "[MASTODON HANDLE]"
+    },
+    "discussions": {
+      "title": "GitHub Discussions",
+      "body": "Ideas and feature requests.",
+      "where": "github.com/crustates"
+    }
+  },
+  "sponsor": {
+    "kicker": "Sponsor",
+    "heading": "Help keep Crustates independent.",
+    "lead": "Sponsorship pays for test hardware, CI and development time. [SPONSORSHIP MODEL TO BE DECIDED]",
+    "tier": {
+      "name": "[TIER NAME]",
+      "price": "[PRICE]",
+      "body": "[WHAT THIS TIER GIVES]"
+    },
+    "sponsorsLabel": "Sponsors:",
+    "sponsors": "[SPONSOR NAME] · [SPONSOR NAME] · [SPONSOR NAME]"
+  },
+  "policies": {
+    "security": {
+      "title": "Security policy",
+      "body": "Found a vulnerability? Report it privately through GitHub's private vulnerability reporting, never in a public issue. We agree a disclosure date with you and credit you in the advisory.",
+      "action": "Report a vulnerability"
+    },
+    "conduct": {
+      "title": "Code of conduct",
+      "body": "Be kind, assume good intent and keep it about the work. It applies to every Crustates space.",
+      "action": "Read the code of conduct"
+    },
+    "licence": {
+      "title": "Licence",
+      "body": "The platform is AGPLv3. The API spec, client SDKs, plugin interfaces and the OpenTofu provider are Apache-2.0, so integrations can use any licence.",
+      "action": "Licence details"
+    }
+  },
+  "brand": {
+    "kicker": "Brand",
+    "heading": "Running on Crustates? Show it.",
+    "lead": "Add the badge to your README or website. Logos, icons and banners are in the brand kit, with usage rules.",
+    "copy": "Copy badge Markdown",
+    "kit": "Download the brand kit",
+    "guidelines": "Brand guidelines",
+    "badgeAlt": "Runs on Crustates badge",
+    "logoAlt": "Crustates logo"
+  }
+}

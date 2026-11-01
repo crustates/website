@@ -18,7 +18,7 @@ import home from "@/i18n/en/home.json";
 import { links } from "@/lib/links";
 import { products, type ProductId } from "@/lib/products";
 import { seo } from "@/lib/seo";
-import { absoluteUrl, asset, href } from "@/lib/site";
+import { absoluteUrl, asset } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -57,7 +57,7 @@ function Hero() {
           <p className="max-w-[560px] text-body-l">{t("hero.lead")}</p>
           <div className="flex flex-wrap gap-4">
             <Button asChild variant="primary">
-              <a href={href("/download")}>{t("hero.download")}</a>
+              <Link to="/download/">{t("hero.download")}</Link>
             </Button>
             <Button asChild>
               <a href={links.docs}>{t("hero.docs")}</a>
@@ -311,10 +311,10 @@ function CallToAction() {
         <p className="text-body-l">{t("cta.body")}</p>
         <div className="flex flex-wrap gap-3">
           <Button asChild>
-            <a href={href("/download")}>{t("cta.download")}</a>
+            <Link to="/download/">{t("cta.download")}</Link>
           </Button>
           <Button asChild>
-            <a href={href("/community")}>{t("cta.community")}</a>
+            <Link to="/community/">{t("cta.community")}</Link>
           </Button>
         </div>
       </div>

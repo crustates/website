@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Wrap } from "@/components/ui/section";
 import { links } from "@/lib/links";
 import { productIds, products } from "@/lib/products";
-import { asset, href, routePath } from "@/lib/site";
+import { asset, routePath } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { MobileNav } from "./mobile-nav";
 import { NavAnchor, type NavItem } from "./nav-anchor";
@@ -21,7 +21,6 @@ export function SiteHeader({ interactive = true }: { interactive?: boolean }) {
     item.section?.some(
       (path) => current === routePath(path) || current.startsWith(`${routePath(path)}/`),
     ) ?? false;
-  // Pages from later parts are plain links until their routes exist.
   const items: NavItem[] = [
     {
       label: t("nav.features"),
@@ -30,10 +29,10 @@ export function SiteHeader({ interactive = true }: { interactive?: boolean }) {
     },
     // The docs live on their own site; the guides here belong to that section.
     { label: t("nav.docs"), href: links.docs, section: ["/hardware/", "/faq/"] },
-    { label: t("nav.download"), href: href("/download") },
+    { label: t("nav.download"), to: "/download/" },
     { label: t("nav.roadmap"), to: "/roadmap/" },
     { label: t("nav.changelog"), to: "/changelog/", section: ["/changelog/", "/blog/"] },
-    { label: t("nav.community"), href: href("/community") },
+    { label: t("nav.community"), to: "/community/" },
   ];
   const actions = (
     <>
@@ -41,7 +40,7 @@ export function SiteHeader({ interactive = true }: { interactive?: boolean }) {
         <a href={links.github}>{t("nav.github")}</a>
       </Button>
       <Button asChild size="sm" variant="primary">
-        <a href={href("/download")}>{t("nav.getCrustates")}</a>
+        <Link to="/download/">{t("nav.getCrustates")}</Link>
       </Button>
     </>
   );

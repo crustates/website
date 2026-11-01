@@ -18,7 +18,6 @@ import { Tag } from "@/components/ui/tag";
 import { addNamespace, i18n } from "@/i18n";
 import barnacle from "@/i18n/en/barnacle.json";
 import { seo } from "@/lib/seo";
-import { href } from "@/lib/site";
 
 export const Route = createFileRoute("/barnacle")({
   head: () =>
@@ -344,9 +343,8 @@ function Share() {
       heading={t("share.heading")}
       actions={
         <>
-          {/* Plain links until /community and /api land in part 4. */}
           <Button asChild>
-            <a href={href("/community")}>{t("share.submit")}</a>
+            <Link to="/community/">{t("share.submit")}</Link>
           </Button>
           <Button asChild variant="pink">
             <Link to="/spawn/">{t("share.spawn")}</Link>
@@ -355,7 +353,7 @@ function Share() {
             <Link to="/assistant/">{t("share.assistant")}</Link>
           </Button>
           <Button asChild>
-            <a href={href("/api")}>{t("share.api")}</a>
+            <Link to="/api/">{t("share.api")}</Link>
           </Button>
         </>
       }

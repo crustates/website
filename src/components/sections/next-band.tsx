@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/kicker";
 import { Section } from "@/components/ui/section";
 import { products, type ProductKey } from "@/lib/products";
-import { href } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
@@ -56,7 +55,7 @@ export function NextBand({
             )}
             {extra}
             <Button asChild>
-              <a href={href("/download")}>{t("productPage.download")}</a>
+              <Link to="/download/">{t("productPage.download")}</Link>
             </Button>
           </>
         )}

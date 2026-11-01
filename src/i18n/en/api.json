@@ -1,0 +1,129 @@
+{
+  "hero": {
+    "kicker": "API and integrations",
+    "heading": "One declarative API behind everything.",
+    "lead": "Every resource in Crustates has a spec you write and a status the platform reports. The console, the <code>crust</code> CLI, the terminal UI, the OpenTofu provider, the MCP server and the AI assistant are all clients of the same API.",
+    "reference": "Open the API reference",
+    "guides": "Read the guides",
+    "tags": ["REST + watch", "OpenAPI 3.1", "Scalar at /docs", "gRPC inside"]
+  },
+  "how": {
+    "kicker": "How it works",
+    "heading": "Kubernetes-shaped, without Kubernetes underneath.",
+    "lead": "Resources look familiar: kind, metadata, spec and status. You change the spec, reconcilers on each node make it true, and status reports back. Watch streams push every change as it happens.",
+    "steps": [
+      {
+        "kicker": "01 · Declare",
+        "title": "Write the spec",
+        "body": "PUT or PATCH a resource. Every write is validated against the OpenAPI schema and checked against your role."
+      },
+      {
+        "kicker": "02 · Plan",
+        "title": "Dry run first",
+        "body": "Add <code>?dryRun=true</code> to see the diff and its impact before anything changes. The assistant uses the same call."
+      },
+      {
+        "kicker": "03 · Reconcile",
+        "title": "The node agent acts",
+        "body": "The control plane hands work to the node agent over mTLS gRPC. It drives QEMU, Kata, ZFS, Caddy and the rest."
+      },
+      {
+        "kicker": "04 · Watch",
+        "title": "Status streams back",
+        "body": "Subscribe with <code>?watch=true</code> for server-sent events. The console and TUI update live from the same stream."
+      }
+    ]
+  },
+  "resources": {
+    "kicker": "Resources",
+    "heading": "Everything is an API resource.",
+    "columns": ["Area", "Resources", "Path"],
+    "platform": "Platform",
+    "rows": {
+      "tide": "VM, App, Template, Image, ISO, Secret",
+      "reef": "Pool, Dataset, Share, Bucket, BackupJob, Snapshot, Database",
+      "current": "Network, FirewallRule, Route, Domain, Certificate, AccessProvider",
+      "molt": "Release, Upgrade, Channel",
+      "cast": "Node, Site, JoinToken",
+      "barnacle": "Plugin, Grant, PluginSource",
+      "spawn": "GitSource, Deployment, Build, Preview",
+      "platform": "User, Role, Token, AlertRule, AuditEvent"
+    }
+  },
+  "clients": {
+    "kicker": "Clients",
+    "heading": "Click it, script it or let an agent do it.",
+    "cli": {
+      "title": "crust CLI",
+      "tag": "Rust · clap",
+      "body": "One binary for every resource, with tab completion, JSON or YAML output and <code>--dry-run</code> on every change."
+    },
+    "tui": {
+      "title": "Terminal UI",
+      "tag": "Rust · ratatui",
+      "body": "<code>crust tui</code> gives you live resource lists, logs and consoles over SSH or the local recovery console. Keyboard first."
+    },
+    "tofu": {
+      "title": "OpenTofu provider",
+      "tag": "Go",
+      "body": "Manage your homelab as code, with plans you can review in Git. Works with Terraform too."
+    },
+    "mcp": {
+      "title": "MCP server",
+      "tag": "Rust · rmcp",
+      "body": "Exposes the API as MCP tools for Claude Code, Claude Desktop and other agents. Same roles, same plan-and-confirm, same audit log."
+    },
+    "sdks": {
+      "title": "SDKs",
+      "tag": "Apache-2.0",
+      "body": "Generated from the OpenAPI spec: Rust, TypeScript, Go and Python. Permissively licensed, so you can embed them anywhere.",
+      "names": ["crustates (crates.io)", "@crustates/sdk", "Go", "Python"]
+    },
+    "events": {
+      "title": "Webhooks and events",
+      "tag": "CloudEvents",
+      "body": "Send events like <code>app.updated</code> or <code>pool.degraded</code> to your own endpoints, ntfy or Home Assistant."
+    }
+  },
+  "scalar": {
+    "kicker": "Scalar reference",
+    "heading": "Try every endpoint from your browser.",
+    "lead": "Each node serves an interactive Scalar API reference at <code>/docs</code>, generated from the same code that serves the API. Sign in and send real requests, or copy them as curl, Rust or TypeScript.",
+    "summary": "Create a snapshot of a dataset or a VM disk.",
+    "columns": ["Field", "Type", "Required"],
+    "rows": [
+      ["target", "string", "yes"],
+      ["name", "string", "no"],
+      ["retention", "duration", "no"]
+    ],
+    "send": "Send request",
+    "curl": "Copy as curl"
+  },
+  "access": {
+    "kicker": "Access",
+    "heading": "Tokens, roles and an audit trail.",
+    "items": [
+      {
+        "title": "Scoped tokens",
+        "body": "Create tokens per tool with a role, an expiry and an optional IP range."
+      },
+      {
+        "title": "Roles",
+        "body": "Admin, operator and viewer to start, plus custom roles per area."
+      },
+      {
+        "title": "Audit log",
+        "body": "Every write records who, what, when and through which client."
+      },
+      {
+        "title": "Versioned",
+        "body": "<code>v1</code> is stable within a major release; deprecations get a full release of notice."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Build something on Crustates.",
+    "plugin": "Write a Barnacle plugin",
+    "guides": "API guides"
+  }
+}

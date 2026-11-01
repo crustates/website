@@ -1,0 +1,96 @@
+{
+  "hero": {
+    "kicker": "Legal",
+    "heading": "Licence and privacy",
+    "lead": "The short version: the code is open, the website doesn't track you, the product doesn't phone home, and the AI assistant keeps your data on your network unless you choose otherwise.",
+    "updated": "Last updated <time>[DATE]</time>"
+  },
+  "toc": {
+    "heading": "On this page",
+    "label": "Sections"
+  },
+  "licence": {
+    "heading": "Licence",
+    "columns": ["Component", "Licence"],
+    "rows": [
+      {
+        "component": "Platform: OS image, control plane, node agent, console, CLI",
+        "licence": "AGPL-3.0-or-later"
+      },
+      {
+        "component": "SDKs, plugin WIT interfaces, OpenTofu provider",
+        "licence": "Apache-2.0"
+      },
+      { "component": "Documentation", "licence": "CC BY 4.0" }
+    ],
+    "logos": {
+      "component": "Logos and product icons",
+      "licence": "Trademark policy below"
+    },
+    "body": "Using Crustates at home, at work or for clients is free and needs no permission. If you modify the platform and let others use it over a network, the AGPL asks you to offer them your source. Contributions come in under the Developer Certificate of Origin.",
+    "thirdParty": "Third-party components keep their own licences; the full list ships in every release as <code>THIRD_PARTY_LICENSES</code>."
+  },
+  "trademark": {
+    "heading": "Trademark",
+    "intro": "The code is open; the name and the crab tell people what they're getting. So:",
+    "fine": {
+      "label": "Fine",
+      "body": "Writing, talking and making videos about Crustates, \"Runs on Crustates\" badges on projects that use it, naming a plugin \"<name> for Crustates\", and showing the logo unmodified."
+    },
+    "dont": {
+      "label": "Please don't",
+      "body": "Ship a fork, a modified build or a hosted service under the Crustates name or with the crab, suggest you're official or endorsed, change the logo, or use the names in domains, app stores or social accounts in a way that could confuse people."
+    },
+    "forks": "Forks are welcome; just give yours its own name. Assets live on the <brand>brand and press page</brand>."
+  },
+  "website": {
+    "heading": "Website privacy",
+    "items": [
+      "No cookies, no analytics, no ad trackers and no third-party embeds or scripts.",
+      "Fonts and images are served with the site, not from another service.",
+      "The site is hosted on GitHub Pages. GitHub logs visitors' IP addresses for security purposes; see <github>GitHub's privacy statement</github>.",
+      "Under the GDPR you can ask us what we hold about you, or to delete it, at <privacy>{{privacy}}</privacy>."
+    ]
+  },
+  "telemetry": {
+    "heading": "Product telemetry",
+    "callout": "<strong>Off by default.</strong> A Crustates install sends nothing to us unless you turn telemetry on in Settings. You can see the exact payload before you do.",
+    "sent": {
+      "label": "Sent when you opt in",
+      "items": [
+        "Crustates version and update channel",
+        "CPU architecture and core count, RAM size",
+        "Counts of VMs, apps, pools and nodes",
+        "Feature flags in use, crash signatures",
+        "A random install ID you can reset"
+      ]
+    },
+    "never": {
+      "label": "Never sent",
+      "items": [
+        "Names of VMs, apps, shares or domains",
+        "IP addresses, hostnames or MAC addresses",
+        "File names, logs or app data",
+        "Usernames, emails or keys"
+      ]
+    },
+    "updates": "Update checks contact the image registry to look for new versions; they can be pointed at your own mirror or turned off for offline installs."
+  },
+  "assistant": {
+    "heading": "AI assistant data",
+    "intro": "The assistant is off until you choose a model provider.",
+    "items": [
+      "<strong>Local models</strong> (on the box or elsewhere on your LAN): prompts, live state and logs never leave your network.",
+      "<strong>Remote providers</strong> (an OpenAI-compatible endpoint or the Anthropic API) are opt-in and use your own API key. What you send is covered by that provider's terms, not ours; we never see it.",
+      "The console always shows which provider answered and whether data left your network.",
+      "Conversations are stored on your own node and follow your retention settings."
+    ],
+    "link": "How the assistant works →"
+  },
+  "imprint": {
+    "heading": "Imprint and contact",
+    "name": "Crustates project",
+    "lines": ["Crustates BV", "[ADDRESS], the Netherlands", "KvK [NUMBER]"],
+    "contact": "General: <hello>{{hello}}</hello> · Privacy: <privacy>{{privacy}}</privacy> · Security: <security>security policy</security>"
+  }
+}

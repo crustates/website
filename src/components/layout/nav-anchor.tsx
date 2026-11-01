@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /** A route (`to`, client-side navigation) or a plain URL (`href`). */
-export type NavTarget = { to: LinkProps["to"] } | { href: string };
+export type NavTarget = { to: LinkProps["to"]; hash?: string } | { href: string };
 export type NavItem = NavTarget & {
   label: string;
   /** Route paths that belong to this item's section, so it shows as current there. */
@@ -30,6 +30,9 @@ export function NavAnchor({
     return (
       <Link
         to={target.to}
+        hash={target.hash}
+        // A link to a section of a page isn't the current page.
+        activeOptions={{ includeHash: target.hash !== undefined }}
         className={cn(className, active && activeClassName)}
         aria-current={active ? "true" : undefined}
         activeProps={{ className: activeClassName }}

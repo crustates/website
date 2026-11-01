@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "kicker": "Download · Stable channel · [VERSION]",
+    "heading": "Install Crustates in four steps.",
+    "lead": "Download the installer for your machine, write it to a USB stick, boot from it and finish setup in the browser. About [TIME] on most hardware.",
+    "iconAlt": "Crustates app icon"
+  },
+  "notice": {
+    "title": "Crustates isn't released yet.",
+    "body": "The first release will be published on GitHub. The steps below show how installing will work.",
+    "link": "Watch the repository"
+  },
+  "builds": {
+    "stable": "Stable",
+    "version": "Version",
+    "file": "File",
+    "size": "Size",
+    "download": "Download ISO",
+    "verify": "Checksum and signature",
+    "amd64": {
+      "body": "Intel and AMD 64-bit machines: mini PCs, NAS boxes, servers."
+    },
+    "arm64": {
+      "body": "64-bit Arm machines with UEFI. See the",
+      "guide": "hardware guide",
+      "after": "for supported boards."
+    }
+  },
+  "install": {
+    "heading": "How to install",
+    "step": "Step {{n}}",
+    "steps": [
+      {
+        "title": "Download",
+        "body": "Pick the ISO for your architecture and verify it (below)."
+      },
+      { "title": "Write to USB", "body": "Use any USB writer, or on Linux:" },
+      {
+        "title": "Boot",
+        "body": "Turn on virtualization (VT-x or AMD-V) and the IOMMU in firmware, then boot from the stick. The installer checks your hardware first."
+      },
+      {
+        "title": "Finish in the browser",
+        "body": "Open the address shown on screen. The first-run wizard sets up disks, networking and your admin passkey."
+      }
+    ]
+  },
+  "verify": {
+    "kicker": "Verify your download",
+    "heading": "Check the checksum and the signature.",
+    "lead": "Every release is signed with cosign. Verify before you write it to USB.",
+    "checksum": "# 1. Checksum",
+    "signature": "# 2. Signature",
+    "ok": "Verified OK"
+  },
+  "requirements": {
+    "heading": "Hardware requirements",
+    "columns": ["Part", "Minimum", "Recommended"],
+    "rows": [
+      ["CPU", "64-bit with VT-x / AMD-V", "[RECOMMENDED CPU]"],
+      ["Memory", "[MIN RAM]", "[RECOMMENDED RAM]"],
+      ["Boot disk", "[MIN BOOT DISK]", "SSD"],
+      ["Data disks", "Optional", "2+ for a mirror"],
+      ["Firmware", "UEFI", "UEFI with TPM 2.0"]
+    ],
+    "note": "Raspberry Pi boards lack the interrupt controller microVMs need; apps there run with shared isolation."
+  },
+  "channels": {
+    "heading": "Release channels",
+    "stable": {
+      "label": "Stable",
+      "body": "Tested releases for everyday use. The default."
+    },
+    "beta": {
+      "label": "Beta",
+      "body": "Early access to the next release. Expect rough edges."
+    },
+    "upgradeHeading": "Already running Crustates?",
+    "upgradeBody": "You don't need a new download. Go to Updates in the console or run <code>crust molt upgrade</code>. Upgrades are atomic and roll back in one step."
+  }
+}

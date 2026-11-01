@@ -20,7 +20,7 @@ import { addNamespace, i18n } from "@/i18n";
 import assistant from "@/i18n/en/assistant.json";
 import { links } from "@/lib/links";
 import { seo } from "@/lib/seo";
-import { asset, href } from "@/lib/site";
+import { asset } from "@/lib/site";
 
 export const Route = createFileRoute("/assistant")({
   head: () =>
@@ -312,7 +312,7 @@ function CallToAction() {
   return (
     <CtaBand heading={t("cta.heading")}>
       <Button asChild>
-        <a href={href("/community")}>{t("cta.discuss")}</a>
+        <Link to="/community/">{t("cta.discuss")}</Link>
       </Button>
       <Button asChild>
         <Link to="/roadmap/">{t("cta.roadmap")}</Link>

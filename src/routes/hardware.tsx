@@ -17,7 +17,6 @@ import { i18n, usePageCopy } from "@/i18n";
 import hardware from "@/i18n/en/hardware.json";
 import type { ProductId, ProductKey } from "@/lib/products";
 import { seo } from "@/lib/seo";
-import { href } from "@/lib/site";
 
 export const Route = createFileRoute("/hardware")({
   head: () =>
@@ -146,7 +145,7 @@ function HardwarePage() {
           <p className="text-body-l text-ink-muted">{copy.installer.lead}</p>
           <div className="flex flex-wrap gap-3">
             <Button asChild variant="primary">
-              <a href={href("/download")}>{copy.installer.download}</a>
+              <Link to="/download/">{copy.installer.download}</Link>
             </Button>
             <Button asChild>
               <Link to="/faq/">{copy.installer.faq}</Link>
