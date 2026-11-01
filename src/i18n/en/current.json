@@ -1,1 +1,128 @@
-{}
+{
+  "hero": {
+    "kicker": "Current · Networking",
+    "heading": "Every app on HTTPS, every packet accounted for.",
+    "lead": "Bridges, VLANs and firewalling with eBPF. Every app gets a local name with a valid certificate, and remote access works without opening ports.",
+    "tags": ["eBPF (Aya)", "nftables", "Caddy", "crust.internal", "NetBird", "WireGuard"]
+  },
+  "visual": {
+    "title": "Current · Ingress",
+    "ca": "Local CA",
+    "columns": { "hostname": "Hostname", "target": "Target", "certificate": "Certificate" },
+    "localCa": "Local CA",
+    "letsEncrypt": "Let's Encrypt"
+  },
+  "capabilities": {
+    "heading": "Networking that explains itself.",
+    "items": [
+      {
+        "title": "Networks",
+        "body": "Linux bridges, VLANs and bonds managed over netlink, for IPv4 and IPv6."
+      },
+      {
+        "title": "DHCP and IPAM",
+        "body": "Addresses for VMs and apps, with reservations and no conflicts."
+      },
+      {
+        "title": "eBPF policy",
+        "body": "Per-workload firewall rules enforced in the kernel with Aya."
+      },
+      {
+        "title": "Flow logs",
+        "body": "See which app talked to what, and what was blocked, with metrics per workload."
+      },
+      {
+        "title": "Host firewall",
+        "body": "nftables protects the host itself before anything else starts."
+      },
+      {
+        "title": "Ingress and TLS",
+        "body": "Caddy as reverse proxy, with three certificate modes."
+      },
+      {
+        "title": "Local names",
+        "body": "Every app gets <code>&lt;name&gt;.crust.internal</code>, announced with mDNS on your LAN."
+      },
+      {
+        "title": "Remote access",
+        "body": "NetBird first; Tailscale or Headscale as an option. No port forwarding."
+      },
+      {
+        "title": "Node links",
+        "body": "WireGuard between nodes, iroh across sites."
+      }
+    ]
+  },
+  "how": {
+    "heading": "From packet to app, in four layers.",
+    "lead": "Each layer is a resource in the API, so a firewall rule is as easy to review as a VM.",
+    "steps": [
+      {
+        "title": "Host",
+        "body": "nftables locks down the host; only the API, ingress and what you allow are open."
+      },
+      {
+        "title": "Networks",
+        "body": "Bridges and VLANs connect VMs and apps, with DHCP and IPAM."
+      },
+      {
+        "title": "Policy",
+        "body": "eBPF programs enforce per-workload rules and record flows."
+      },
+      {
+        "title": "Ingress",
+        "body": "Caddy terminates TLS and routes names to apps."
+      }
+    ],
+    "table": {
+      "columns": ["Engine", "Role in Current", "Notes"],
+      "rows": [
+        ["netlink", "Bridges, VLANs, bonds, routes", "Rust (rtnetlink)"],
+        ["nftables", "Host firewall", "Applied before workloads start"],
+        ["Aya (eBPF)", "Per-workload policy, flow logs, metrics", "Rust, CO-RE programs"],
+        [
+          "Caddy",
+          "Reverse proxy and TLS",
+          "Local CA, Let's Encrypt (HTTP-01 or DNS-01), bring your own"
+        ],
+        ["mDNS", "Names on your LAN", "<code>crust.internal</code> zone in the platform DNS"],
+        ["NetBird · Tailscale", "Remote access providers", "Plugins, pick one"],
+        ["WireGuard · iroh", "Links between nodes and sites", "Used by Cast"]
+      ]
+    }
+  },
+  "specs": {
+    "rows": [
+      ["IP versions", "IPv4 and IPv6, dual stack"],
+      ["VLANs", "802.1Q tagging per network"],
+      ["Certificate modes", "Local CA, Let's Encrypt, your own certificate"],
+      ["Local zone", "<code>crust.internal</code>, custom zones possible"],
+      ["Flow log retention", "[PLACEHOLDER] days by default"],
+      ["Remote access", "NetBird, Tailscale, Headscale"],
+      ["Kernel requirement", "eBPF with BTF (Fedora kernel)"]
+    ],
+    "ask": {
+      "body": "\"Why can't Jellyfin reach my NAS?\" The assistant reads flow logs and policy, finds the rule that blocks it, and proposes a fix you confirm.",
+      "command": "crust ask \"why can't jellyfin reach 10.0.0.42?\""
+    }
+  },
+  "faq": [
+    {
+      "title": "Do I need my own domain?",
+      "body": "No. Apps get names under <code>crust.internal</code> with the local CA. Add your own domain when you want public HTTPS."
+    },
+    {
+      "title": "How do devices trust the local CA?",
+      "body": "Install the root certificate once per device; the setup wizard shows a QR code and links per OS."
+    },
+    {
+      "title": "Why eBPF and not just iptables?",
+      "body": "eBPF gives per-app policy and flow data with low overhead. nftables still guards the host."
+    },
+    {
+      "title": "Do I have to open ports?",
+      "body": "No. Remote access goes through NetBird or Tailscale."
+    }
+  ],
+  "next": { "heading": "Keep the whole system up to date, safely.", "label": "Molt · Upgrades →" }
+}
