@@ -21,6 +21,8 @@ export default defineConfig({
       },
       // Builds, then serves dist/client like GitHub Pages at http://localhost:4173/website/.
       preview: { command: ["vp build", "vpx ./scripts/serve.ts"], cache: false },
+      // Scans bun.lock for known vulnerabilities (config in trivy.yaml).
+      security: { command: "trivy fs --config trivy.yaml .", cache: false },
     },
   },
   lint: {
