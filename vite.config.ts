@@ -80,6 +80,8 @@ export default defineConfig({
         { path: "/sitemap.xml" },
         { path: "/blog/rss.xml" },
         { path: "/changelog/rss.xml" },
+        // The install script, as an extensionless file for `curl … | sh`.
+        { path: "/install", prerender: { outputPath: "/install" } },
         // One page per blog post, release and catalog app. Drafts only with SHOW_DRAFTS=true.
         ...contentPaths("content", process.env.SHOW_DRAFTS === "true").map((path) => ({
           path: `${path}/`,
