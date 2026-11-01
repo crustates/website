@@ -1,1 +1,264 @@
-{}
+{
+  "hero": {
+    "kicker": "Compare",
+    "heading": "How Crustates compares, honestly.",
+    "lead": "Crustates is young. This page shows where it is headed against the tools homelabbers already use, and what ships today. Anything marked <strong>Planned</strong> is not released yet; the milestone tells you when.",
+    "legendNote": "Planned = on the roadmap, not shipped"
+  },
+  "status": {
+    "yes": "Yes",
+    "partial": "Partial",
+    "no": "No",
+    "planned": "Planned"
+  },
+  "matrix": {
+    "kicker": "Feature matrix",
+    "heading": "One box, side by side.",
+    "lead": "Based on each product's default install, checked [DATE]. Spot a mistake? Open an issue and we will fix it.",
+    "columns": {
+      "feature": "Feature",
+      "crustates": "Crustates",
+      "proxmox": "Proxmox VE",
+      "truenas": "TrueNAS SCALE",
+      "unraid": "Unraid",
+      "xcpng": "XCP-ng",
+      "panels": "Cockpit / Portainer"
+    },
+    "rows": [
+      {
+        "feature": "Full VMs (Windows, UEFI, TPM)",
+        "crustates": "planned",
+        "milestone": "M1",
+        "proxmox": "yes",
+        "truenas": "yes",
+        "unraid": "yes",
+        "xcpng": "yes",
+        "panels": "partial"
+      },
+      {
+        "feature": "Containers and apps",
+        "crustates": "planned",
+        "milestone": "M2",
+        "proxmox": "partial",
+        "truenas": "yes",
+        "unraid": "yes",
+        "xcpng": "no",
+        "panels": "yes"
+      },
+      {
+        "feature": "MicroVM per app",
+        "crustates": "planned",
+        "milestone": "M2",
+        "proxmox": "no",
+        "truenas": "no",
+        "unraid": "no",
+        "xcpng": "no",
+        "panels": "no"
+      },
+      {
+        "feature": "ZFS pools",
+        "crustates": "planned",
+        "milestone": "M3",
+        "proxmox": "yes",
+        "truenas": "yes",
+        "unraid": "partial",
+        "xcpng": "partial",
+        "panels": "no"
+      },
+      {
+        "feature": "Btrfs pools",
+        "crustates": "planned",
+        "milestone": "M3",
+        "proxmox": "partial",
+        "truenas": "no",
+        "unraid": "yes",
+        "xcpng": "no",
+        "panels": "no"
+      },
+      {
+        "feature": "SMB and NFS shares",
+        "crustates": "planned",
+        "milestone": "M3",
+        "proxmox": "no",
+        "truenas": "yes",
+        "unraid": "yes",
+        "xcpng": "no",
+        "panels": "no"
+      },
+      {
+        "feature": "S3-compatible storage",
+        "crustates": "planned",
+        "milestone": "M3",
+        "proxmox": "no",
+        "truenas": "partial",
+        "unraid": "no",
+        "xcpng": "no",
+        "panels": "no"
+      },
+      {
+        "feature": "Scheduled backups with restore",
+        "crustates": "planned",
+        "milestone": "M3",
+        "proxmox": "yes",
+        "truenas": "yes",
+        "unraid": "partial",
+        "xcpng": "yes",
+        "panels": "partial"
+      },
+      {
+        "feature": "eBPF firewall and flow logs",
+        "crustates": "planned",
+        "milestone": "M5",
+        "proxmox": "no",
+        "truenas": "no",
+        "unraid": "no",
+        "xcpng": "no",
+        "panels": "no"
+      },
+      {
+        "feature": "Automatic HTTPS for apps",
+        "crustates": "planned",
+        "milestone": "M2",
+        "proxmox": "no",
+        "truenas": "no",
+        "unraid": "no",
+        "xcpng": "no",
+        "panels": "partial"
+      },
+      {
+        "feature": "Read-only OS, atomic rollback",
+        "crustates": "planned",
+        "milestone": "M0",
+        "proxmox": "no",
+        "truenas": "partial",
+        "unraid": "partial",
+        "xcpng": "no",
+        "panels": "no"
+      },
+      {
+        "feature": "Declarative API",
+        "crustates": "planned",
+        "milestone": "M1",
+        "proxmox": "partial",
+        "truenas": "partial",
+        "unraid": "no",
+        "xcpng": "partial",
+        "panels": "partial"
+      },
+      {
+        "feature": "GitOps and push-to-deploy",
+        "crustates": "planned",
+        "milestone": "M2–M6",
+        "proxmox": "no",
+        "truenas": "no",
+        "unraid": "no",
+        "xcpng": "no",
+        "panels": "partial"
+      },
+      {
+        "feature": "MCP server and AI assistant",
+        "crustates": "planned",
+        "milestone": "M4–M6",
+        "proxmox": "no",
+        "truenas": "no",
+        "unraid": "no",
+        "xcpng": "no",
+        "panels": "no"
+      },
+      {
+        "feature": "Clustering",
+        "crustates": "planned",
+        "milestone": "M6",
+        "proxmox": "yes",
+        "truenas": "no",
+        "unraid": "no",
+        "xcpng": "yes",
+        "panels": "partial"
+      },
+      {
+        "feature": "arm64",
+        "crustates": "planned",
+        "milestone": "M0",
+        "proxmox": "no",
+        "truenas": "no",
+        "unraid": "no",
+        "xcpng": "no",
+        "panels": "yes"
+      }
+    ],
+    "licence": {
+      "feature": "Licence",
+      "crustates": "AGPLv3",
+      "proxmox": "AGPLv3",
+      "truenas": "GPLv3",
+      "unraid": "Proprietary",
+      "xcpng": "GPLv2",
+      "panels": "Mixed"
+    },
+    "footnote": "Partial means it exists but needs add-ons, manual setup or a paid tier. Cockpit and Portainer are management panels on top of an OS you maintain, so they are scored together."
+  },
+  "else": {
+    "kicker": "Be honest",
+    "heading": "When to choose something else.",
+    "lead": "We would rather you pick the right tool than the newest one.",
+    "items": [
+      {
+        "title": "You need it in production today",
+        "body": "Proxmox VE has years of hardening, a big community and paid support. Crustates has not shipped 1.0."
+      },
+      {
+        "title": "You mostly want a NAS",
+        "body": "TrueNAS SCALE is a mature storage-first system with deep ZFS tooling. Reef will catch up, but not before M3."
+      },
+      {
+        "title": "You mix odd-sized disks",
+        "body": "Unraid's parity array lets you add any disk at any time. Crustates uses ZFS and Btrfs pools, which plan around matching disks."
+      },
+      {
+        "title": "You run a big Xen estate",
+        "body": "XCP-ng with Xen Orchestra is built for that. Crustates targets one to a handful of homelab nodes."
+      },
+      {
+        "title": "You only need Docker on a server",
+        "body": "Portainer or Cockpit on the OS you already run is less to learn. Crustates replaces the OS too."
+      },
+      {
+        "title": "You need live migration now",
+        "body": "Live migration between Crustates nodes is on the Later list, after clustering in M6."
+      }
+    ]
+  },
+  "migrate": {
+    "kicker": "Migrating",
+    "heading": "Bring what you already run.",
+    "items": [
+      {
+        "from": "From Proxmox VE",
+        "title": "Import VMs",
+        "body": "Point Crustates at a vzdump backup or a qcow2 disk. CPU, memory, disks and NICs are mapped to a VM resource you can read before it is created.",
+        "command": "crust tide vm import vzdump-qemu-101.vma.zst"
+      },
+      {
+        "from": "From Docker, Portainer, Unraid",
+        "title": "Import Compose",
+        "body": "Each Compose service becomes an App in its own microVM, with volumes on a Reef pool and an HTTPS name.",
+        "command": "crust tide app import ./compose.yaml"
+      },
+      {
+        "from": "From TrueNAS",
+        "title": "Import ZFS pools",
+        "body": "Existing ZFS pools import as they are, datasets and snapshots included. Shares are recreated from a short review screen.",
+        "command": "crust reef pool import tank"
+      }
+    ],
+    "note": {
+      "title": "Planned.",
+      "body": "Importers ship with the milestone of the area they belong to. Always keep a backup before moving disks between systems."
+    }
+  },
+  "cta": {
+    "heading": "Try it next to what you run now.",
+    "download": "Download Crustates",
+    "roadmap": "See the roadmap"
+  }
+}

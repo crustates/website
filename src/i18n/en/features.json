@@ -1,1 +1,215 @@
-{}
+{
+  "hero": {
+    "kicker": "Features",
+    "heading": "Everything a homelab needs, in one platform you own.",
+    "lead": "Compute, storage and networking, with upgrades and clustering built in. One console, one CLI and one API on every node.",
+    "jumpLabel": "Jump to area",
+    "api": "API"
+  },
+  "tide": {
+    "kicker": "Tide · Compute",
+    "heading": "Full VMs when you need them. A microVM for every app.",
+    "lead": "Start from an ISO or disk image and you get a full VM. Start from a container image or a Compose file and you get an app, isolated in its own microVM with its own kernel.",
+    "link": "Learn more about Tide →",
+    "items": [
+      {
+        "title": "Full VMs",
+        "body": "QEMU with KVM: UEFI, virtual TPM, Secure Boot and a VNC console in the browser. Windows 11 installs out of the box."
+      },
+      {
+        "title": "Apps in microVMs",
+        "body": "Kata Containers on Cloud Hypervisor by default, or <code>isolation: shared</code> for a plain container."
+      },
+      {
+        "title": "App catalog",
+        "body": "One-click apps from curated, community templates. Import any Compose file."
+      },
+      {
+        "title": "Passthrough",
+        "body": "USB, disk and GPU passthrough, including a shared iGPU for media transcoding."
+      },
+      {
+        "title": "Templates and cloud-init",
+        "body": "Build a VM once, clone it many times, configure it on first boot."
+      },
+      {
+        "title": "Updates and secrets",
+        "body": "See new image versions, update with rollback, and inject secrets safely."
+      }
+    ]
+  },
+  "reef": {
+    "kicker": "Reef · Storage",
+    "heading": "ZFS and Btrfs, shares and backups that restore.",
+    "lead": "Both file systems are first-class. Pools feed VM disks, app volumes, shares and object storage, and backups run on a schedule you set once.",
+    "link": "Learn more about Reef →",
+    "items": [
+      {
+        "title": "Pools",
+        "body": "ZFS and Btrfs pools with snapshots, scrubs and SMART disk health."
+      },
+      {
+        "title": "Shares and S3",
+        "body": "SMB and NFS shares, plus S3-compatible buckets with Garage."
+      },
+      {
+        "title": "Backups",
+        "body": "Scheduled, incremental, deduplicated backups of VMs and apps with rustic."
+      },
+      {
+        "title": "Databases",
+        "body": "Managed PostgreSQL for your apps, with point-in-time restore."
+      },
+      {
+        "title": "Encryption at rest",
+        "body": "ZFS native encryption or LUKS under Btrfs, unlocked by the TPM."
+      },
+      {
+        "title": "Platform backup",
+        "body": "Export and restore Crustates' own state, so a dead boot disk isn't fatal."
+      }
+    ]
+  },
+  "current": {
+    "kicker": "Current · Networking",
+    "heading": "Every app on HTTPS, every packet accounted for.",
+    "lead": "Bridges and VLANs, a firewall per app, flow logs, and local names with certificates. No port forwarding needed for remote access.",
+    "link": "Learn more about Current →",
+    "items": [
+      {
+        "title": "Networks",
+        "body": "Bridges, VLANs and bonds, with DHCP and IP management for IPv4 and IPv6."
+      },
+      {
+        "title": "eBPF policy",
+        "body": "Per-workload firewall rules, flow logs and metrics, built on Aya."
+      },
+      {
+        "title": "Ingress and TLS",
+        "body": "Caddy as the reverse proxy: a local CA by default, or Let's Encrypt for your own domain."
+      },
+      {
+        "title": "Local names",
+        "body": "Every app gets <code>&lt;name&gt;.crust.internal</code>, plus mDNS on your LAN."
+      },
+      {
+        "title": "Remote access",
+        "body": "NetBird first, Tailscale or Headscale as an option."
+      },
+      {
+        "title": "Host firewall",
+        "body": "nftables protects the host itself, before anything else starts."
+      }
+    ]
+  },
+  "molt": {
+    "kicker": "Molt · OS lifecycle",
+    "heading": "Upgrade the whole system as one image.",
+    "body": "A read-only, image-based OS. Updates arrive as one signed image with stable and beta channels, and you can roll back in one step from the console or the local recovery screen.",
+    "points": [
+      "Atomic A/B upgrades",
+      "Offline updates from a USB stick",
+      "Secure Boot and measured boot"
+    ],
+    "link": "Learn more about Molt →"
+  },
+  "cast": {
+    "kicker": "Cast · Clustering",
+    "heading": "Join a second machine without port forwarding.",
+    "body": "Start with one node. Add another at home, at a relative's place or on a VPS, and manage them as one. Nodes find each other by key, not by IP address.",
+    "points": [
+      "<code>crust cast join</code> with a one-time token",
+      "Replicated state across nodes",
+      "Multi-site over iroh"
+    ],
+    "link": "Learn more about Cast →"
+  },
+  "barnacle": {
+    "kicker": "Barnacle · Plugins",
+    "heading": "Extend it safely.",
+    "lead": "Barnacle plugins are sandboxed Wasm components. Each one gets only the permissions you approve, so a broken plugin can't take down your host.",
+    "link": "Learn more about Barnacle →",
+    "items": [
+      { "title": "Event hooks", "body": "On VM created, register it in DNS." },
+      { "title": "Custom drivers", "body": "Storage, backup or network backends." },
+      { "title": "Policy checks", "body": "Rules that run before any change." },
+      { "title": "Dashboard widgets", "body": "Your own panels in the console." }
+    ]
+  },
+  "spawn": {
+    "kicker": "Spawn · GitOps and push-to-deploy",
+    "heading": "Your homelab, in a Git repo.",
+    "lead": "Keep apps, VMs and network as YAML in GitHub, Forgejo or GitLab. Every pull request gets a plan; merging applies it. Push your own code and Crustates builds and deploys it.",
+    "link": "Learn more about Spawn →",
+    "items": [
+      {
+        "title": "Pull-based sync",
+        "body": "Polls your repo and reacts to webhooks. No port forwarding."
+      },
+      { "title": "Plan on every PR", "body": "A dry run posted as a comment. Merge to apply." },
+      {
+        "title": "Drift and secrets",
+        "body": "Drift detection, plus SOPS + age secrets decrypted only on the node."
+      },
+      {
+        "title": "Push-to-deploy",
+        "body": "Builds with BuildKit or Railpack, with preview apps for pull requests."
+      }
+    ]
+  },
+  "assistant": {
+    "kicker": "AI assistant",
+    "heading": "Ask your homelab what's going on. Then let it fix it.",
+    "lead": "A built-in assistant that reads live state, metrics and logs through the same API you use. It runs on a local model by default, acts with your role, and shows every change as a plan you confirm.",
+    "tags": ["Local model first", "Plan and confirm", "Audit logged", "MCP"],
+    "link": "Meet the assistant →",
+    "mock": {
+      "question": "Why is Jellyfin buffering tonight?",
+      "who": "Assistant",
+      "where": "llama.cpp on node-1 · stayed on your network",
+      "answer": "The <code>jellyfin</code> microVM has hit its 2 vCPU limit since 20:14 while transcoding 4K. The iGPU isn't passed through, so transcoding runs on the CPU.",
+      "offer": "I can pass through the iGPU and restart the app. That's a 30-second outage.",
+      "review": "Review plan",
+      "notNow": "Not now"
+    }
+  },
+  "api": {
+    "kicker": "API and integrations",
+    "heading": "One declarative API behind everything.",
+    "lead": "Every resource has a spec and a status. The console, <code>crust</code> CLI, terminal UI, OpenTofu provider and MCP server are all clients of the same API, documented with Scalar at <code>/docs</code> on every node.",
+    "tags": ["REST + watch", "OpenAPI", "OpenTofu", "MCP", "OpenTelemetry"],
+    "link": "API and integrations →"
+  },
+  "engines": {
+    "kicker": "Under the hood",
+    "heading": "Proven open source, with Rust where it matters.",
+    "lead": "Crustates' own code is the control plane, the node agent and the drivers. Each engine sits behind a trait, so it can be swapped later.",
+    "columns": ["Area", "Engine", "What it does in Crustates"],
+    "rows": [
+      ["Tide", "QEMU", "Full VMs: UEFI, display, USB and GPU passthrough"],
+      ["Tide", "Cloud Hypervisor", "MicroVMs and headless Linux VMs"],
+      ["Tide", "Kata runtime-rs", "Runs container images inside microVMs"],
+      ["Tide", "containerd", "Pulls images and manages app lifecycles"],
+      ["Reef", "ZFS", "Pools, snapshots, native encryption"],
+      ["Reef", "Btrfs", "Pools and snapshots in the kernel"],
+      ["Reef", "Garage", "S3-compatible object storage"],
+      ["Reef", "rustic", "Deduplicated, encrypted backups"],
+      ["Current", "Caddy", "Reverse proxy and automatic TLS"],
+      ["Current", "Aya (eBPF)", "Per-workload policy, flow logs and metrics"],
+      ["Current", "WireGuard", "Encrypted links between nodes"],
+      ["Cast", "iroh", "Connects nodes across sites by key"],
+      ["Molt", "bootc", "Image-based, atomic OS upgrades"],
+      ["Barnacle", "Wasmtime", "Runs plugins as sandboxed WIT components"],
+      [
+        "Spawn",
+        "gitoxide, SOPS + age, BuildKit, Railpack",
+        "Syncs Git, decrypts secrets on the node, builds your code"
+      ]
+    ]
+  },
+  "cta": {
+    "heading": "Ready to try it?",
+    "download": "Download Crustates",
+    "docs": "Read the docs"
+  }
+}
