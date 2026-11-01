@@ -1,0 +1,11 @@
+title: Networking
+order: 5
+items:
+  - q: How do my apps get HTTPS?
+    a: Caddy issues certificates from a local CA, Let's Encrypt or your own, for names like app.crust.internal.
+  - q: Can I reach it from outside my home?
+    a: Use NetBird or Tailscale as an access provider; no port forwarding needed.
+  - q: Do VLANs work?
+    a: Yes, with bridges, bonds and VLANs managed from the API.
+  - q: What does eBPF add?
+    a: Per-app firewall rules, flow logs and metrics without iptables sprawl.

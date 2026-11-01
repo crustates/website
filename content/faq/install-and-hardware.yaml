@@ -1,0 +1,11 @@
+title: Install and hardware
+order: 2
+items:
+  - q: What hardware do I need?
+    a: A 64-bit amd64 or arm64 machine with virtualisation support and 8 GB of RAM. See the hardware guide.
+  - q: Does it run on a Raspberry Pi?
+    a: The Pi 5 lacks GICv3-ITS, so apps fall back from microVMs to QEMU microvm or shared containers. Booting is still being verified.
+  - q: Can I install it inside a VM to try it?
+    a: Yes, with nested virtualisation enabled on the host.
+  - q: Do I need a separate boot disk?
+    a: Recommended. The OS lives on its own small SSD, your data on pool disks.

@@ -1,0 +1,65 @@
+{
+  "hero": {
+    "kicker": "Changelog",
+    "heading": "What's new in Crustates.",
+    "lead": "Every release, newest first. Upgrade from the console or with <code>crust molt upgrade</code>.",
+    "github": "All releases on GitHub",
+    "rss": "RSS feed"
+  },
+  "latest": "Latest stable",
+  "beta": "Beta",
+  "security": "Security",
+  "readNotes": "Read the release notes →",
+  "types": {
+    "added": "Added",
+    "changed": "Changed",
+    "fixed": "Fixed",
+    "removed": "Removed",
+    "security": "Security"
+  },
+  "empty": "No releases yet. The first one will show up here, in the RSS feed and on GitHub.",
+  "blog": {
+    "heading": "From the blog",
+    "all": "All posts"
+  },
+  "release": {
+    "breadcrumb": "Breadcrumb",
+    "changelog": "Changelog",
+    "released": "Released {{date}}.",
+    "download": "Download {{version}}",
+    "signature": "Signature and SBOM",
+    "compare": "Compare with {{previous}} on GitHub",
+    "molt": "How Molt works",
+    "vulnerabilities": {
+      "heading": "Fixed vulnerabilities",
+      "columns": {
+        "component": "Component",
+        "advisory": "Advisory",
+        "severity": "Severity",
+        "affected": "Affected"
+      },
+      "severity": {
+        "critical": "Critical",
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "details": "Details are in the",
+      "advisories": "security advisories"
+    },
+    "areas": "What changed, by area",
+    "changes": "What changed",
+    "checksums": {
+      "heading": "Checksums",
+      "columns": {
+        "file": "File",
+        "size": "Size",
+        "sha256": "SHA-256"
+      }
+    },
+    "image": {
+      "heading": "Image",
+      "signed": "Signed with Sigstore. SBOM in SPDX and CycloneDX."
+    }
+  }
+}

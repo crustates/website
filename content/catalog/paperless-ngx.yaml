@@ -1,0 +1,7 @@
+name: Paperless-ngx
+category: Documents
+isolation: microvm
+description: Scan, OCR and tag your paperwork into a searchable archive.
+tags: [documents, ocr]
+tile: success
+example: true

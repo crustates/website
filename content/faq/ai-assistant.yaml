@@ -1,0 +1,11 @@
+title: AI assistant
+order: 7
+items:
+  - q: Do I have to use the assistant?
+    a: No. It is off until you choose a model provider.
+  - q: Does my data leave my network?
+    a: Not with a local model, which is the default. Remote providers are opt-in and clearly labelled.
+  - q: Can it change things on its own?
+    a: No. It is read-only by default and every change is a plan you confirm.
+  - q: Which models work?
+    a: Ollama or llama.cpp locally, or any OpenAI-compatible or Anthropic endpoint with your own key.

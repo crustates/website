@@ -9,8 +9,8 @@ const hidden = /^\.\/(__root|404|\[_\]kit|plugins)\.tsx$/;
 export function pagePaths(routeFiles: readonly string[]): string[] {
   return routeFiles
     .filter((file) => file.endsWith(".tsx") && !file.includes("$") && !hidden.test(file))
-    .map((file) => file.slice(2, -4))
-    .map((name) => (name === "index" ? "/" : `/${name.replaceAll(".", "/")}/`))
+    .map((file) => file.slice(2, -4).replace(/(^|\/)index$/, ""))
+    .map((name) => (name ? `/${name.replaceAll(".", "/")}/` : "/"))
     .sort();
 }
 

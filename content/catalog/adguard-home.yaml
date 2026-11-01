@@ -1,0 +1,7 @@
+name: AdGuard Home
+category: Network
+isolation: shared
+description: Network-wide ad and tracker blocking with DNS-over-HTTPS.
+tags: [dns]
+tile: success
+example: true

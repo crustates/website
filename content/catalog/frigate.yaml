@@ -1,0 +1,8 @@
+name: Frigate
+category: Cameras
+isolation: microvm
+needs: [gpu]
+description: NVR with real-time object detection for IP cameras.
+tags: [cameras, gpu]
+tile: danger
+example: true

@@ -1,0 +1,8 @@
+name: Forgejo
+category: Developer
+isolation: microvm
+needs: [database]
+description: Git hosting with issues, pull requests and CI runners.
+tags: [git, postgres]
+tile: rust
+example: true

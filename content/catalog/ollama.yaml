@@ -1,0 +1,8 @@
+name: Ollama
+category: AI
+isolation: microvm
+needs: [gpu]
+description: Run local language models. Powers the Crustates assistant.
+tags: [ai, gpu]
+tile: card
+example: true

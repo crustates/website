@@ -16,8 +16,11 @@ export function SiteHeader({ interactive = true }: { interactive?: boolean }) {
   // With JS, the links collapse into the menu below xl; without it they wrap.
   const collapse = interactive ? "js:max-xl:hidden" : "";
   const current = routePath(useRouterState({ select: (state) => state.location.pathname }));
+  // A section covers its own pages and everything under them (/blog/ covers /blog/<post>/).
   const isActive = (item: NavItem) =>
-    item.section?.some((path) => routePath(path) === current) ?? false;
+    item.section?.some(
+      (path) => current === routePath(path) || current.startsWith(`${routePath(path)}/`),
+    ) ?? false;
   // Pages from later parts are plain links until their routes exist.
   const items: NavItem[] = [
     {
@@ -26,10 +29,10 @@ export function SiteHeader({ interactive = true }: { interactive?: boolean }) {
       section: [...productIds.map((id) => products[id].route), "/assistant/", "/compare/"],
     },
     // The docs live on their own site; the guides here belong to that section.
-    { label: t("nav.docs"), href: links.docs, section: ["/hardware/"] },
+    { label: t("nav.docs"), href: links.docs, section: ["/hardware/", "/faq/"] },
     { label: t("nav.download"), href: href("/download") },
-    { label: t("nav.roadmap"), href: href("/roadmap") },
-    { label: t("nav.changelog"), href: href("/changelog") },
+    { label: t("nav.roadmap"), to: "/roadmap/" },
+    { label: t("nav.changelog"), to: "/changelog/", section: ["/changelog/", "/blog/"] },
     { label: t("nav.community"), href: href("/community") },
   ];
   const actions = (

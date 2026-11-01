@@ -21,7 +21,7 @@ export function SiteFooter() {
         { label: t("footer.product.barnacle"), to: "/barnacle/" },
         { label: t("footer.product.spawn"), to: "/spawn/" },
         { label: t("footer.product.assistant"), to: "/assistant/" },
-        { label: t("footer.product.catalog"), href: href("/catalog") },
+        { label: t("footer.product.catalog"), to: "/catalog/" },
         { label: t("footer.product.compare"), to: "/compare/" },
         { label: t("footer.product.download"), href: href("/download") },
       ],
@@ -32,7 +32,7 @@ export function SiteFooter() {
         { label: t("footer.docs.gettingStarted"), href: links.docs },
         { label: t("footer.docs.hardware"), to: "/hardware/" },
         { label: t("footer.docs.api"), href: href("/api") },
-        { label: t("footer.docs.faq"), href: href("/faq") },
+        { label: t("footer.docs.faq"), to: "/faq/" },
       ],
     },
     {
@@ -40,8 +40,8 @@ export function SiteFooter() {
       items: [
         { label: t("footer.community.contribute"), href: href("/community") },
         { label: t("footer.community.sponsor"), href: href("/community") },
-        { label: t("footer.community.roadmap"), href: href("/roadmap") },
-        { label: t("footer.community.changelog"), href: href("/changelog") },
+        { label: t("footer.community.roadmap"), to: "/roadmap/" },
+        { label: t("footer.community.changelog"), to: "/changelog/" },
         { label: t("footer.community.github"), href: links.github },
       ],
     },

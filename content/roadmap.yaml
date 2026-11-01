@@ -1,0 +1,74 @@
+# Milestones M0 to M6. Each ends with one working machine. Dates stay out
+# until M0 ships. Status: shipped, in-progress or planned.
+milestones:
+  - id: M0
+    title: Foundations
+    status: in-progress
+    items:
+      - ADRs 0001–0011
+      - Molt bootc image on amd64 and arm64
+      - CI with VM-in-CI tests and signing
+      - Installer with first-run wizard and hardware check
+      - Image registry, stable and beta channels
+  - id: M1
+    title: First VM
+    status: planned
+    items:
+      - Control plane and agent on one node
+      - VMs on QEMU with KVM, Windows guests
+      - Scalar API reference at /docs
+      - Consoles, cloud-init, templates, ISO library
+      - DHCP, IPAM, local recovery console
+  - id: M2
+    title: Apps
+    status: planned
+    items:
+      - Apps in Cloud Hypervisor microVMs
+      - Compose import, logs, shell, secrets
+      - Caddy with three certificate modes
+      - crust.internal names and mDNS
+      - First catalog, including PostgreSQL
+      - "Spawn: Git sources and push-to-deploy"
+  - id: M3
+    title: Storage
+    status: planned
+    items:
+      - ZFS and Btrfs pools
+      - SMB and NFS shares, snapshots
+      - Scheduled backups with restore (rustic)
+      - SMART monitoring, scrubs
+      - Encryption at rest
+  - id: M4
+    title: Web UI and access
+    status: planned
+    items:
+      - Web console and crust tui
+      - Passkeys, TOTP, OIDC, roles
+      - NetBird access, Molt upgrades from the UI
+      - Alerting, USB, disk and GPU passthrough
+      - Read-only AI assistant
+  - id: M5
+    title: Current eBPF
+    status: planned
+    items:
+      - Per-workload policy with Aya
+      - Flow logs and metrics
+      - OpenTelemetry export
+  - id: M6
+    title: Cast and Barnacle
+    status: planned
+    items:
+      - Multi-node with Raft, iroh across sites
+      - "Barnacle: the Wasm plugin system"
+      - MCP server and OpenTofu provider
+      - Assistant actions with plan-and-confirm
+      - "Spawn: plans on PRs, preview apps, GitHub App"
+later:
+  - Firecracker for ephemeral jobs and CI runners
+  - runwasi for Wasm workloads
+  - Live migration between nodes
+  - openraft high availability
+  - Confidential VMs with systemd-vmspawn
+  - bcachefs as an opt-in pool type
+  - Separately built LTS kernel
+  - Live Update Orchestrator kernel updates

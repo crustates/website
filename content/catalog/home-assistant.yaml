@@ -1,0 +1,8 @@
+name: Home Assistant
+category: Home automation
+isolation: vm
+needs: [usb]
+description: Control your smart home locally. Runs as a full VM with USB.
+tags: [iot, usb]
+tile: teal
+example: true

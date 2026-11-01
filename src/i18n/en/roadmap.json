@@ -1,0 +1,41 @@
+{
+  "hero": {
+    "kicker": "Roadmap",
+    "heading": "Where Crustates is going.",
+    "lead": "Each milestone ends with one working machine, not a pile of half-finished features. Dates are deliberately absent until M0 ships."
+  },
+  "status": {
+    "in-progress": "In progress",
+    "planned": "Planned",
+    "shipped": "Shipped"
+  },
+  "milestones": {
+    "kicker": "Milestones",
+    "heading": "M0 to M6."
+  },
+  "later": {
+    "kicker": "Later",
+    "heading": "After M6, in no fixed order.",
+    "lead": "Experimental features stay opt-in until they are stable upstream.",
+    "tag": "Later"
+  },
+  "say": {
+    "kicker": "Have a say",
+    "heading": "Shape the roadmap.",
+    "vote": {
+      "title": "Vote in Discussions",
+      "body": "Upvote ideas or start one in GitHub Discussions. We review the top requests every milestone.",
+      "action": "Open Discussions"
+    },
+    "rfc": {
+      "title": "Write an RFC",
+      "body": "Bigger changes start as an RFC pull request. Accepted RFCs become Architecture Decision Records.",
+      "action": "Read the ADRs"
+    },
+    "issue": {
+      "title": "Pick up an issue",
+      "body": "Issues labelled <code>good first issue</code> are a quick way into the codebase.",
+      "action": "Contribute"
+    }
+  }
+}

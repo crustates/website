@@ -1,0 +1,7 @@
+name: Vaultwarden
+category: Security
+isolation: microvm
+description: Bitwarden-compatible password server, light on resources.
+tags: [passwords]
+tile: card
+example: true

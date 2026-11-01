@@ -1,0 +1,7 @@
+name: Uptime Kuma
+category: Monitoring
+isolation: shared
+description: Status pages and uptime checks for your services.
+tags: [monitoring]
+tile: success
+example: true

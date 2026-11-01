@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Rich } from "@/components/rich";
 import { CardGrid } from "@/components/sections/card-grid";
@@ -315,7 +315,7 @@ function CallToAction() {
         <a href={href("/community")}>{t("cta.discuss")}</a>
       </Button>
       <Button asChild>
-        <a href={href("/roadmap")}>{t("cta.roadmap")}</a>
+        <Link to="/roadmap/">{t("cta.roadmap")}</Link>
       </Button>
     </CtaBand>
   );
@@ -339,7 +339,7 @@ function AssistantPage() {
               <a href={links.docs}>{t("hero.design")}</a>
             </Button>
             <Button asChild>
-              <a href={href("/roadmap")}>{t("hero.roadmap")}</a>
+              <Link to="/roadmap/">{t("hero.roadmap")}</Link>
             </Button>
           </>
         }

@@ -1,0 +1,16 @@
+title: Compute
+order: 3
+items:
+  - q: What is the difference between a VM and an App?
+    a: A VM is a full machine you install an OS into. An App is a container image that runs in its own microVM by default.
+  - q: Can I run Windows?
+    a: Yes. Full VMs use QEMU with UEFI, virtual TPM and Secure Boot.
+  - q: Can I still run plain containers?
+    a: "Yes, with isolation: shared for apps that need it."
+  - q: Does it support GPU passthrough?
+    a: Yes, plus sharing an Intel iGPU with apps for transcoding.
+  - q: Can I deploy from GitHub?
+    a: Yes, with Spawn. Keep your apps, VMs and network as YAML in GitHub, Forgejo or GitLab and get a plan on every pull request, or push your own code and Crustates builds and deploys it. It pulls from your repo, so no port forwarding is needed.
+    link:
+      label: About Spawn →
+      to: /spawn/

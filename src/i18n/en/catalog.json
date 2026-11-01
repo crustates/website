@@ -1,0 +1,126 @@
+{
+  "hero": {
+    "kicker": "App catalog",
+    "heading": "Your apps, one command each.",
+    "lead": "Curated templates that set up storage, a database, HTTPS on a <code>.crust.internal</code> name and backups for you. Every app runs in its own microVM unless it needs more.",
+    "search": "Search apps",
+    "searchPlaceholder": "Search apps, e.g. photos, dns, git"
+  },
+  "filters": {
+    "label": "Filter apps",
+    "categories": "Categories",
+    "all": "All",
+    "isolation": "Isolation",
+    "source": "Source",
+    "gpu": "Needs a GPU"
+  },
+  "isolation": {
+    "microvm": "microVM",
+    "vm": "VM",
+    "shared": "shared",
+    "database": "Database"
+  },
+  "isolationLong": {
+    "microvm": "microVM",
+    "vm": "Full VM",
+    "shared": "Shared",
+    "database": "Database"
+  },
+  "source": {
+    "curated": "Curated",
+    "community": "Community"
+  },
+  "needs": {
+    "gpu": "GPU",
+    "usb": "USB device",
+    "database": "Database"
+  },
+  "list": {
+    "label": "Apps",
+    "showing": "Showing {{count}} of {{total}} · {{category}}",
+    "allCategories": "All categories",
+    "legend": "Isolation",
+    "example": "Example",
+    "noMatch": "No apps match these filters.",
+    "reset": "Clear filters",
+    "empty": "No apps in the catalog yet. Templates are written in the open on GitHub.",
+    "github": "Follow on GitHub"
+  },
+  "teaser": {
+    "kicker": "App detail",
+    "heading": "Know what you're installing.",
+    "lead": "Every app page shows what it needs, what it creates and how it's isolated, before you click install.",
+    "meta": "Photos · [VERSION] · updated [DATE] · curated",
+    "about": "Self-hosted photo and video backup with automatic phone uploads, face recognition and smart search.",
+    "facts": [
+      { "label": "Resources", "lines": ["2 vCPU · 4 GiB RAM", "optional GPU for ML"] },
+      { "label": "Creates", "lines": ["volume immich-data", "database immich-db (PostgreSQL 17)"] },
+      { "label": "Network", "lines": ["https://immich.crust.internal", "inbound 443 only"] },
+      { "label": "Backups", "lines": ["nightly, 30 days", "volume + database"] }
+    ],
+    "install": "Install on my node",
+    "template": "View template",
+    "upstream": "Upstream project ↗"
+  },
+  "how": {
+    "kicker": "How the catalog works",
+    "heading": "Compose-based templates, curated in the open.",
+    "items": [
+      {
+        "title": "Compose underneath",
+        "body": "Templates are Compose files plus a small Crustates section for storage, databases, names and backups."
+      },
+      {
+        "title": "Import what you have",
+        "body": "Bring any <code>compose.yaml</code>, or import from existing catalogs. Crustates maps it to apps and volumes."
+      },
+      {
+        "title": "Update with rollback",
+        "body": "New versions show up in the console. Updates snapshot the app first, so you can roll back."
+      },
+      {
+        "title": "Reviewed and signed",
+        "body": "Curated templates are reviewed on GitHub and signed. Community templates are clearly marked."
+      }
+    ]
+  },
+  "submit": {
+    "heading": "Missing an app? Submit it.",
+    "lead": "Open a pull request with a template, or ask for one in the community.",
+    "submit": "Submit an app",
+    "request": "Request an app"
+  },
+  "app": {
+    "breadcrumb": "Breadcrumb",
+    "catalog": "App catalog",
+    "verified": "Verified template",
+    "glance": "At a glance",
+    "category": "Category",
+    "version": "Version",
+    "template": "template {{n}}",
+    "isolation": "Isolation",
+    "resources": "Resources",
+    "needs": "Needs",
+    "architectures": "Architectures",
+    "licence": "Licence",
+    "installs": "Installs",
+    "installsValue": "{{n}} this month",
+    "screenshots": "Screenshots",
+    "screenshot": "[SCREENSHOT: {{caption}}]",
+    "database": "Needs a database",
+    "volumes": "Volumes",
+    "network": "Network",
+    "versions": "Versions",
+    "columns": {
+      "version": "App version",
+      "template": "Template",
+      "released": "Released",
+      "notes": "Notes"
+    },
+    "current": "Current",
+    "versionsNote": "Crustates checks for new versions daily and updates with a snapshot first, so you can roll back.",
+    "maintainers": "Maintainers",
+    "report": "Report a problem",
+    "related": "Related apps"
+  }
+}

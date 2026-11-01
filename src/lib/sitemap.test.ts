@@ -12,8 +12,11 @@ test("lists every page route file except hidden ones, as trailing-slash paths", 
     "./plugins.tsx",
     "./robots[.]txt.ts",
     "./blog.$slug.tsx",
+    "./blog/index.tsx",
+    "./blog/$slug.tsx",
+    "./blog/rss[.]xml.ts",
   ];
-  expect(pagePaths(files)).toEqual(["/", "/features/", "/tide/"]);
+  expect(pagePaths(files)).toEqual(["/", "/blog/", "/features/", "/tide/"]);
 });
 
 test("writes absolute URLs under the configured origin and base", () => {

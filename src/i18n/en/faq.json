@@ -1,0 +1,18 @@
+{
+  "kicker": "Docs · FAQ",
+  "heading": "Frequently asked questions.",
+  "search": {
+    "label": "Search the FAQ",
+    "count_one": "{{count}} question matches",
+    "count_other": "{{count}} questions match",
+    "none": "No questions match. Try other words, or ask in <community>the community</community>."
+  },
+  "topics": {
+    "label": "FAQ topics",
+    "heading": "Topics"
+  },
+  "stuck": {
+    "heading": "Still stuck?",
+    "body": "Ask in <community>the community</community>, read the <docs>docs</docs>, or check the <hardware>hardware guide</hardware>."
+  }
+}

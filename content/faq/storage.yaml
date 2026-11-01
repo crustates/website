@@ -1,0 +1,11 @@
+title: Storage
+order: 4
+items:
+  - q: ZFS or Btrfs?
+    a: Both are supported. ZFS for RAIDZ and mature tooling, Btrfs for flexible mixed disks and an in-kernel driver.
+  - q: Can I import my existing ZFS pool?
+    a: Yes, pools import with datasets and snapshots intact.
+  - q: How do backups work?
+    a: Scheduled, incremental, encrypted backups with rustic to a local pool, S3 or another node.
+  - q: Is there S3 storage?
+    a: Yes, with Garage.
