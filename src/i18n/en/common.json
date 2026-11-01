@@ -1,0 +1,97 @@
+{
+  "brand": "crustates",
+  "skipToContent": "Skip to content",
+  "nav": {
+    "label": "Main",
+    "features": "Features",
+    "docs": "Docs",
+    "download": "Download",
+    "roadmap": "Roadmap",
+    "changelog": "Changelog",
+    "community": "Community",
+    "github": "GitHub",
+    "getCrustates": "Get Crustates",
+    "home": "Crustates home",
+    "openMenu": "Menu",
+    "closeMenu": "Close menu"
+  },
+  "theme": {
+    "toDark": "Switch to dark theme",
+    "toLight": "Switch to light theme"
+  },
+  "copy": {
+    "command": "Copy command",
+    "copied": "Copied"
+  },
+  "footer": {
+    "logoAlt": "Crustates",
+    "tagline": "Your own cloud, on your own hardware.",
+    "badgeAlt": "Runs on Crustates",
+    "product": {
+      "heading": "Product",
+      "features": "Features",
+      "tide": "Tide · Compute",
+      "reef": "Reef · Storage",
+      "current": "Current · Networking",
+      "molt": "Molt · Upgrades",
+      "cast": "Cast · Clusters",
+      "barnacle": "Barnacle · Plugins",
+      "spawn": "Spawn · GitOps",
+      "assistant": "AI assistant",
+      "catalog": "App catalog",
+      "compare": "Compare",
+      "download": "Download"
+    },
+    "docs": {
+      "heading": "Docs",
+      "gettingStarted": "Getting started",
+      "hardware": "Hardware guide",
+      "api": "API and integrations",
+      "faq": "FAQ"
+    },
+    "community": {
+      "heading": "Community",
+      "contribute": "Contribute",
+      "sponsor": "Sponsor",
+      "roadmap": "Roadmap",
+      "changelog": "Changelog and blog",
+      "github": "GitHub"
+    },
+    "project": {
+      "heading": "Project",
+      "about": "About",
+      "security": "Security",
+      "brand": "Brand and press",
+      "legal": "Licence and privacy",
+      "conduct": "Code of conduct"
+    }
+  },
+  "products": {
+    "tide": "Tide",
+    "reef": "Reef",
+    "current": "Current",
+    "molt": "Molt",
+    "cast": "Cast",
+    "barnacle": "Barnacle",
+    "spawn": "Spawn",
+    "assistant": "AI assistant"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This page molted away. The link may be old, or the page grew into something new.",
+    "kicker": "Page not found",
+    "heading": "This page molted away.",
+    "body": "It shed its shell and scuttled off. The link may be old, or the page grew into something new. Pick a page below.",
+    "home": "Back to home",
+    "docs": "Read the docs",
+    "popular": "Popular pages",
+    "links": {
+      "download": "Download",
+      "features": "Features",
+      "hardware": "Hardware guide",
+      "compare": "Compare",
+      "catalog": "App catalog",
+      "faq": "FAQ"
+    }
+  }
+}

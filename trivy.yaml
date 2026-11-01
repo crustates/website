@@ -1,0 +1,10 @@
+# Dependency scan, run by `vp run security` locally and in CI.
+scan:
+  scanners: [vuln]
+  skip-dirs: [node_modules, dist]
+severity: [HIGH, CRITICAL]
+exit-code: 1
+vulnerability:
+  ignore-unfixed: true
+pkg:
+  include-dev-deps: true

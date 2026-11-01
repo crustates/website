@@ -1,0 +1,10 @@
+# Tool versions for local development and CI. Node is pinned in .node-version,
+# which both mise and Vite+ read. Keep bun in step with package.json#devEngines.
+# Vite+ itself is the global `vp` CLI (https://viteplus.dev/guide/), which hands
+# every command to the project's own vite-plus version from package.json.
+[tools]
+bun = "1.4.4"
+trivy = "0.76.1"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
