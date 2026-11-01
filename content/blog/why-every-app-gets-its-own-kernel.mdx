@@ -1,6 +1,7 @@
 ---
 title: Why every app gets its own kernel
 summary: Containers share a kernel; microVMs don't. We explain why Crustates runs each app in a Kata microVM by default, how it stays fast, and when isolation can be turned down.
+lede: "Containers share the host kernel. On a box that also holds your photos, your backups and your firewall, we think that's one shared kernel too many. Here's how Crustates runs every app in a microVM without making it slow."
 date: "[DATE]"
 product: tide
 category: Architecture
@@ -13,6 +14,142 @@ featured: true
 draft: true
 ---
 
+import { Callout } from "@/components/ui/callout";
+import { Card } from "@/components/ui/card";
+import { Console, Term } from "@/components/ui/console";
+import { Table, Td, Th } from "@/components/ui/table";
+import { Tag } from "@/components/ui/tag";
+
 ## The shared-kernel problem
 
-A container is a set of Linux namespaces and cgroups.
+A container is a set of Linux namespaces and cgroups. Every process inside still talks to the same kernel as the host. A kernel bug reachable from inside one app is a way out of all of them.
+
+For a homelab that's not theoretical. You run images pulled from the internet, often as root, next to the disks that hold everything you care about. We wanted the convenience of containers with the boundary of a VM.
+
+<Callout tint="yellow" className="text-body-s">
+  **Short version:** apps in Crustates get their own kernel by default. You still deploy container
+  images and Compose files; you just don't share a kernel with them.
+</Callout>
+
+## What a microVM is
+
+A microVM is a virtual machine with almost everything removed: no BIOS, no emulated legacy devices, a minimal kernel and virtio for disk and network. It boots in well under a second and uses tens of megabytes of memory on top of the app itself.
+
+<figure className="my-2 flex flex-col gap-3">
+  <div className="grid grid-cols-[repeat(auto-fit,minmax(min(200px,100%),1fr))] gap-4">
+    <Card padding="tight" className="flex flex-col gap-2">
+      <p className="text-label">Shared container</p>
+      <Callout tint="blue">
+        <p className="font-mono text-body-s">app A · app B · app C</p>
+      </Callout>
+      <Callout tint="rust">
+        <p className="font-mono text-body-s">host kernel (shared)</p>
+      </Callout>
+    </Card>
+    <Card padding="tight" className="flex flex-col gap-2">
+      <p className="text-label">Crustates microVM</p>
+      <div className="grid grid-cols-3 gap-1.5">
+        <Callout tint="blue" className="max-sm:px-2">
+          <p className="font-mono text-body-s">A</p>
+        </Callout>
+        <Callout tint="blue" className="max-sm:px-2">
+          <p className="font-mono text-body-s">B</p>
+        </Callout>
+        <Callout tint="blue" className="max-sm:px-2">
+          <p className="font-mono text-body-s">C</p>
+        </Callout>
+        <Callout tint="teal" className="max-sm:px-2">
+          <p className="font-mono text-body-s">kernel</p>
+        </Callout>
+        <Callout tint="teal" className="max-sm:px-2">
+          <p className="font-mono text-body-s">kernel</p>
+        </Callout>
+        <Callout tint="teal" className="max-sm:px-2">
+          <p className="font-mono text-body-s">kernel</p>
+        </Callout>
+      </div>
+      <Callout tint="rust">
+        <p className="font-mono text-body-s">KVM · host kernel</p>
+      </Callout>
+    </Card>
+  </div>
+  <figcaption className="text-caption">
+    Figure 1. Each app gets a guest kernel; the host kernel is only reachable through KVM.
+  </figcaption>
+</figure>
+
+## Kata runtime-rs on Cloud Hypervisor
+
+We didn't write our own VMM. containerd hands each app to the Kata Containers shim, which since Kata 4.0 is written in Rust (runtime-rs). The shim starts a Cloud Hypervisor microVM, mounts the image and runs the container inside it. To containerd it looks like any other runtime.
+
+{/* One expression with "\n" escapes: MDX strips leading spaces from lines inside expressions. */}
+
+<Console
+  framed={false}
+  className="rounded-md"
+  children={
+    <>
+      <Term tone="dim"># app spec: isolation defaults to microvm</Term>
+      {
+        "\nkind: App\nmetadata:\n  name: immich\nspec:\n  image: ghcr.io/immich-app/immich-server:release\n  isolation: "
+      }
+      <Term tone="ok">microvm</Term>
+      {"   "}
+      <Term tone="dim"># or: shared</Term>
+      {"\n  resources: { cpu: 2, memory: 4Gi }\n  volumes: [{ pool: tank, path: /data }]"}
+    </>
+  }
+/>
+
+Volumes come from Reef as virtio-fs or block devices, networking is a tap device on a Current bridge, and Current's eBPF programs see every packet the app sends.
+
+## What it costs
+
+<Table>
+  <thead>
+    <tr>
+      <Th>Measure</Th>
+      <Th>Shared container</Th>
+      <Th>MicroVM</Th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <Td>Cold start</Td>
+      <Td className="font-mono">~0.3 s</Td>
+      <Td className="font-mono">~0.8 s</Td>
+    </tr>
+    <tr>
+      <Td>Extra memory per app</Td>
+      <Td className="font-mono">~0 MB</Td>
+      <Td className="font-mono">~30–40 MB</Td>
+    </tr>
+    <tr>
+      <Td>Disk throughput</Td>
+      <Td className="font-mono">native</Td>
+      <Td className="font-mono">close to native</Td>
+    </tr>
+  </tbody>
+</Table>
+
+<div className="text-body-s text-ink-muted">
+  Indicative numbers from our test box; we'll publish the benchmark harness with the first beta.
+</div>
+
+## When to opt out
+
+Some boards can't run Cloud Hypervisor microVMs (the Raspberry Pi lacks GICv3-ITS), and some apps need direct host access. For those, set `isolation: shared` and the app runs as a plain crun container. The console marks it clearly.
+
+## What's next
+
+WebAssembly apps through runwasi, and Firecracker for short-lived jobs. Follow along on the [roadmap](/roadmap/).
+
+---
+
+<div className="flex flex-wrap items-center gap-3">
+  <span className="text-body-s text-ink-muted">Tags:</span>
+  <Tag>microVM</Tag>
+  <Tag>Kata</Tag>
+  <Tag>Cloud Hypervisor</Tag>
+  <Tag>containerd</Tag>
+</div>

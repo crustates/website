@@ -1,1 +1,31 @@
-{}
+{
+  "minRead": "{{count}} min read",
+  "index": {
+    "kicker": "Blog",
+    "heading": "Notes from the reef.",
+    "lead": "How Crustates is built, why we chose each engine, and what's coming next. Written by the people who build it.",
+    "featured": "Featured",
+    "readPost": "Read the post",
+    "latest": "Latest posts",
+    "releaseNotes": "Release notes",
+    "rss": "RSS feed",
+    "empty": "No posts published yet."
+  },
+  "post": {
+    "breadcrumb": "Breadcrumb",
+    "blog": "Blog",
+    "onThisPage": "On this page",
+    "toc": "Table of contents",
+    "share": "Share",
+    "bluesky": "Bluesky",
+    "copyLink": "Copy link",
+    "related": "Related posts",
+    "allPosts": "All posts"
+  },
+  "follow": {
+    "heading": "Get new posts",
+    "body": "Follow the RSS feed, or watch releases on GitHub.",
+    "rss": "RSS feed",
+    "github": "Watch releases on GitHub"
+  }
+}

@@ -16,6 +16,8 @@ export const posts = defineCollection({
     .object({
       title: z.string(),
       summary: z.string(),
+      /** Longer intro under the title on the post page; defaults to the summary. */
+      lede: z.string().optional(),
       date,
       product: productKey.optional(),
       category: z.string(),
