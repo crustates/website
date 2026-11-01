@@ -16,7 +16,6 @@ import { addNamespace, i18n } from "@/i18n";
 import catalog from "@/i18n/en/catalog.json";
 import type { ProductId } from "@/lib/products";
 import { seo } from "@/lib/seo";
-import { href } from "@/lib/site";
 
 export const Route = createFileRoute("/catalog/$app")({
   loader: ({ params }) => {
@@ -76,7 +75,7 @@ function Header({ app }: { app: App }) {
           />
           <div className="flex flex-wrap gap-3">
             <Button asChild variant="primary">
-              <a href={href("/download")}>{common("nav.getCrustates")}</a>
+              <Link to="/download/">{common("nav.getCrustates")}</Link>
             </Button>
             {detail?.website && (
               <Button asChild variant="ghost">
@@ -266,7 +265,7 @@ function DetailSections({ detail }: { detail: Detail }) {
                 </div>
               ))}
               <Button asChild size="sm" className="self-start">
-                <a href={href("/community")}>{t("app.report")}</a>
+                <Link to="/community/">{t("app.report")}</Link>
               </Button>
             </section>
           </Card>

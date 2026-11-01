@@ -14,7 +14,6 @@ import { Tag } from "@/components/ui/tag";
 import { i18n, usePageCopy } from "@/i18n";
 import compare from "@/i18n/en/compare.json";
 import { seo } from "@/lib/seo";
-import { href } from "@/lib/site";
 
 export const Route = createFileRoute("/compare")({
   head: () =>
@@ -130,7 +129,7 @@ function ComparePage() {
 
       <CtaBand heading={copy.cta.heading}>
         <Button asChild>
-          <a href={href("/download")}>{copy.cta.download}</a>
+          <Link to="/download/">{copy.cta.download}</Link>
         </Button>
         <Button asChild>
           <Link to="/roadmap/">{copy.cta.roadmap}</Link>

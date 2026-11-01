@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { AskAssistant, SameApi } from "@/components/sections/aside-callouts";
@@ -11,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { links } from "@/lib/links";
 import type { ProductId, ProductKey } from "@/lib/products";
-import { href } from "@/lib/site";
 
 type Item = { title: string; body: string };
 
@@ -66,7 +66,7 @@ export function ProductPage({
         actions={
           <>
             <Button asChild variant="primary">
-              <a href={href("/download")}>{t("productPage.download")}</a>
+              <Link to="/download/">{t("productPage.download")}</Link>
             </Button>
             <Button asChild>
               <a href={links.docs}>{t("productPage.docs", { name })}</a>

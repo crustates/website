@@ -20,7 +20,6 @@ import spawn from "@/i18n/en/spawn.json";
 import { links } from "@/lib/links";
 import { products } from "@/lib/products";
 import { seo } from "@/lib/seo";
-import { href } from "@/lib/site";
 
 export const Route = createFileRoute("/spawn")({
   head: () =>
@@ -170,9 +169,9 @@ function Example({ copy }: { copy: Copy["example"] }) {
           <strong>{copy.vms.title}</strong>
           <p className="text-body-s">{copy.vms.body}</p>
           {/* Plain link until /api lands in part 4. */}
-          <a href={href("/api")} className="text-body-s">
+          <Link to="/api/" className="text-body-s">
             {t("productPage.api.link")}
-          </a>
+          </Link>
         </Callout>
       </div>
     </Section>
@@ -195,7 +194,7 @@ function SpawnPage() {
         actions={
           <>
             <Button asChild variant="pink">
-              <a href={href("/download")}>{t("productPage.download")}</a>
+              <Link to="/download/">{t("productPage.download")}</Link>
             </Button>
             <Button asChild>
               <a href={links.docs}>{t("productPage.docs", { name })}</a>
@@ -237,7 +236,7 @@ function SpawnPage() {
               <Link to="/features/">{t("productPage.allFeatures")}</Link>
             </Button>
             <Button asChild>
-              <a href={href("/download")}>{t("productPage.download")}</a>
+              <Link to="/download/">{t("productPage.download")}</Link>
             </Button>
           </>
         }

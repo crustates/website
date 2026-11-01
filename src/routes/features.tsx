@@ -21,7 +21,7 @@ import features from "@/i18n/en/features.json";
 import { links } from "@/lib/links";
 import { products, type ProductId, type ProductKey } from "@/lib/products";
 import { seo } from "@/lib/seo";
-import { href } from "@/lib/site";
+
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/features")({
@@ -207,7 +207,7 @@ function Api({ copy }: { copy: Copy["api"] }) {
         </div>
         {/* Plain link until /api lands in part 4. */}
         <Button asChild size="sm" className="self-start">
-          <a href={href("/api")}>{copy.link}</a>
+          <Link to="/api/">{copy.link}</Link>
         </Button>
       </div>
       <Console className="flex-[1_1_480px]">
@@ -259,7 +259,7 @@ function CallToAction({ copy }: { copy: Copy["cta"] }) {
   return (
     <CtaBand heading={copy.heading}>
       <Button asChild>
-        <a href={href("/download")}>{copy.download}</a>
+        <Link to="/download/">{copy.download}</Link>
       </Button>
       <Button asChild>
         <a href={links.docs}>{copy.docs}</a>

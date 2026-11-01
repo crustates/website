@@ -2,12 +2,11 @@ import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { Wrap } from "@/components/ui/section";
 import { links } from "@/lib/links";
-import { asset, href } from "@/lib/site";
+import { asset } from "@/lib/site";
 import { NavAnchor, type NavItem } from "./nav-anchor";
 
 export function SiteFooter() {
   const { t } = useTranslation();
-  // Pages from later parts are plain links until their routes exist.
   const columns: { heading: string; items: NavItem[] }[] = [
     {
       heading: t("footer.product.heading"),
@@ -23,7 +22,7 @@ export function SiteFooter() {
         { label: t("footer.product.assistant"), to: "/assistant/" },
         { label: t("footer.product.catalog"), to: "/catalog/" },
         { label: t("footer.product.compare"), to: "/compare/" },
-        { label: t("footer.product.download"), href: href("/download") },
+        { label: t("footer.product.download"), to: "/download/" },
       ],
     },
     {
@@ -31,15 +30,15 @@ export function SiteFooter() {
       items: [
         { label: t("footer.docs.gettingStarted"), href: links.docs },
         { label: t("footer.docs.hardware"), to: "/hardware/" },
-        { label: t("footer.docs.api"), href: href("/api") },
+        { label: t("footer.docs.api"), to: "/api/" },
         { label: t("footer.docs.faq"), to: "/faq/" },
       ],
     },
     {
       heading: t("footer.community.heading"),
       items: [
-        { label: t("footer.community.contribute"), href: href("/community") },
-        { label: t("footer.community.sponsor"), href: href("/community") },
+        { label: t("footer.community.contribute"), to: "/community/" },
+        { label: t("footer.community.sponsor"), to: "/community/", hash: "sponsor" },
         { label: t("footer.community.roadmap"), to: "/roadmap/" },
         { label: t("footer.community.changelog"), to: "/changelog/" },
         { label: t("footer.community.github"), href: links.github },
@@ -48,11 +47,11 @@ export function SiteFooter() {
     {
       heading: t("footer.project.heading"),
       items: [
-        { label: t("footer.project.about"), href: href("/about") },
-        { label: t("footer.project.security"), href: href("/security") },
-        { label: t("footer.project.brand"), href: href("/brand") },
-        { label: t("footer.project.legal"), href: href("/legal") },
-        { label: t("footer.project.conduct"), href: href("/community") },
+        { label: t("footer.project.about"), to: "/about/" },
+        { label: t("footer.project.security"), to: "/security/" },
+        { label: t("footer.project.brand"), to: "/brand/" },
+        { label: t("footer.project.legal"), to: "/legal/" },
+        { label: t("footer.project.conduct"), to: "/community/", hash: "conduct" },
       ],
     },
   ];

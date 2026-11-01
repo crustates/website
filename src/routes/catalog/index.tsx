@@ -12,7 +12,6 @@ import { addNamespace, i18n } from "@/i18n";
 import catalog from "@/i18n/en/catalog.json";
 import { links } from "@/lib/links";
 import { seo } from "@/lib/seo";
-import { href } from "@/lib/site";
 
 export const Route = createFileRoute("/catalog/")({
   head: () =>
@@ -69,7 +68,7 @@ function AppDetailTeaser() {
         <Cmd command="crust tide app create immich --pool tank" />
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="primary">
-            <a href={href("/download")}>{t("teaser.install")}</a>
+            <Link to="/download/">{t("teaser.install")}</Link>
           </Button>
           <Button asChild>
             <Link to="/catalog/$app/" params={{ app: "immich" }}>
@@ -110,7 +109,7 @@ function CatalogPage() {
             <a href={links.github}>{t("submit.submit")}</a>
           </Button>
           <Button asChild>
-            <a href={href("/community")}>{t("submit.request")}</a>
+            <Link to="/community/">{t("submit.request")}</Link>
           </Button>
         </div>
       </Section>

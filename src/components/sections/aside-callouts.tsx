@@ -1,8 +1,8 @@
+import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Rich } from "@/components/rich";
 import { Callout } from "@/components/ui/callout";
 import { Cmd } from "@/components/ui/cmd";
-import { href } from "@/lib/site";
 
 /** Yellow "Ask the assistant" callout with an example question. */
 export function AskAssistant({ body, command }: { body: string; command: string }) {
@@ -28,9 +28,9 @@ export function SameApi() {
         <Rich text={t("productPage.api.body")} />
       </p>
       {/* Plain link until /api lands in part 4. */}
-      <a href={href("/api")} className="text-body-s">
+      <Link to="/api/" className="text-body-s">
         {t("productPage.api.link")}
-      </a>
+      </Link>
     </Callout>
   );
 }

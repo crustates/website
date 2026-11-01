@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/kicker";
@@ -5,14 +6,13 @@ import { Section } from "@/components/ui/section";
 import { Tag } from "@/components/ui/tag";
 import { NavAnchor, type NavItem } from "@/components/layout/nav-anchor";
 import { links } from "@/lib/links";
-import { asset, href } from "@/lib/site";
+import { asset } from "@/lib/site";
 
 // No search box: the site has no search index, and 404.html ships without JS.
 export function NotFound() {
   const { t } = useTranslation();
-  // Plain links: most of these pages land in later parts.
   const popular: NavItem[] = [
-    { label: t("notFound.links.download"), href: href("/download") },
+    { label: t("notFound.links.download"), to: "/download/" },
     { label: t("notFound.links.features"), to: "/features/" },
     { label: t("notFound.links.hardware"), to: "/hardware/" },
     { label: t("notFound.links.compare"), to: "/compare/" },
@@ -45,7 +45,7 @@ export function NotFound() {
           <p className="max-w-[600px] text-body-l">{t("notFound.body")}</p>
           <div className="flex flex-wrap gap-3">
             <Button asChild variant="primary">
-              <a href={href("/")}>{t("notFound.home")}</a>
+              <Link to="/">{t("notFound.home")}</Link>
             </Button>
             <Button asChild>
               <a href={links.docs}>{t("notFound.docs")}</a>
