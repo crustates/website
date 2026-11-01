@@ -62,14 +62,17 @@ export default defineConfig({
       prerender: {
         enabled: true,
         crawlLinks: false,
-        autoSubfolderIndex: false,
         failOnError: true,
         onSuccess: ({ page }) =>
           hiddenFromSitemap.test(page.path) ? { sitemap: { exclude: true } } : undefined,
       },
       sitemap: { host: absoluteUrl("/").replace(/\/$/, "") },
       // Server routes that write files; they are not discovered automatically.
-      pages: [{ path: "/robots.txt", sitemap: { exclude: true } }],
+      pages: [
+        { path: "/robots.txt", sitemap: { exclude: true } },
+        // GitHub Pages serves 404.html at the site root for unknown URLs.
+        { path: "/404", prerender: { outputPath: "/404.html" }, sitemap: { exclude: true } },
+      ],
     }),
     viteReact(),
   ]),

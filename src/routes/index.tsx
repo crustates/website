@@ -17,7 +17,7 @@ import { i18n } from "@/i18n";
 import { links } from "@/lib/links";
 import type { ProductId } from "@/lib/products";
 import { seo } from "@/lib/seo";
-import { absoluteUrl, asset } from "@/lib/site";
+import { absoluteUrl, asset, href } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -34,7 +34,7 @@ function ProductTitle({ product, area }: { product: ProductId; area: string }) {
   return (
     <h3 className="text-heading-3">
       {/* Plain link until the product pages land in part 2. */}
-      <a href={asset(`/${product}`)} className="text-inherit">
+      <a href={href(`/${product}`)} className="text-inherit">
         {t(`products.${product}`)}
       </a>{" "}
       <span className="font-medium text-ink-muted">· {area}</span>
@@ -53,7 +53,7 @@ function Hero() {
           <p className="max-w-[560px] text-body-l">{t("hero.lead")}</p>
           <div className="flex flex-wrap gap-4">
             <Button asChild variant="primary">
-              <a href={asset("/download")}>{t("hero.download")}</a>
+              <a href={href("/download")}>{t("hero.download")}</a>
             </Button>
             <Button asChild>
               <a href={links.docs}>{t("hero.docs")}</a>
@@ -233,7 +233,7 @@ function Assistant() {
         <h2 className="text-heading-1">{t("assistant.heading")}</h2>
         <p className="text-body-l">{t("assistant.body")}</p>
         <Button asChild variant="primary" className="self-start">
-          <a href={asset("/assistant")}>{t("assistant.cta")}</a>
+          <a href={href("/assistant")}>{t("assistant.cta")}</a>
         </Button>
       </div>
       <Card raised className="flex min-w-0 flex-[1_1_480px] flex-col gap-3.5">
@@ -269,7 +269,7 @@ function CompareStrip() {
     >
       <p className="text-heading-4">{t("compare.heading")}</p>
       <Button asChild size="sm">
-        <a href={asset("/compare")}>{t("compare.cta")}</a>
+        <a href={href("/compare")}>{t("compare.cta")}</a>
       </Button>
     </Section>
   );
@@ -307,10 +307,10 @@ function CallToAction() {
         <p className="text-body-l">{t("cta.body")}</p>
         <div className="flex flex-wrap gap-3">
           <Button asChild>
-            <a href={asset("/download")}>{t("cta.download")}</a>
+            <a href={href("/download")}>{t("cta.download")}</a>
           </Button>
           <Button asChild>
-            <a href={asset("/community")}>{t("cta.community")}</a>
+            <a href={href("/community")}>{t("cta.community")}</a>
           </Button>
         </div>
       </div>

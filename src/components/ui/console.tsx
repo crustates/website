@@ -14,13 +14,14 @@ export function Console({
   return (
     <div
       className={cn(
-        "overflow-hidden border-thick border-line",
+        "min-w-0 overflow-hidden border-thick border-line",
         framed && "rounded-md shadow-md",
         className,
       )}
     >
       <pre
-        className="theme-dark m-0 overflow-x-auto whitespace-pre bg-surface-sunken p-4 font-mono text-[13px] leading-5"
+        // Inset focus ring: the frame clips anything outside (browsers focus scrollers).
+        className="theme-dark m-0 overflow-x-auto whitespace-pre bg-surface-sunken p-4 font-mono text-[13px] leading-5 focus-visible:outline-offset-[-3px]"
         {...props}
       >
         {children}

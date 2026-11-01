@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Wrap } from "@/components/ui/section";
 import { links } from "@/lib/links";
-import { asset } from "@/lib/site";
+import { asset, href } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { MobileNav } from "./mobile-nav";
 import { NavAnchor, type NavItem } from "./nav-anchor";
@@ -16,12 +16,12 @@ export function SiteHeader({ interactive = true }: { interactive?: boolean }) {
   const collapse = interactive ? "js:max-xl:hidden" : "";
   // Pages from later parts are plain links until their routes exist.
   const items: NavItem[] = [
-    { label: t("nav.features"), href: asset("/features") },
+    { label: t("nav.features"), href: href("/features") },
     { label: t("nav.docs"), href: links.docs },
-    { label: t("nav.download"), href: asset("/download") },
-    { label: t("nav.roadmap"), href: asset("/roadmap") },
-    { label: t("nav.changelog"), href: asset("/changelog") },
-    { label: t("nav.community"), href: asset("/community") },
+    { label: t("nav.download"), href: href("/download") },
+    { label: t("nav.roadmap"), href: href("/roadmap") },
+    { label: t("nav.changelog"), href: href("/changelog") },
+    { label: t("nav.community"), href: href("/community") },
   ];
   const actions = (
     <>
@@ -29,7 +29,7 @@ export function SiteHeader({ interactive = true }: { interactive?: boolean }) {
         <a href={links.github}>{t("nav.github")}</a>
       </Button>
       <Button asChild size="sm" variant="primary">
-        <a href={asset("/download")}>{t("nav.getCrustates")}</a>
+        <a href={href("/download")}>{t("nav.getCrustates")}</a>
       </Button>
     </>
   );

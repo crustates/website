@@ -2,7 +2,13 @@ import { createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
 export function getRouter() {
-  return createRouter({ routeTree, scrollRestoration: true, defaultPreload: "intent" });
+  return createRouter({
+    routeTree,
+    scrollRestoration: true,
+    defaultPreload: "intent",
+    // Pages are prerendered as folders with an index.html (see href()).
+    trailingSlash: "always",
+  });
 }
 
 declare module "@tanstack/react-router" {

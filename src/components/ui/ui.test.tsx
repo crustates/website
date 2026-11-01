@@ -39,6 +39,13 @@ describe("Cmd", () => {
     expect(writeText).toHaveBeenCalledWith("curl -fsSL https://example.test/install | sh");
     await expect.element(page.getByRole("button", { name: "Copied" })).toBeVisible();
   });
+
+  test("stays quiet when the clipboard refuses", async () => {
+    vi.spyOn(navigator.clipboard, "writeText").mockRejectedValue(new DOMException("denied"));
+    await render(<Cmd command="crust ask hi" />);
+    await page.getByRole("button", { name: "Copy command" }).click();
+    await expect.element(page.getByRole("button", { name: "Copy command" })).toBeVisible();
+  });
 });
 
 describe("Button size sm", () => {

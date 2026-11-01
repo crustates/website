@@ -16,7 +16,7 @@ const tones = {
   /** Inverted band: dark in both themes. */
   ink: "theme-dark bg-surface-page",
   yellow: "bg-tint-yellow",
-  rust: "bg-brand-rust text-on-fill-dark",
+  rust: "bg-brand-rust text-on-fill-dark [--focus-ring:var(--on-fill-dark)]",
 };
 
 type SectionProps = Omit<ComponentProps<"section">, "className"> & {

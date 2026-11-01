@@ -7,14 +7,15 @@ import { resolveRequest } from "./serve";
 let root: string;
 beforeAll(() => {
   root = mkdtempSync(join(tmpdir(), "serve-"));
-  mkdirSync(join(root, "brand"));
-  mkdirSync(join(root, "changelog"));
+  for (const dir of ["brand", "features", "changelog", "changelog/0.4.1"])
+    mkdirSync(join(root, dir));
   for (const file of [
     "index.html",
     "404.html",
-    "features.html",
+    "features/index.html",
+    "changelog/index.html",
+    "changelog/0.4.1/index.html",
     "brand/mark.svg",
-    "changelog/0.4.1.html",
     "install",
   ]) {
     writeFileSync(join(root, file), file);
@@ -28,14 +29,22 @@ describe("resolveRequest behaves like GitHub Pages", () => {
     expect(resolve("/website/")).toEqual({ status: 200, file: join(root, "index.html") });
   });
 
-  test("serves a page from its .html file without a trailing slash", () => {
-    expect(resolve("/website/features")).toEqual({
+  test("serves a page from its folder's index.html", () => {
+    expect(resolve("/website/features/")).toEqual({
       status: 200,
-      file: join(root, "features.html"),
+      file: join(root, "features/index.html"),
     });
-    expect(resolve("/website/changelog/0.4.1")).toEqual({
+    expect(resolve("/website/changelog/0.4.1/")).toEqual({
       status: 200,
-      file: join(root, "changelog/0.4.1.html"),
+      file: join(root, "changelog/0.4.1/index.html"),
+    });
+  });
+
+  test("redirects a folder without its trailing slash", () => {
+    expect(resolve("/website")).toEqual({ status: 301, location: "/website/" });
+    expect(resolve("/website/features?ref=x")).toEqual({
+      status: 301,
+      location: "/website/features/",
     });
   });
 
@@ -47,14 +56,8 @@ describe("resolveRequest behaves like GitHub Pages", () => {
     expect(resolve("/website/install")).toEqual({ status: 200, file: join(root, "install") });
   });
 
-  test("ignores the query string", () => {
-    expect(resolve("/website/features?ref=x")).toEqual({
-      status: 200,
-      file: join(root, "features.html"),
-    });
-  });
-
-  test("answers unknown paths with 404.html", () => {
+  test("answers a folder without index.html, and unknown paths, with 404.html", () => {
+    expect(resolve("/website/brand/")).toEqual({ status: 404, file: join(root, "404.html") });
     expect(resolve("/website/nope")).toEqual({ status: 404, file: join(root, "404.html") });
     expect(resolve("/elsewhere")).toEqual({ status: 404, file: join(root, "404.html") });
   });

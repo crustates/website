@@ -9,7 +9,6 @@
       "groupName": "vite+",
       "matchPackageNames": [
         "vite-plus",
-        "viteplus",
         "@voidzero-dev/vite-plus-*",
         "vitest",
         "@vitest/browser-playwright"

@@ -19,11 +19,11 @@ describe("seo", () => {
   test("points canonical and Open Graph URLs at the configured origin and base", () => {
     expect(head.links).toContainEqual({
       rel: "canonical",
-      href: "https://crustates.github.io/website/features",
+      href: "https://crustates.github.io/website/features/",
     });
     expect(head.meta).toContainEqual({
       property: "og:url",
-      content: "https://crustates.github.io/website/features",
+      content: "https://crustates.github.io/website/features/",
     });
     expect(head.meta).toContainEqual({
       property: "og:image",

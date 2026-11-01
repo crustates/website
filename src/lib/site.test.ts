@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vite-plus/test";
-import { absoluteUrl, asset } from "./site";
+import { absoluteUrl, asset, href } from "./site";
 
 const github = { origin: "https://crustates.github.io", basePath: "/website/" };
 const domain = { origin: "https://crustates.eu", basePath: "/" };
@@ -24,5 +24,17 @@ describe("absoluteUrl", () => {
   test("keeps the trailing slash for the home page", () => {
     expect(absoluteUrl("/", github)).toBe("https://crustates.github.io/website/");
     expect(absoluteUrl("/", domain)).toBe("https://crustates.eu/");
+  });
+});
+
+describe("href", () => {
+  test("links a page with the base path and a trailing slash", () => {
+    expect(href("/features", github)).toBe("/website/features/");
+    expect(href("/changelog/0.4.1", domain)).toBe("/changelog/0.4.1/");
+  });
+
+  test("links the home page to the base path", () => {
+    expect(href("/", github)).toBe("/website/");
+    expect(href("/", domain)).toBe("/");
   });
 });

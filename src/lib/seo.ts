@@ -1,4 +1,4 @@
-import { absoluteUrl } from "./site";
+import { absoluteUrl, pageUrl } from "./site";
 
 type SeoInput = {
   title: string;
@@ -19,7 +19,7 @@ export function seo({
   noindex,
 }: SeoInput) {
   const fullTitle = `${title} · Crustates`;
-  const url = absoluteUrl(path);
+  const url = pageUrl(path);
   const imageUrl = absoluteUrl(image);
   return {
     meta: [

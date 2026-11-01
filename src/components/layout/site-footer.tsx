@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { Wrap } from "@/components/ui/section";
 import { links } from "@/lib/links";
-import { asset } from "@/lib/site";
+import { asset, href } from "@/lib/site";
 import { NavAnchor, type NavItem } from "./nav-anchor";
 
 export function SiteFooter() {
@@ -12,47 +12,47 @@ export function SiteFooter() {
     {
       heading: t("footer.product.heading"),
       items: [
-        { label: t("footer.product.features"), href: asset("/features") },
-        { label: t("footer.product.tide"), href: asset("/tide") },
-        { label: t("footer.product.reef"), href: asset("/reef") },
-        { label: t("footer.product.current"), href: asset("/current") },
-        { label: t("footer.product.molt"), href: asset("/molt") },
-        { label: t("footer.product.cast"), href: asset("/cast") },
-        { label: t("footer.product.barnacle"), href: asset("/barnacle") },
-        { label: t("footer.product.spawn"), href: asset("/spawn") },
-        { label: t("footer.product.assistant"), href: asset("/assistant") },
-        { label: t("footer.product.catalog"), href: asset("/catalog") },
-        { label: t("footer.product.compare"), href: asset("/compare") },
-        { label: t("footer.product.download"), href: asset("/download") },
+        { label: t("footer.product.features"), href: href("/features") },
+        { label: t("footer.product.tide"), href: href("/tide") },
+        { label: t("footer.product.reef"), href: href("/reef") },
+        { label: t("footer.product.current"), href: href("/current") },
+        { label: t("footer.product.molt"), href: href("/molt") },
+        { label: t("footer.product.cast"), href: href("/cast") },
+        { label: t("footer.product.barnacle"), href: href("/barnacle") },
+        { label: t("footer.product.spawn"), href: href("/spawn") },
+        { label: t("footer.product.assistant"), href: href("/assistant") },
+        { label: t("footer.product.catalog"), href: href("/catalog") },
+        { label: t("footer.product.compare"), href: href("/compare") },
+        { label: t("footer.product.download"), href: href("/download") },
       ],
     },
     {
       heading: t("footer.docs.heading"),
       items: [
         { label: t("footer.docs.gettingStarted"), href: links.docs },
-        { label: t("footer.docs.hardware"), href: asset("/hardware") },
-        { label: t("footer.docs.api"), href: asset("/api") },
-        { label: t("footer.docs.faq"), href: asset("/faq") },
+        { label: t("footer.docs.hardware"), href: href("/hardware") },
+        { label: t("footer.docs.api"), href: href("/api") },
+        { label: t("footer.docs.faq"), href: href("/faq") },
       ],
     },
     {
       heading: t("footer.community.heading"),
       items: [
-        { label: t("footer.community.contribute"), href: asset("/community") },
-        { label: t("footer.community.sponsor"), href: asset("/community") },
-        { label: t("footer.community.roadmap"), href: asset("/roadmap") },
-        { label: t("footer.community.changelog"), href: asset("/changelog") },
+        { label: t("footer.community.contribute"), href: href("/community") },
+        { label: t("footer.community.sponsor"), href: href("/community") },
+        { label: t("footer.community.roadmap"), href: href("/roadmap") },
+        { label: t("footer.community.changelog"), href: href("/changelog") },
         { label: t("footer.community.github"), href: links.github },
       ],
     },
     {
       heading: t("footer.project.heading"),
       items: [
-        { label: t("footer.project.about"), href: asset("/about") },
-        { label: t("footer.project.security"), href: asset("/security") },
-        { label: t("footer.project.brand"), href: asset("/brand") },
-        { label: t("footer.project.legal"), href: asset("/legal") },
-        { label: t("footer.project.conduct"), href: asset("/community") },
+        { label: t("footer.project.about"), href: href("/about") },
+        { label: t("footer.project.security"), href: href("/security") },
+        { label: t("footer.project.brand"), href: href("/brand") },
+        { label: t("footer.project.legal"), href: href("/legal") },
+        { label: t("footer.project.conduct"), href: href("/community") },
       ],
     },
   ];

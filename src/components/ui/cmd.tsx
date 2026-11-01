@@ -14,13 +14,17 @@ export function Cmd({ command, className }: { command: string; className?: strin
   useEffect(() => setMounted(true), []);
 
   async function copy() {
-    await navigator.clipboard.writeText(command);
+    try {
+      await navigator.clipboard.writeText(command);
+    } catch {
+      return; // Clipboard blocked: the command is still there to select.
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
 
   return (
-    <div className={cn("rounded-md border-thick border-line shadow-md", className)}>
+    <div className={cn("min-w-0 rounded-md border-thick border-line shadow-md", className)}>
       <div className="theme-dark flex h-full items-center gap-3 rounded-[3px] bg-surface-sunken py-3.5 pr-3 pl-4 font-mono text-[14px] leading-5">
         <span aria-hidden="true" className="text-accent-yellow">
           $

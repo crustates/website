@@ -11,3 +11,16 @@ export function asset(path: string, { basePath }: Site = site): string {
 export function absoluteUrl(path: string, config: Site = site): string {
   return config.origin + asset(path, config);
 }
+
+/**
+ * Link to a page. Pages are written as folders with an index.html, which
+ * GitHub Pages serves at the URL with a trailing slash.
+ */
+export function href(path: string, config: Site = site): string {
+  return asset(path.replace(/\/?$/, "/"), config);
+}
+
+/** Full URL of a page, for canonical and Open Graph links. */
+export function pageUrl(path: string, config: Site = site): string {
+  return config.origin + href(path, config);
+}

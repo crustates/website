@@ -14,7 +14,12 @@ export function Table({
   ...props
 }: Omit<ComponentProps<"table">, "frame"> & { frame?: keyof typeof frames }) {
   return (
-    <div className={cn("overflow-x-auto bg-surface-card", frames[frame])}>
+    <div
+      className={cn(
+        "overflow-x-auto bg-surface-card focus-visible:outline-offset-[-3px]",
+        frames[frame],
+      )}
+    >
       <table className={cn("w-full border-collapse text-body-s", className)} {...props} />
     </div>
   );

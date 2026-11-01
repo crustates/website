@@ -4,19 +4,19 @@ import { Kicker } from "@/components/ui/kicker";
 import { Section } from "@/components/ui/section";
 import { Tag } from "@/components/ui/tag";
 import { links } from "@/lib/links";
-import { asset } from "@/lib/site";
+import { asset, href } from "@/lib/site";
 
 // No search box: the site has no search index, and 404.html ships without JS.
 export function NotFound() {
   const { t } = useTranslation();
   // Plain links: most of these pages land in later parts.
   const popular = [
-    { label: t("notFound.links.download"), href: asset("/download") },
-    { label: t("notFound.links.features"), href: asset("/features") },
-    { label: t("notFound.links.hardware"), href: asset("/hardware") },
-    { label: t("notFound.links.compare"), href: asset("/compare") },
-    { label: t("notFound.links.catalog"), href: asset("/catalog") },
-    { label: t("notFound.links.faq"), href: asset("/faq") },
+    { label: t("notFound.links.download"), href: href("/download") },
+    { label: t("notFound.links.features"), href: href("/features") },
+    { label: t("notFound.links.hardware"), href: href("/hardware") },
+    { label: t("notFound.links.compare"), href: href("/compare") },
+    { label: t("notFound.links.catalog"), href: href("/catalog") },
+    { label: t("notFound.links.faq"), href: href("/faq") },
   ];
   return (
     <Section dots band padded={false} className="min-h-[560px]">
@@ -44,7 +44,7 @@ export function NotFound() {
           <p className="max-w-[600px] text-body-l">{t("notFound.body")}</p>
           <div className="flex flex-wrap gap-3">
             <Button asChild variant="primary">
-              <a href={asset("/")}>{t("notFound.home")}</a>
+              <a href={href("/")}>{t("notFound.home")}</a>
             </Button>
             <Button asChild>
               <a href={links.docs}>{t("notFound.docs")}</a>
