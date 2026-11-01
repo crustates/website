@@ -135,6 +135,34 @@
   }
 }
 
+.theme-dark {
+  color-scheme: dark;
+  --surface-page: #141414;
+  --surface-card: #1E1E1E;
+  --surface-sunken: #0B0B0B;
+  --ink: #FFF6E5;
+  --ink-muted: #B9B2A5;
+  --line: #FFF6E5;
+  --line-soft: #3A3732;
+  --text-link: #8FA2FF;
+  --text-rust: #FF8A65;
+  --text-teal: #4FD1C1;
+  --text-violet: #C4A6FF;
+  --text-brown: #D9A97A;
+  --text-pink: #FF9EC4;
+  --text-success: #5BE39A;
+  --text-danger: #FF7A70;
+  --tint-rust: #3A1D14;
+  --tint-blue: #1A2152;
+  --tint-teal: #0F302C;
+  --tint-yellow: #3A3210;
+  --tint-violet: #261C40;
+  --tint-brown: #2E2118;
+  --tint-pink: #3D1828;
+  --focus-ring: #FFD23F;
+  color: var(--ink);
+}
+
 @theme inline {
   --color-*: initial;
   --color-surface-page: var(--surface-page);

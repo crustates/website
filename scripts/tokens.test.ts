@@ -23,6 +23,11 @@ describe("generateTheme", () => {
     expect(block(':root:not([data-theme="light"])')).toContain("--ink: #FFF6E5;");
   });
 
+  test("offers a .theme-dark scope for always-dark surfaces like the console", () => {
+    expect(block(".theme-dark")).toContain("--surface-sunken: #0B0B0B;");
+    expect(block(".theme-dark")).toContain("color: var(--ink);");
+  });
+
   test("resolves token references", () => {
     expect(block(":root")).toContain("--status-warning: #FFD23F;");
   });
@@ -62,4 +67,12 @@ describe("generateTheme", () => {
   test("matches the committed theme.css (run `vp run tokens` after editing tokens.json)", () => {
     expect(readFileSync("src/styles/theme.css", "utf8")).toBe(css);
   });
+});
+
+test("cn() knows every type style name", async () => {
+  const { TEXT_STYLES } = await import("../src/lib/utils");
+  const names = tokens.type.groups.flatMap((g: { styles: { name: string }[] }) =>
+    g.styles.map((s) => s.name),
+  );
+  expect([...TEXT_STYLES]).toEqual(names);
 });

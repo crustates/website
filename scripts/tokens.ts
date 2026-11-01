@@ -61,8 +61,10 @@ export function generateTheme(input: unknown): string {
   const dark = colors
     .filter((c) => resolve(c.value.dark, "dark") !== resolve(c.value.light, "light"))
     .map((c) => `  --${c.name}: ${resolve(c.value.dark, "dark")};`);
-  const darkBlock = (selector: string, indent = "") =>
-    [`${selector} {`, "  color-scheme: dark;", ...dark, "}"].map((l) => indent + l).join("\n");
+  const darkBlock = (selector: string, indent = "", extra: string[] = []) =>
+    [`${selector} {`, "  color-scheme: dark;", ...dark, ...extra, "}"]
+      .map((l) => indent + l)
+      .join("\n");
 
   const fontFaces = tokens.type.fonts.map((f) =>
     [
@@ -115,6 +117,8 @@ export function generateTheme(input: unknown): string {
       [":root {", "  color-scheme: light;", ...light, "}"].join("\n"),
       darkBlock(':root[data-theme="dark"]'),
       `@media (prefers-color-scheme: dark) {\n${darkBlock(':root:not([data-theme="light"])', "  ")}\n}`,
+      // Always-dark surfaces (console, ink bands) in either theme.
+      darkBlock(".theme-dark", "", ["  color: var(--ink);"]),
       theme,
       ...borders,
     ].join("\n\n") + "\n"
