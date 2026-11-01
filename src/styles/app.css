@@ -1,0 +1,48 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/* `dark:` follows the toggle (data-theme) and, without a stored choice, the OS. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
+/* The inline head script sets data-js; `js:` shows enhancements only when it ran. */
+@custom-variant js (&:where([data-js] *));
+@custom-variant no-js (&:where(:root:not([data-js]) *));
+
+@layer base {
+  html {
+    background: var(--surface-page);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 24px;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+  }
+  a {
+    color: var(--text-link);
+    text-underline-offset: 3px;
+  }
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+  code,
+  pre,
+  kbd {
+    font-family: var(--font-mono);
+  }
+  code {
+    font-size: 14px;
+  }
+}
