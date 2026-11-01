@@ -1,1 +1,183 @@
-{}
+{
+  "hero": {
+    "kicker": "AI assistant · coming in M4",
+    "heading": "Ask your homelab what's going on.",
+    "lead": "A built-in assistant that knows your VMs, apps, pools and networks. Ask why something is slow, what changed overnight or whether your photos are backed up. When you want it to act, it shows you a plan first and waits for your OK.",
+    "design": "Read the design",
+    "roadmap": "See the roadmap",
+    "tags": ["Local model by default", "Your role, never more", "Plan, then confirm"]
+  },
+  "chat": {
+    "title": "Assistant",
+    "model": "ollama · qwen3 14b · local",
+    "question": "Why is Jellyfin buffering tonight?",
+    "refs": ["app/jellyfin", "event · 07:02 update", "metric · node-1 cpu"],
+    "offer": "I can re-attach <code>/dev/dri/renderD128</code> to the app and restart it. That takes about 20 seconds.",
+    "plan": "Plan · 1 change",
+    "needsConfirmation": "Needs confirmation",
+    "confirm": "Confirm and apply",
+    "cancel": "Cancel",
+    "logged": "Logged as \"via assistant\"",
+    "answer": "Jellyfin is transcoding 3 streams on the CPU. The shared iGPU isn't attached since this morning's update to <strong>10.11.2</strong>, so hardware transcoding fell back to software. CPU on <code>node-1</code> has been above 90% since 20:14."
+  },
+  "does": {
+    "kicker": "What it does",
+    "heading": "Questions, troubleshooting and actions in plain language.",
+    "lead": "The assistant uses the same API as the console and the CLI. It sees what you can see and does what you can do, nothing more.",
+    "items": [
+      {
+        "title": "Ask about your setup",
+        "body": "\"Which VMs use the most RAM?\" \"What changed since yesterday?\" It reads resources, metrics, logs, events, alerts and the audit log."
+      },
+      {
+        "title": "Troubleshoot",
+        "body": "Links an alert to its likely cause, such as a full pool, a failing disk, an OOM kill or an expired certificate, and suggests a fix."
+      },
+      {
+        "title": "Take actions",
+        "body": "Start or stop VMs, install an app from the catalog, snapshot a volume, add a firewall rule or run a backup. Every change is a plan you confirm."
+      },
+      {
+        "title": "Plan ahead",
+        "body": "\"Can this box take another Windows VM?\" Capacity checks, config explanations and Compose imports drafted for you to review."
+      }
+    ],
+    "digest": {
+      "title": "Opt-in digest.",
+      "body": "A daily or weekly summary of alerts, updates and backup status, sent through your normal alert channels. It only reports; it never acts on its own."
+    }
+  },
+  "models": {
+    "kicker": "Bring your own model",
+    "heading": "Local first. Nothing leaves your network unless you say so.",
+    "lead": "The assistant stays off until you pick a provider. Setup suggests a local model sized to your hardware, and the chat always shows which model answered and whether data left the network.",
+    "items": [
+      {
+        "title": "Local, on the box",
+        "body": "Ollama or llama.cpp from the catalog, running as an app with GPU passthrough if you have one.",
+        "status": "Default"
+      },
+      {
+        "title": "Local, on your LAN",
+        "body": "Point it at a model server on another machine, such as a desktop with a big GPU.",
+        "status": "Private"
+      },
+      {
+        "title": "Remote, with your key",
+        "body": "Any OpenAI-compatible endpoint or the Anthropic API. The key is stored as a platform secret.",
+        "status": "Opt-in"
+      }
+    ]
+  },
+  "grounded": {
+    "kicker": "Grounded answers",
+    "heading": "Every answer shows where it came from.",
+    "lead": "It reads live state through the API, never a stale copy, plus the Crustates docs, ADRs and your own resource specs, indexed locally. Answers cite the resources, log lines and docs they used, with links straight into the console.",
+    "question": "Is the photos share backed up?",
+    "answer": "Yes. The last backup of <code>tank/photos</code> finished at 03:12 today: 1.8 GiB changed, 412 GiB total, verified. The next run is tonight at 03:00.",
+    "sources": "Sources",
+    "links": [
+      "reef/backup-jobs/photos-nightly",
+      "reef/snapshots/tank/photos@2026-10-31",
+      "docs · Backups and restore"
+    ]
+  },
+  "where": {
+    "kicker": "Where it lives",
+    "heading": "In the console, the terminal and your own agents.",
+    "console": {
+      "title": "Web console",
+      "body": "A chat drawer on every page that knows what you're looking at, so \"restart this VM\" just works."
+    },
+    "cli": {
+      "title": "CLI",
+      "body": "Answers in your terminal, plans printed as diffs."
+    },
+    "tui": {
+      "title": "Terminal UI",
+      "body": "An assistant pane in <code>crust tui</code>, next to your logs and resource lists."
+    },
+    "mcp": {
+      "title": "Your agents, via MCP",
+      "body": "Claude Code, Claude Desktop and other MCP clients use the same tools through the Crustates MCP server, with the same permissions."
+    }
+  },
+  "safety": {
+    "kicker": "Safety",
+    "heading": "Helpful, and on a short leash.",
+    "lead": "Models can be confidently wrong, so the assistant is built around review, not trust.",
+    "items": [
+      {
+        "title": "Acts as you",
+        "body": "Your role and never more. A per-role allowlist decides which tools it may call at all."
+      },
+      {
+        "title": "Read-only by default",
+        "body": "Every change is a plan: the diff, a dry run through the reconciler and its impact. Nothing applies without your confirmation."
+      },
+      {
+        "title": "Typed confirmation",
+        "body": "Deletes, wipes, pool changes and risky firewall rules need you to type the resource name."
+      },
+      {
+        "title": "Audited and undoable",
+        "body": "Actions are logged \"via assistant\" with the prompt behind them. Risky changes take a snapshot first."
+      },
+      {
+        "title": "Untrusted input stays data",
+        "body": "Text in logs, app output, file names or web pages can never trigger an action. No autonomous actions."
+      },
+      {
+        "title": "Rate limits and budgets",
+        "body": "Per-user limits and a token budget, so a looping model can't hammer the API or a paid provider."
+      }
+    ]
+  },
+  "destructive": {
+    "kicker": "Destructive actions",
+    "heading": "Type the name to delete it.",
+    "lead": "The same guard the console uses. The assistant can propose it; only you can finish it.",
+    "plan": "Plan · delete VM win11-old",
+    "badge": "Destructive",
+    "body": "Removes the VM and its 2 disks (96 GiB) on pool <code>tank</code>. A snapshot is kept for 7 days.",
+    "label": "Type <code>win11-old</code> to confirm",
+    "help": "Doesn't match yet.",
+    "delete": "Delete VM",
+    "cancel": "Cancel"
+  },
+  "faq": {
+    "kicker": "FAQ",
+    "heading": "Questions about the assistant",
+    "items": [
+      {
+        "title": "Is it on by default?",
+        "body": "No. It stays off until you pick a model provider in Settings."
+      },
+      {
+        "title": "What hardware do I need for a local model?",
+        "body": "A small model runs on a modern CPU with 16 GB RAM. A GPU with 12 GB or more makes larger models responsive."
+      },
+      {
+        "title": "Does it send my data anywhere?",
+        "body": "Only if you choose a remote provider. The chat shows a clear marker whenever data leaves your network."
+      },
+      {
+        "title": "When can I use it?",
+        "body": "Questions and troubleshooting are planned for M4, actions with plan-and-confirm for M6. See the roadmap."
+      },
+      {
+        "title": "Can I turn off actions completely?",
+        "body": "Yes. Admins can make it read-only for everyone or per role."
+      },
+      {
+        "title": "Can I use my own agent instead?",
+        "body": "Yes. Connect Claude Code or any MCP client to the MCP server; the same rules apply."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Help shape the assistant.",
+    "discuss": "Join the discussion",
+    "roadmap": "Roadmap"
+  }
+}

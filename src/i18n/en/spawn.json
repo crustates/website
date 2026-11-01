@@ -1,1 +1,120 @@
-{}
+{
+  "hero": {
+    "kicker": "Spawn · GitOps and push-to-deploy",
+    "heading": "Your homelab, in a Git repo.",
+    "lead": "Describe your apps, VMs and network in YAML, open a pull request, read the plan, merge. Or push your own code and let Crustates build and deploy it.",
+    "tags": ["GitHub", "Forgejo / Gitea", "GitLab", "SOPS + age", "BuildKit", "Railpack"]
+  },
+  "visual": {
+    "repo": "miguel/homelab · main",
+    "inSync": "In sync",
+    "comment": "crustates-bot commented on #42",
+    "pr": "Bump immich to v1.130"
+  },
+  "capabilities": {
+    "heading": "Every change reviewed, every change reversible.",
+    "items": [
+      {
+        "title": "Any resource in Git",
+        "body": "Apps, VMs, networks, firewall rules, shares and backup policies are YAML files in your repo."
+      },
+      {
+        "title": "Pull, not push",
+        "body": "Spawn polls your repo every few minutes and reacts to webhooks. No port forwarding, no inbound access."
+      },
+      {
+        "title": "Plan on every PR",
+        "body": "A dry run through the reconcilers is posted as a PR comment. Merge to apply it."
+      },
+      {
+        "title": "Drift detection",
+        "body": "See when the live system no longer matches Git, and choose to revert it, adopt it or just warn."
+      },
+      {
+        "title": "Secrets with SOPS",
+        "body": "Encrypt secrets in the repo with SOPS and age. They are decrypted only on your node."
+      },
+      {
+        "title": "Image update PRs",
+        "body": "When an app image has a new version, Spawn opens a PR, like Renovate."
+      },
+      {
+        "title": "Push to deploy",
+        "body": "Every push to your own app's repo builds on the box and rolls out with health checks."
+      },
+      {
+        "title": "PR previews",
+        "body": "Each pull request gets its own preview app at <code>pr-42.blog.crust.internal</code>, removed on close."
+      },
+      {
+        "title": "Audit and rollback",
+        "body": "Every change is logged \"via git\" with the commit. Rolling back is <code>git revert</code>."
+      }
+    ]
+  },
+  "how": {
+    "heading": "Two ways to use Git.",
+    "lead": "GitOps keeps your whole setup in a repo. Push-to-deploy builds your own code. Use one, the other or both.",
+    "tracks": [
+      {
+        "title": "GitOps for your setup",
+        "steps": [
+          "Connect a repo, branch and folder: GitHub App, Forgejo, GitLab, or plain Git with a deploy key.",
+          "Open a PR. Spawn posts the dry-run plan as a comment and a check.",
+          "Merge. Spawn pulls the commit and the reconcilers apply it, with a snapshot first.",
+          "Drift is reported in the console; your prune policy decides what happens."
+        ]
+      },
+      {
+        "title": "Push-to-deploy for your code",
+        "steps": [
+          "Connect your app's repo. Spawn detects a Dockerfile, or builds with Railpack if there is none.",
+          "Each push builds on the box with BuildKit, with layer caching.",
+          "The new version rolls out behind Caddy and must pass its health check.",
+          "Pull requests get a preview app; prefer CI? Run a GitHub Actions or Forgejo runner in a microVM."
+        ]
+      }
+    ],
+    "table": {
+      "columns": ["Engine", "Role in Spawn", "Notes"],
+      "rows": [
+        ["gitoxide", "Fetches repos in Rust", "Shallow, pull-based"],
+        ["SOPS + age", "Encrypted secrets in Git", "Keys stay on the node"],
+        ["BuildKit", "Builds images on the box", "Cached layers"],
+        ["Railpack", "Zero-config builds", "Successor to Nixpacks"],
+        ["GitHub App", "Webhooks, PR comments and checks", "Forgejo and GitLab via webhooks"],
+        ["Reconcilers", "Dry runs and applies", "Same API as console and CLI"]
+      ]
+    }
+  },
+  "example": {
+    "kicker": "Example",
+    "heading": "apps/immich.yaml",
+    "comment": "# Same shape as the API: spec in Git, status on the node",
+    "push": "Push-to-deploy",
+    "ask": "\"Why did the last deploy of blog fail?\" The assistant reads the build log and the commit, and suggests a fix as a PR.",
+    "vms": {
+      "title": "What about VMs?",
+      "body": "Git manages a VM's spec: size, disks, network and cloud-init. What runs inside it stays with cloud-init or a tool like Ansible."
+    }
+  },
+  "faq": [
+    {
+      "title": "Does my homelab need to be reachable from the internet?",
+      "body": "No. Spawn pulls from your repo. Webhooks are optional and can come through a relay."
+    },
+    {
+      "title": "Is this Flux or Argo CD?",
+      "body": "No Kubernetes needed. It is built into Crustates and uses the same API as the console."
+    },
+    {
+      "title": "Can I still click things in the console?",
+      "body": "Yes. Changes made outside Git show up as drift, and you decide whether to adopt or revert them."
+    },
+    {
+      "title": "Which Git hosts work?",
+      "body": "GitHub with a GitHub App, Forgejo, Gitea and GitLab with webhooks, or any Git server over SSH."
+    }
+  ],
+  "next": { "heading": "Commit your homelab." }
+}
