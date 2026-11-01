@@ -51,7 +51,7 @@ export function Section({
     <Comp
       className={cn(
         tone && tones[tone],
-        fill && products[fill].fill,
+        fill && [products[fill].fill, products[fill].ring],
         band && "border-y-3 border-line",
         dots && "dots",
         padded && "py-16 max-md:py-12",

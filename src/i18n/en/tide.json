@@ -1,0 +1,137 @@
+{
+  "hero": {
+    "kicker": "Tide · Compute",
+    "heading": "Full VMs when you need them. A microVM for every app.",
+    "lead": "Run Windows, Home Assistant OS or OPNsense as full VMs, and every app in its own small VM with its own kernel. One console, one API, no YAML required.",
+    "tags": ["QEMU + KVM", "Kata runtime-rs", "Cloud Hypervisor", "containerd", "amd64 · arm64"]
+  },
+  "visual": {
+    "title": "Tide · Workloads",
+    "node": "node-1 · 14 running",
+    "columns": {
+      "name": "Name",
+      "kind": "Kind",
+      "isolation": "Isolation",
+      "cpu": "CPU",
+      "ram": "RAM",
+      "status": "Status"
+    },
+    "vm": "VM",
+    "app": "App",
+    "running": "Running",
+    "updating": "Updating",
+    "stopped": "Stopped"
+  },
+  "capabilities": {
+    "heading": "Everything you run, in one list.",
+    "items": [
+      {
+        "title": "Full VMs",
+        "body": "QEMU with KVM: UEFI, virtual TPM, Secure Boot and a VNC console in the browser. Windows 11 installs out of the box."
+      },
+      {
+        "title": "Apps in microVMs",
+        "body": "Container images run inside Kata microVMs on Cloud Hypervisor, so each app gets its own kernel."
+      },
+      {
+        "title": "Shared mode",
+        "body": "Set <code>isolation: shared</code> for a plain container with crun when memory is tight."
+      },
+      {
+        "title": "App catalog",
+        "body": "One-click apps from curated and community templates, with sane defaults for storage and names."
+      },
+      {
+        "title": "Compose import",
+        "body": "Paste a Compose file and get a Crustates app with volumes, secrets and HTTPS."
+      },
+      {
+        "title": "Passthrough",
+        "body": "USB, whole disks and GPUs, including a shared iGPU for media transcoding."
+      },
+      {
+        "title": "Templates and cloud-init",
+        "body": "Build a VM once, clone it many times and configure it on first boot."
+      },
+      {
+        "title": "Updates with rollback",
+        "body": "See new image versions, update an app and roll back if the health check fails."
+      },
+      {
+        "title": "Logs, shell and secrets",
+        "body": "Live logs and a shell for every app, with secrets injected as files or variables."
+      }
+    ]
+  },
+  "how": {
+    "heading": "Two engines, picked per workload.",
+    "lead": "Crustates chooses the engine from what you ask for. You can always override it in the spec.",
+    "steps": [
+      {
+        "title": "You describe it",
+        "body": "A VM or App resource: image or ISO, CPU, memory, disks, network."
+      },
+      {
+        "title": "The agent picks an engine",
+        "body": "Full VM → QEMU. App → Kata microVM. <code>isolation: shared</code> → crun."
+      },
+      {
+        "title": "It reconciles",
+        "body": "The node agent creates, watches and heals the workload until it matches the spec."
+      }
+    ],
+    "table": {
+      "columns": ["Engine", "Role in Tide", "Notes"],
+      "rows": [
+        ["QEMU + KVM", "Full VMs", "Display, USB, Windows, GPU passthrough"],
+        [
+          "Cloud Hypervisor",
+          "MicroVM and headless VM engine",
+          "Rust VMM, fast boot, small footprint"
+        ],
+        [
+          "Kata runtime-rs",
+          "Runs container images in microVMs",
+          "Rust runtime, default since Kata 4.0"
+        ],
+        ["containerd", "Image pulls and app lifecycle", "ZFS and Btrfs snapshotters"],
+        ["crun", "OCI runtime for shared mode", "youki once proven"],
+        ["Firecracker", "Ephemeral jobs and CI runners", "Later"]
+      ]
+    }
+  },
+  "specs": {
+    "rows": [
+      ["Architectures", "amd64 and arm64"],
+      ["Guest OS", "Linux, Windows 10/11, BSD, Home Assistant OS"],
+      ["Firmware", "UEFI (OVMF), SeaBIOS, vTPM 2.0"],
+      ["Max vCPU / RAM per VM", "[PLACEHOLDER] / [PLACEHOLDER]"],
+      ["MicroVM overhead", "Tens of MB RAM per app"],
+      ["Raspberry Pi", "Shared isolation only (no GICv3-ITS)"],
+      ["Live migration", "Later, with Cast"]
+    ],
+    "ask": {
+      "body": "\"Why did immich restart three times last night?\" The assistant reads the app's events, logs and memory metrics and points at the cause.",
+      "command": "crust ask \"why did immich restart last night?\""
+    }
+  },
+  "faq": [
+    {
+      "title": "Do I have to use microVMs?",
+      "body": "No. They are the default for apps because they are safer, but <code>isolation: shared</code> runs a plain container."
+    },
+    {
+      "title": "Can I run Docker Compose apps?",
+      "body": "Yes. Import the Compose file; each service becomes part of a Crustates app."
+    },
+    {
+      "title": "Does GPU passthrough work?",
+      "body": "Yes, for full VMs with QEMU. A shared iGPU can also be given to apps for transcoding."
+    },
+    {
+      "title": "Why not Firecracker for everything?",
+      "body": "Firecracker has no GPU, USB or display support. It comes later for short-lived jobs."
+    }
+  ],
+  "next": { "heading": "Your VMs need somewhere to live.", "label": "Reef · Storage →" }
+}

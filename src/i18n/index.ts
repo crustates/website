@@ -37,3 +37,16 @@ export function addNamespace<N extends Namespace>(
     instance.addResourceBundle(instance.language, ns, bundle);
   }
 }
+
+/**
+ * A page's strings as one object, for pages built from structured copy (lists
+ * of cards, table rows). Registers the namespace like addNamespace.
+ */
+export function usePageCopy<N extends Namespace>(
+  ns: N,
+  bundle: Resources[N],
+  instance: I18n = i18n,
+): Resources[N] {
+  addNamespace(ns, bundle, instance);
+  return instance.getResourceBundle(instance.language, ns) as Resources[N];
+}

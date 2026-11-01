@@ -7,10 +7,15 @@ import { cn } from "@/lib/utils";
  */
 export function Console({
   framed = true,
+  wrap = false,
   className,
   children,
   ...props
-}: ComponentProps<"pre"> & { framed?: boolean }) {
+}: ComponentProps<"pre"> & {
+  framed?: boolean;
+  /** Wrap long lines instead of scrolling sideways. */
+  wrap?: boolean;
+}) {
   return (
     <div
       className={cn(
@@ -21,7 +26,10 @@ export function Console({
     >
       <pre
         // Inset focus ring: the frame clips anything outside (browsers focus scrollers).
-        className="theme-dark m-0 overflow-x-auto whitespace-pre bg-surface-sunken p-4 font-mono text-[13px] leading-5 focus-visible:outline-offset-[-3px]"
+        className={cn(
+          "theme-dark m-0 overflow-x-auto bg-surface-sunken p-4 font-mono text-[13px] leading-5 focus-visible:outline-offset-[-3px]",
+          wrap ? "whitespace-pre-wrap" : "whitespace-pre",
+        )}
         {...props}
       >
         {children}
