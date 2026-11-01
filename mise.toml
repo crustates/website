@@ -1,0 +1,9 @@
+# Tool versions for local development and CI. Node is pinned in .node-version,
+# which both mise and Vite+ read. Keep bun in step with package.json#devEngines.
+[tools]
+bun = "1.4.4"
+trivy = "0.76.1"
+viteplus = "1.4.0"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
