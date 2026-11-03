@@ -29,6 +29,8 @@ export default defineConfig({
       preview: { command: ["vp build", "vpx ./scripts/serve.ts"], cache: false },
       // Playwright against the built site: every page, links, JS off, 320px (after vp build).
       e2e: { command: "playwright test --project e2e", cache: false },
+      // Screenshots next to the design kit, report only (needs DESIGN_KIT_DIR; after vp build).
+      design: { command: "playwright test --project design", cache: false },
       // Lighthouse on one page per template; fails under 95 (after vp build).
       lighthouse: { command: "vpx ./scripts/lighthouse.ts", cache: false },
       // Gzipped JS per prerendered page, as a Markdown table (after vp build).
