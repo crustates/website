@@ -5,6 +5,7 @@
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, resolve, sep } from "node:path";
+import { gzipSync } from "node:zlib";
 import { site } from "../site.config.ts";
 
 const types: Record<string, string> = {
@@ -54,10 +55,22 @@ export function servePages(root: string, port: number, onListening?: () => void)
     const result = resolveRequest(root, site.basePath, req.url ?? "/");
     if (result.status === 301) return res.writeHead(301, { location: result.location }).end();
     if (!isFile(result.file)) return res.writeHead(404).end("Not found");
-    res.writeHead(result.status, {
-      "content-type": types[extname(result.file)] ?? "application/octet-stream",
-    });
-    res.end(readFileSync(result.file));
+    const type = types[extname(result.file)] ?? "application/octet-stream";
+    const body = readFileSync(result.file);
+    // Pages gzips text, so Lighthouse sees real transfer sizes.
+    if (
+      /text|json|xml|javascript|svg|manifest/.test(type) &&
+      /\bgzip\b/.test(String(req.headers["accept-encoding"]))
+    ) {
+      res.writeHead(result.status, {
+        "content-type": type,
+        "content-encoding": "gzip",
+        vary: "accept-encoding",
+      });
+      return res.end(gzipSync(body));
+    }
+    res.writeHead(result.status, { "content-type": type });
+    res.end(body);
   }).listen(port, onListening);
 }
 
