@@ -1,15 +1,26 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { expect, test, type Page } from "@playwright/test";
 import { site } from "../site.config.ts";
 
 const base = site.basePath;
 const html = (path: string) => readFileSync(`dist/client/${path}`, "utf8");
 
+const sitemap = [...html("sitemap.xml").matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+  (m) => new URL(m[1]!).pathname,
+);
 // Every page in the sitemap, plus the UI kit, which stays out of it.
-const pages = [
-  ...[...html("sitemap.xml").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]!).pathname),
-  `${base}_kit/`,
-];
+const pages = [...sitemap, `${base}_kit/`];
+// The site's own absolute URLs (canonical, og:image) are checked like relative ones.
+const ownHost = new URL(site.origin).host;
+
+test("the sitemap lists every built page", () => {
+  // The UI kit and the /plugins redirect stay out on purpose.
+  const built = readdirSync("dist/client", { recursive: true, encoding: "utf8" })
+    .filter((file) => file.endsWith("index.html") && !/^(_kit|plugins)\//.test(file))
+    .map((file) => `${base}${file.replace(/index\.html$/, "")}`);
+  const sorted = (list: string[]) => [...list].sort((a, b) => a.localeCompare(b));
+  expect(sorted(sitemap)).toEqual(sorted(built));
+});
 
 /** Sums layout shifts from page load on, as Web Vitals' CLS does for a short visit. */
 async function trackLayoutShift(page: Page) {
@@ -28,9 +39,15 @@ async function trackLayoutShift(page: Page) {
   return () => page.evaluate(() => (window as unknown as { cls: number }).cls);
 }
 
-/** Console errors, uncaught exceptions and failed requests while the page is open. */
+/** Console errors, exceptions, failed requests and requests to other sites while the page is open. */
 function trackErrors(page: Page) {
   const errors: string[] = [];
+  page.on("request", (request) => {
+    const { protocol, hostname } = new URL(request.url());
+    if (protocol.startsWith("http") && hostname !== "localhost") {
+      errors.push(`third-party: ${request.url()}`);
+    }
+  });
   page.on("console", (message) => {
     if (message.type() === "error") errors.push(`console: ${message.text()}`);
   });
@@ -68,11 +85,18 @@ for (const path of pages) {
     test.describe("with JavaScript off", () => {
       test.use({ javaScriptEnabled: false });
 
-      test("reads fine, fits 320px and shows no controls", async ({ page }) => {
+      test("reads fine, fits 320px and shows no controls", async ({ page, browser, baseURL }) => {
         await page.setViewportSize({ width: 320, height: 640 });
         await page.goto(path);
         await expect(page.locator("h1")).toBeVisible();
-        expect((await page.locator("main").innerText()).length).toBeGreaterThan(100);
+        // The prerendered page holds (nearly) all the text the page shows with JS.
+        // test.use() applies to new pages too, so turn JS back on here.
+        const withJs = await browser.newPage({ javaScriptEnabled: true });
+        await withJs.goto(`${baseURL}${path}`, { waitUntil: "networkidle" });
+        const full = (await withJs.locator("main").textContent()) ?? "";
+        await withJs.close();
+        const text = (await page.locator("main").textContent()) ?? "";
+        expect(text.length).toBeGreaterThanOrEqual(full.length * 0.9);
         expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
           320,
         );
@@ -102,9 +126,15 @@ test("every internal link and asset resolves, including #anchors", async ({ requ
   const broken: string[] = [];
   for (const path of pages) {
     const source = await fetchPage(path);
-    for (const [, url] of source.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
+    for (const [, attribute, url] of source.matchAll(/\s(href|src|content)="([^"]+)"/g)) {
+      // <meta content> is text, unless it's a URL (og:image, og:url).
+      if (attribute === "content" && !/^https?:\/\//.test(url!)) continue;
       const target = new URL(url!, `http://localhost${path}`);
-      if (target.host !== "localhost" || !target.pathname.startsWith(base)) continue;
+      if (target.host !== "localhost" && target.host !== ownHost) continue;
+      if (!target.pathname.startsWith(base)) {
+        broken.push(`${path} → ${url} (outside ${base})`);
+        continue;
+      }
       const body = target.pathname === path ? source : await fetchPage(target.pathname);
       if (body.startsWith("status ")) broken.push(`${path} → ${url} (${body})`);
       else if (target.hash && !body.includes(`id="${decodeURIComponent(target.hash.slice(1))}"`)) {
@@ -129,4 +159,29 @@ test("the install script, feeds, robots.txt and sitemap are served", async ({ re
   for (const file of ["robots.txt", "sitemap.xml", "blog/rss.xml", "changelog/rss.xml"]) {
     expect((await request.get(`${base}${file}`)).status(), file).toBe(200);
   }
+});
+
+test.describe("the phone menu", () => {
+  test.use({ viewport: { width: 390, height: 800 } });
+
+  test("opens with the site links and closes on Escape", async ({ page }) => {
+    await page.goto(base, { waitUntil: "networkidle" });
+    const menu = page.getByRole("button", { name: "Menu" });
+    await menu.click();
+    const sheet = page.getByRole("dialog", { name: "Menu" });
+    await expect(sheet.getByRole("link", { name: "Download" })).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(sheet).toBeHidden();
+    await expect(menu).toBeFocused();
+  });
+
+  test("falls back to the header links when its code can't load", async ({ page }) => {
+    await page.route(/menu-sheet-[^/]+\.js$/, (route) => route.abort());
+    await page.goto(base, { waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "Menu" }).click();
+    await expect(page.locator("h1")).toBeVisible();
+    await expect(
+      page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Download" }),
+    ).toBeVisible();
+  });
 });
