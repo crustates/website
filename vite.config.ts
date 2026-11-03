@@ -1,3 +1,4 @@
+import { writeFileSync } from "node:fs";
 import { defineConfig, lazyPlugins } from "vite-plus";
 import { playwright } from "vite-plus/test/browser-playwright";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
@@ -10,6 +11,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import { site } from "./site.config.ts";
 import { draftMdx } from "./src/content/draft-mdx.ts";
 import { contentPaths } from "./src/content/paths.ts";
+import { withoutModulePreloads } from "./src/lib/html.ts";
 
 export default defineConfig({
   base: site.basePath,
@@ -25,6 +27,14 @@ export default defineConfig({
       content: { command: "vpx ./scripts/content.ts", cache: false },
       // Builds, then serves dist/client like GitHub Pages at http://localhost:4173/website/.
       preview: { command: ["vp build", "vpx ./scripts/serve.ts"], cache: false },
+      // Playwright against the built site: every page, links, JS off, 320px (after vp build).
+      e2e: { command: "playwright test --project e2e", cache: false },
+      // Screenshots next to the design kit, report only (needs DESIGN_KIT_DIR; after vp build).
+      design: { command: "playwright test --project design", cache: false },
+      // Lighthouse on one page per template; fails under 95 (after vp build).
+      lighthouse: { command: "vpx ./scripts/lighthouse.ts", cache: false },
+      // Gzipped JS per prerendered page, as a Markdown table (after vp build).
+      weight: { command: "vpx ./scripts/weight.ts", cache: false },
       // Scans bun.lock for known vulnerabilities (config in trivy.yaml).
       security: { command: "trivy fs --config trivy.yaml .", cache: false },
     },
@@ -86,8 +96,17 @@ export default defineConfig({
         ...contentPaths("content", process.env.SHOW_DRAFTS === "true").map((path) => ({
           path: `${path}/`,
         })),
-        // GitHub Pages serves 404.html at the site root for unknown URLs.
-        { path: "/404", prerender: { outputPath: "/404.html" } },
+        // GitHub Pages serves 404.html at the site root for unknown URLs. The page
+        // runs no scripts, so its modulepreload links would only waste downloads.
+        // Start has no hook to change a page's HTML, so this rewrites the file.
+        {
+          path: "/404",
+          prerender: {
+            outputPath: "/404.html",
+            onSuccess: ({ html }) =>
+              writeFileSync("dist/client/404.html", withoutModulePreloads(html)),
+          },
+        },
       ],
     }),
     viteReact({ include: /\.(mdx|[jt]sx?)$/ }),

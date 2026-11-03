@@ -5,6 +5,7 @@
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, resolve, sep } from "node:path";
+import { gzipSync } from "node:zlib";
 import { site } from "../site.config.ts";
 
 const types: Record<string, string> = {
@@ -48,18 +49,34 @@ export function resolveRequest(root: string, basePath: string, url: string): Res
   return isFile(target) ? { status: 200, file: target } : notFound;
 }
 
-if (import.meta.main) {
-  const root = resolve("dist/client");
-  const port = Number(process.env.PORT ?? 4173);
-  createServer((req, res) => {
+/** Serves `root` under the site's base path, the way GitHub Pages would. */
+export function servePages(root: string, port: number, onListening?: () => void) {
+  return createServer((req, res) => {
     const result = resolveRequest(root, site.basePath, req.url ?? "/");
     if (result.status === 301) return res.writeHead(301, { location: result.location }).end();
     if (!isFile(result.file)) return res.writeHead(404).end("Not found");
-    res.writeHead(result.status, {
-      "content-type": types[extname(result.file)] ?? "application/octet-stream",
-    });
-    res.end(readFileSync(result.file));
-  }).listen(port, () =>
+    const type = types[extname(result.file)] ?? "application/octet-stream";
+    const body = readFileSync(result.file);
+    // Pages gzips text, so Lighthouse sees real transfer sizes.
+    if (
+      /text|json|xml|javascript|svg|manifest/.test(type) &&
+      /\bgzip\b/.test(String(req.headers["accept-encoding"]))
+    ) {
+      res.writeHead(result.status, {
+        "content-type": type,
+        "content-encoding": "gzip",
+        vary: "accept-encoding",
+      });
+      return res.end(gzipSync(body));
+    }
+    res.writeHead(result.status, { "content-type": type });
+    res.end(body);
+  }).listen(port, onListening);
+}
+
+if (import.meta.main) {
+  const port = Number(process.env.PORT ?? 4173);
+  servePages(resolve("dist/client"), port, () =>
     console.log(`Serving dist/client at http://localhost:${port}${site.basePath}`),
   );
 }

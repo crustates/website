@@ -20,6 +20,11 @@
       "matchPackageNames": ["bun"]
     },
     {
+      "description": "@playwright/test runs on the playwright package's browsers, so they move together",
+      "groupName": "playwright",
+      "matchPackageNames": ["playwright", "@playwright/test"]
+    },
+    {
       "groupName": "tanstack",
       "matchPackageNames": ["@tanstack/**"]
     }

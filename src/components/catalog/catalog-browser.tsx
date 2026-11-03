@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Rich } from "@/components/rich";
 import { useSlashFocus } from "@/hooks/use-slash-focus";
@@ -37,15 +37,14 @@ function toggle<T>(list: readonly T[], value: T, on: boolean): T[] {
 }
 
 /**
- * Hero and app list. Search and filters only render after hydration: without
+ * Hero and app list. Search and filters are prerendered but hidden until the
+ * head script marks JS as on, so nothing moves when they appear. Without
  * JavaScript the page lists every app and shows no controls.
  */
 export function CatalogBrowser() {
   const { t } = useTranslation("catalog");
-  const [mounted, setMounted] = useState(false);
   const [filters, setFilters] = useState(allFilters);
   const search = useRef<HTMLInputElement>(null);
-  useEffect(() => setMounted(true), []);
 
   useSlashFocus(search);
 
@@ -61,8 +60,8 @@ export function CatalogBrowser() {
         <p className="max-w-[720px] text-body-l">
           <Rich text={t("hero.lead")} />
         </p>
-        {mounted && apps.length > 0 && (
-          <label className="flex min-h-[52px] max-w-[640px] items-center gap-2 rounded-sm border-thin border-line bg-surface-card px-3 py-1.5 text-ink-muted has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus-ring">
+        {apps.length > 0 && (
+          <label className="hidden min-h-[52px] max-w-[640px] items-center gap-2 rounded-sm border-thin border-line bg-surface-card px-3 py-1.5 text-ink-muted has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus-ring js:flex">
             <Search aria-hidden className="size-5 shrink-0" />
             {/* TODO(placeholder): design said "Search 148 apps, e.g. photos, dns, git" */}
             <input
@@ -93,7 +92,7 @@ export function CatalogBrowser() {
           </p>
         ) : (
           <>
-            {mounted && <FilterPanel filters={filters} set={set} />}
+            <FilterPanel filters={filters} set={set} />
             <div className="flex min-w-0 flex-[999_1_560px] flex-col gap-5">
               <h2 className="sr-only">{t("list.label")}</h2>
               <div className="flex flex-wrap items-center justify-between gap-3">
@@ -178,7 +177,7 @@ function FilterPanel({
   return (
     <aside
       aria-label={t("filters.label")}
-      className="flex flex-[1_1_220px] flex-col gap-0.5 sm:max-w-60"
+      className="hidden flex-[1_1_220px] flex-col gap-0.5 js:flex sm:max-w-60"
     >
       <Kicker id="catalog-categories" className="px-2 pb-2">
         {t("filters.categories")}
