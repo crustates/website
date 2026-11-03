@@ -1,5 +1,5 @@
-# Checks, tests and builds the site on every pull request. On pushes to main it
-# also deploys the static output to GitHub Pages.
+# Checks, tests, builds and audits the site on every pull request. On pushes
+# to main it also deploys the static output to GitHub Pages.
 name: site
 
 on:
@@ -38,6 +38,22 @@ jobs:
       - run: vp exec playwright install --with-deps chromium
       - run: vp test
       - run: vp build
+
+      # The built site, served like GitHub Pages: every page, links, JS off, 320px.
+      - run: vp run e2e
+      - name: JS weight per page
+        run: |
+          echo "### JavaScript per page" >> "$GITHUB_STEP_SUMMARY"
+          vpx ./scripts/weight.ts >> "$GITHUB_STEP_SUMMARY"
+      # Fails under 95 in any category; the scores go to the job summary.
+      - run: vp run lighthouse
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lighthouse
+          path: .lighthouse/
+          if-no-files-found: ignore
+          include-hidden-files: true
 
       - if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
