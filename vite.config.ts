@@ -27,6 +27,10 @@ export default defineConfig({
       content: { command: "vpx ./scripts/content.ts", cache: false },
       // Builds, then serves dist/client like GitHub Pages at http://localhost:4173/website/.
       preview: { command: ["vp build", "vpx ./scripts/serve.ts"], cache: false },
+      // Playwright against the built site: every page, links, JS off, 320px (after vp build).
+      e2e: { command: "playwright test --project e2e", cache: false },
+      // Lighthouse on one page per template; fails under 95 (after vp build).
+      lighthouse: { command: "vpx ./scripts/lighthouse.ts", cache: false },
       // Gzipped JS per prerendered page, as a Markdown table (after vp build).
       weight: { command: "vpx ./scripts/weight.ts", cache: false },
       // Scans bun.lock for known vulnerabilities (config in trivy.yaml).
