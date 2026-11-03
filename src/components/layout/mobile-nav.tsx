@@ -1,11 +1,34 @@
 import { Menu } from "lucide-react";
-import { Suspense, lazy, useRef, useState, type ReactNode } from "react";
+import {
+  Suspense,
+  lazy,
+  useEffect,
+  useRef,
+  useState,
+  type ComponentProps,
+  type ReactNode,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import type { MenuSheet as Sheet } from "./menu-sheet";
 import type { NavItem } from "./nav-anchor";
 
 // Radix Dialog loads on the first open, so no page downloads it up front.
-const MenuSheet = lazy(() => import("./menu-sheet").then((m) => ({ default: m.MenuSheet })));
+const MenuSheet = lazy<(props: ComponentProps<typeof Sheet>) => ReactNode>(() =>
+  import("./menu-sheet").then(
+    (m) => ({ default: m.MenuSheet }),
+    () => ({ default: HeaderLinks }),
+  ),
+);
+
+/**
+ * When the sheet can't load (a deploy replaced its chunk, or the network
+ * dropped), switch the header to its no-JS layout, where the links wrap.
+ */
+function HeaderLinks() {
+  useEffect(() => document.documentElement.removeAttribute("data-js"), []);
+  return null;
+}
 
 /**
  * Below the xl breakpoint, with JS, the header links move into this sheet.
