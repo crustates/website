@@ -2,7 +2,7 @@
 // and modulepreloads. Chunks loaded later (the menu sheet) don't count.
 // `vp run weight` prints it as a Markdown table after `vp build`.
 import { readdirSync, readFileSync } from "node:fs";
-import { join, relative, resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { gzipSync } from "node:zlib";
 import { site } from "../site.config.ts";
 
@@ -37,7 +37,7 @@ function weights(root: string, basePath: string): Weight[] {
     .filter((file) => file.endsWith(".html"))
     .map((file) => {
       const urls = pageScripts(readFileSync(join(root, file), "utf8"));
-      const page = `/${relative(".", file).replace(/index\.html$/, "")}`;
+      const page = `/${file.replace(/index\.html$/, "")}`;
       return { page, files: urls.length, gzip: urls.reduce((sum, url) => sum + size(url), 0) };
     });
 }

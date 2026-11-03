@@ -2,7 +2,8 @@
 // site, served the way GitHub Pages does. Fails if any category scores under
 // 95. `vp run lighthouse` after `vp build`; CI runs it on every pull request.
 // Reports for the median run of each page go to .lighthouse/.
-import { appendFileSync, mkdirSync, writeFileSync } from "node:fs";
+import { appendFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createServer } from "node:net";
 import type { AddressInfo } from "node:net";
 import { resolve } from "node:path";
 import lighthouse from "lighthouse";
@@ -14,7 +15,8 @@ const categories = ["performance", "accessibility", "best-practices", "seo"] as 
 export type Scores = Record<(typeof categories)[number], number>;
 type Result = { page: string; scores: Scores };
 
-const pages = [
+// One page per template. A blog post and a release page join once any is published.
+const templates = [
   "/",
   "/features/",
   "/tide/",
@@ -27,7 +29,15 @@ const pages = [
 ];
 const runs = 3;
 const min = 0.95;
-const debugPort = 9333;
+
+/** A port nothing listens on, for Chromium's debugging port. */
+async function freePort(): Promise<number> {
+  const probe = createServer().listen(0);
+  await new Promise((done) => probe.once("listening", done));
+  const { port } = probe.address() as AddressInfo;
+  await new Promise((done) => probe.close(done));
+  return port;
+}
 
 /** The run with the median performance score, as Lighthouse CI picks it. */
 export function medianRun(list: readonly Scores[]): Scores {
@@ -60,6 +70,18 @@ async function main() {
   const server = servePages(resolve("dist/client"), 0);
   await new Promise((done) => server.once("listening", done));
   const { port } = server.address() as AddressInfo;
+  const published = [
+    ...readFileSync("dist/client/sitemap.xml", "utf8").matchAll(
+      /<loc>[^<]+?(\/(?:blog|changelog)\/[^/<]+\/)<\/loc>/g,
+    ),
+  ].map((m) => m[1]!);
+  const pages = [
+    ...templates,
+    ...["/blog/", "/changelog/"].flatMap((section) =>
+      published.filter((path) => path.startsWith(section)).slice(0, 1),
+    ),
+  ];
+  const debugPort = await freePort();
   // Playwright's Chromium, so local runs and CI use the same browser.
   const browser = await chromium.launch({ args: [`--remote-debugging-port=${debugPort}`] });
   const results: Result[] = [];

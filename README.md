@@ -28,19 +28,19 @@ run on Node (`.node-version`).
 
 ## Commands
 
-| Command             | What it does                                                               |
-| ------------------- | -------------------------------------------------------------------------- |
-| `vp check`          | Format check, lint and type check (`vp check --fix` fixes)                 |
-| `vp test`           | Unit tests in Node, component tests in Chromium                            |
-| `vp build`          | Prerenders the site into `dist/client`                                     |
-| `vp run preview`    | Builds, then serves `dist/client` like GitHub Pages on port 4173           |
-| `vp run e2e`        | End-to-end tests against the built site (run `vp build` first)             |
-| `vp run lighthouse` | Lighthouse on one page per template; fails under 95 (after `vp build`)     |
-| `vp run weight`     | Gzipped JavaScript per page, as a Markdown table (after `vp build`)        |
-| `vp run design`     | Screenshots next to the design kit, report only (needs `DESIGN_KIT_DIR`)   |
-| `vp run content`    | Validates `content/` and regenerates its types (also runs on `vp install`) |
-| `vp run tokens`     | Regenerates `src/styles/theme.css` from `design/tokens.json`               |
-| `vp run security`   | Scans dependencies with Trivy (`trivy.yaml`)                               |
+| Command             | What it does                                                                               |
+| ------------------- | ------------------------------------------------------------------------------------------ |
+| `vp check`          | Format check, lint and type check (`vp check --fix` fixes)                                 |
+| `vp test`           | Unit tests in Node, component tests in Chromium                                            |
+| `vp build`          | Prerenders the site into `dist/client`                                                     |
+| `vp run preview`    | Builds, then serves `dist/client` like GitHub Pages on port 4173                           |
+| `vp run e2e`        | End-to-end tests against the built site (run `vp build` first)                             |
+| `vp run lighthouse` | Lighthouse on one page per template; fails under 95 (after `vp build`)                     |
+| `vp run weight`     | Gzipped JavaScript per page, as a Markdown table (after `vp build`)                        |
+| `vp run design`     | Screenshots next to the design kit, report only (after `vp build`; needs `DESIGN_KIT_DIR`) |
+| `vp run content`    | Validates `content/` and regenerates its types (also runs on `vp install`)                 |
+| `vp run tokens`     | Regenerates `src/styles/theme.css` from `design/tokens.json`                               |
+| `vp run security`   | Scans dependencies with Trivy (`trivy.yaml`)                                               |
 
 Before opening a pull request: `vp check`, `vp test`, `vp build`,
 `vp run e2e` and `vp run lighthouse`. CI runs the same.
