@@ -31,7 +31,7 @@ const topics = faqTopics.map((topic) => ({
   items: topic.items.map((item) => ({ ...item, text: searchText(item) })),
 }));
 
-/** Hero search box, rendered only after hydration: without JS the page lists every question. */
+/** Hero search box, hidden until the head script marks JS as on: without JS the page lists every question. */
 function SearchBox({
   query,
   onQuery,
@@ -45,7 +45,7 @@ function SearchBox({
   const input = useRef<HTMLInputElement>(null);
   useSlashFocus(input);
   return (
-    <div className="flex max-w-[640px] flex-col">
+    <div className="hidden max-w-[640px] flex-col js:flex">
       <label className="flex min-h-10 items-center gap-2 rounded-sm border-thin border-line bg-surface-card px-3 py-1.5 text-body-s text-ink-muted focus-within:outline-3 focus-within:outline-offset-2 focus-within:outline-focus-ring">
         <svg
           width="18"
@@ -83,11 +83,9 @@ function SearchBox({
 function FaqPage() {
   addNamespace("faq", faq);
   const { t } = useTranslation("faq");
-  const [mounted, setMounted] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(topics[0]?.id);
   useEffect(() => {
-    setMounted(true);
     const sync = () => setActive(location.hash.slice(1) || topics[0]?.id);
     sync();
     addEventListener("hashchange", sync);
@@ -108,7 +106,7 @@ function FaqPage() {
       >
         <Kicker>{t("kicker")}</Kicker>
         <h1 className="text-display-l max-sm:text-heading-1">{t("heading")}</h1>
-        {mounted && <SearchBox query={query} onQuery={setQuery} count={count} />}
+        <SearchBox query={query} onQuery={setQuery} count={count} />
       </Section>
       <Wrap className="flex flex-col gap-8 pt-12 pb-16 md:flex-row md:items-start md:gap-12">
         <nav
