@@ -1,0 +1,54 @@
+# Weekly check of the external links on the live site. Internal links and
+# anchors are covered by the end-to-end tests on every pull request. When
+# links break, it opens one issue and keeps updating it.
+name: links
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Every page in the live sitemap; the site URL comes from site.config.ts.
+      - name: List the pages
+        id: pages
+        run: |
+          origin=$(sed -n 's/^ *origin: "\(.*\)",$/\1/p' site.config.ts)
+          base=$(sed -n 's/^ *basePath: "\(.*\)",$/\1/p' site.config.ts)
+          site="$origin$base"
+          curl -fsSL "${site}sitemap.xml" | grep -o '<loc>[^<]*' | sed 's/<loc>//' > pages.txt
+          test -s pages.txt
+          echo "exclude=^$(printf '%s' "$site" | sed 's/[.]/\\./g')" >> "$GITHUB_OUTPUT"
+
+      - id: lychee
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --no-progress --files-from pages.txt --exclude '${{ steps.pages.outputs.exclude }}'
+          fail: false
+
+      - name: Open or update the broken-links issue
+        if: steps.lychee.outputs.exit_code != 0
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          title="Broken links on the website"
+          number=$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body-file lychee/out.md
+          else
+            gh issue create --title "$title" --body-file lychee/out.md
+          fi
